@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMPYRA MINING INNOVATIONS – EMI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/style/service-water.css" />
+  <link rel="stylesheet" href="./assets/style/style.css" />
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+
+</head>
+
+<body>
+  <!-- =============================================
+     NAVBAR
+============================================= -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <a href="index.html" class="nav-logo">
+          <div class="logo-placeholder">
+            <img src="logo.jpg" alt="EMI" class="logo-img">
+          </div>
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+
+          <li class="nav-item"><a href="index.html" class="nav-link active-page" data-en="Home"
+              data-fr="Accueil">Home</a></li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-en="Our Company" data-fr="Notre Entreprise">Our Company <i class="fa fa-chevron-down"></i></a>
+          <ul class="dropdown">
+            <li><a href="./our_Company/team.html"><i class="fa fa-users"></i><span data-en="Senior Management" data-fr="Direction Générale">Senior Management</span></a></li>
+            <li><a href="./our_Company/partners.html"><i class="fa fa-handshake"></i><span data-en="Our Partners" data-fr="Nos Partenaires">Our Partners</span></a></li>
+            <li><a href="./our_Company/governance.html"><i class="fa fa-shield-alt"></i><span data-en="Governance" data-fr="Gouvernance">Governance</span></a></li>
+            <li><a href="./our_Company/impact.html"><i class="fa fa-globe"></i><span data-en="Our Community Impact" data-fr="Notre Impact Social">Our Community Impact</span></a></li>
+            <li><a href="./our_Company/downloads.html"><i class="fa fa-download"></i><span data-en="Downloads" data-fr="Téléchargements">Downloads</span></a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="services.html" class="nav-link" data-en="Services" data-fr="Services">Services <i class="fa fa-chevron-down"></i></a>
+          <ul class="dropdown mega">
+            <div class="dropdown-group">
+              <div class="dropdown-group-title" data-en="Environment & Sustainable Management" data-fr="Environnement & Gestion Durable">Environment & Sustainable Management</div>
+              <li><a href="./services/service-environmental-geochemistry.html"><i class="fa fa-flask"></i><span data-en="Environmental Geochemistry & DRA" data-fr="Géochimie environnementale & DRA">Environmental Geochemistry & DRA</span></a></li>
+              <li><a href="./services/service-water.html"><i class="fa fa-water"></i><span data-en="Mine Water Management" data-fr="Gestion des eaux de mine">Mine Water Management</span></a></li>
+              <li><a href="./services/service-social-environmental.html"><i class="fa fa-leaf"></i><span data-en="Environment & Social Management" data-fr="Gestion environnementale et sociale">Environment & Social Management</span></a></li>
+            </div>
+            <div class="dropdown-group">
+              <div class="dropdown-group-title" data-en="Audits, Expertise & Risk Management" data-fr="Audits, Expertise & Gestion des Risques">Audits, Expertise & Risk Management</div>
+              <li><a href="./services/service-audit.html"><i class="fa fa-search"></i><span data-en="Independent Expertise & Audits" data-fr="Expertise indépendante & Audits">Independent Expertise & Audits</span></a></li>
+              <li><a href="./services/service-risk.html"><i class="fa fa-exclamation-triangle"></i><span data-en="Risk Management" data-fr="Gestion des Risques">Risk Management</span></a></li>
+              <li><a href="./services/service-contaminated-sites.html"><i class="fa fa-industry"></i><span data-en="Contaminated Sites Assessment" data-fr="Évaluation des sites contaminés">Contaminated Sites Assessment</span></a></li>
+            </div>
+            <div class="dropdown-group">
+              <div class="dropdown-group-title" data-en="Exploration & Resource Assessment" data-fr="Exploration & Évaluation des Ressources">Exploration & Resource Assessment</div>
+              <li><a href="./services/service-modeling.html"><i class="fa fa-cubes"></i><span data-en="Modeling and Estimation of Mineral Resources" data-fr="Modélisation et estimation des ressources minérales">Modeling and Estimation of Mineral Resources</span></a></li>
+              <li><a href="./services/service-research-development.html"><i class="fa fa-microscope"></i><span data-en="Research and Development" data-fr="Recherche et développement">Research and Development</span></a></li>
+              <li><a href="./services/service-feasibility.html"><i class="fa fa-chart-bar"></i><span data-en="Feasibility Studies" data-fr="Études de faisabilité">Feasibility Studies</span></a></li>
+              <li><a href="./services/service-institutional-support.html"><i class="fa fa-university"></i><span data-en="Institutional Support and Advocacy" data-fr="Appui institutionnel et plaidoyer">Institutional Support and Advocacy</span></a></li>
+              <li><a href="./services/service-traceability.html"><i class="fa fa-qrcode"></i><span data-en="Traceability of Mineral Resources" data-fr="Traçabilité des ressources minérales">Traceability of Mineral Resources</span></a></li>
+              <li><a href="./services/service-exploration.html"><i class="fa fa-compass"></i><span data-en="Exploration Services" data-fr="Services d'exploration">Exploration Services</span></a></li>
+            </div>
+            <div class="dropdown-group">
+              <div class="dropdown-group-title" data-en="Engineering & Mining Operations" data-fr="Ingénierie & Exploitation Minière">Engineering & Mining Operations</div>
+              <li><a href="./services/service-operations.html"><i class="fa fa-cogs"></i><span data-en="Mining Assistance" data-fr="Assistance à l'exploitation minière">Mining Assistance</span></a></li>
+              <li><a href="./services/service-openpit.html"><i class="fa fa-mountain"></i><span data-en="Open Pit Mines" data-fr="Mines à ciel ouvert">Open Pit Mines</span></a></li>
+              <li><a href="./services/service-underground.html"><i class="fa fa-hard-hat"></i><span data-en="Underground Mines" data-fr="Mines souterraines">Underground Mines</span></a></li>
+              <li><a href="./services/service-residue-engineering.html"><i class="fa fa-recycle"></i><span data-en="Residue Pond and Waste Rock Pile Engineering" data-fr="Ingénierie des parcs à résidus et des haldes à stériles">Residue Pond and Waste Rock Pile Engineering</span></a></li>
+              <li><a href="./services/service-closure.html"><i class="fa fa-times-circle"></i><span data-en="Restoration and Closure of Mining Sites" data-fr="Restauration et fermeture des sites miniers">Restoration and Closure of Mining Sites</span></a></li>
+            </div>
+          </ul>
+        </li>
+
+          <li class="nav-item"><a href="intelligence.html" class="nav-link" data-en="Mining Intelligence"
+              data-fr="Intelligence Minière">Mining Intelligence</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link" data-en="News & Blog"
+              data-fr="Actualités & Blog">News & Blog</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-en="Contact" data-fr="Contact">Contact</a>
+          </li>
+
+          <!-- LANGUAGE SWITCHER -->
+          <li class="nav-item nav-lang" id="nav-lang">
+            <button class="lang-trigger" id="lang-trigger" aria-label="Change language">
+              <i class="fa fa-globe globe"></i>
+              <span id="lang-label">EN</span>
+              <i class="fa fa-chevron-down"></i>
+            </button>
+            <div class="lang-dropdown" id="lang-dropdown">
+              <button class="lang-option active" id="opt-en" onclick="setLang('en')"><span class="flag">🇬🇧</span>
+                English</button>
+              <button class="lang-option" id="opt-fr" onclick="setLang('fr')"><span class="flag">🇫🇷</span>
+                Français</button>
+            </div>
+          </li>
+
+        </ul>
+
+        <!-- SEARCH ICON + POPUP -->
+        <div class="nav-right">
+          <button class="nav-search-btn" id="search-btn" aria-label="Search">
+            <i class="fa fa-search"></i>
+          </button>
+          <div class="search-popup" id="search-popup">
+            <div class="search-popup-inner">
+              <span class="search-popup-label" data-en="Search the site" data-fr="Rechercher">Search the site</span>
+              <div class="search-input-wrap">
+                <input type="text" class="search-input" id="search-input"
+                  data-placeholder-en="Services, news, projects…" data-placeholder-fr="Services, actualités, projets…"
+                  placeholder="Services, news, projects…" autocomplete="off" />
+                <button class="search-submit-btn" id="search-submit" aria-label="Go">
+                  <i class="fa fa-arrow-right"></i>
+                </button>
+              </div>
+              <div class="search-suggestions">
+                <button class="search-suggestion-tag" data-en="Exploration" data-fr="Exploration">Exploration</button>
+                <button class="search-suggestion-tag" data-en="Water" data-fr="Eau">Water</button>
+                <button class="search-suggestion-tag" data-en="Risk" data-fr="Risque">Risk</button>
+                <button class="search-suggestion-tag" data-en="Intelligence"
+                  data-fr="Intelligence">Intelligence</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </nav>
+
+
+
+
+  <!-- =============================================
+     HERO SLIDER
+============================================= -->
+  <section id="hero">
+    <div class="slider-track" id="slider-track">
+
+      <!-- SLIDE 1 -->
+      <div class="slide slide-1 active">
+        <div class="slide-img-placeholder"></div>
+        <img class="slide-img" src="./assets/images/img1.jpg" alt="Mining operations">
+        <div class="container">
+          <div class="slide-content">
+            <div class="slide-eyebrow" data-en="Empyra Mining Innovations" data-fr="Empyra Mining Innovations">Empyra
+              Mining Innovations</div>
+            <h1 data-en="<em>Innovative</em> Mining for a Sustainable Future"
+              data-fr="L'exploitation minière <em>innovante</em> pour un avenir durable"><em>Innovative</em>
+              Mining<br>for a Sustainable Future</h1>
+            <p data-en="Bringing innovation, technology and expertise to create safe, efficient, and environmentally responsible mining solutions."
+              data-fr="Mettre l'innovation, la technologie et l'expertise au service d'une exploitation minière sûre, efficace et respectueuse de l'environnement.">
+              Bringing innovation, technology and expertise to create safe, efficient, and environmentally responsible
+              mining solutions.</p>
+            <div class="slide-btns">
+              <a href="contact.html" class="btn btn-outline"><i class="fa fa-envelope"></i> <span data-en="Contact Us"
+                  data-fr="Contactez-nous">Contact Us</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide slide-2">
+        <div class="slide-img-placeholder"></div>
+        <img class="slide-img" src="./assets/images/img2.jpg" alt="Exploration">
+        <div class="container">
+          <div class="slide-content">
+            <div class="slide-eyebrow" data-en="Exploration & Assessment" data-fr="Exploration & Évaluation">Exploration
+              & Assessment</div>
+            <h1 data-en="Unlocking <em>Natural Resources</em> with Precision"
+              data-fr="Valoriser les <em>ressources naturelles</em> avec précision">Unlocking <em>Natural
+                Resources</em><br>with Precision</h1>
+            <p data-en="From preliminary prospecting to advanced drilling campaigns — our experts guide every stage of mineral resource discovery."
+              data-fr="De la prospection préliminaire aux campagnes de forage avancées — nos experts guident chaque étape de la découverte des ressources.">
+              From preliminary prospecting to advanced drilling campaigns — our experts guide every stage of mineral
+              resource discovery.</p>
+            <div class="slide-btns">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide slide-3">
+        <div class="slide-img-placeholder"></div>
+        <img class="slide-img" src="./assets/images/img3.jpg" alt="Exploration">
+        <div class="container">
+          <div class="slide-content">
+            <div class="slide-eyebrow" data-en="Environmental Responsibility" data-fr="Responsabilité Environnementale">
+              Environmental Responsibility</div>
+            <h1 data-en="Mining in <em>Harmony</em> with the Environment"
+              data-fr="L'exploitation minière en <em>harmonie</em> avec l'environnement">Mining in
+              <em>Harmony</em><br>with the Environment</h1>
+            <p data-en="Compliant with ISO 14001, IRMA and Cameroon's Mining Code, we drive sustainable practices that respect communities and nature."
+              data-fr="Conformément aux normes ISO 14001, IRMA et au code minier du Cameroun, nous développons des pratiques durables.">
+              Compliant with ISO 14001, IRMA and Cameroon's Mining Code, we drive sustainable practices that respect
+              communities and nature.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Arrows -->
+    <div class="slider-arrows">
+      <button class="arrow-btn" id="prev-btn" aria-label="Previous"><i class="fa fa-chevron-left"></i></button>
+      <button class="arrow-btn" id="next-btn" aria-label="Next"><i class="fa fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Dots -->
+    <div class="slider-dots">
+      <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+      <button class="dot" data-index="1" aria-label="Slide 2"></button>
+      <button class="dot" data-index="2" aria-label="Slide 3"></button>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+     ABOUT SECTION
+============================================= -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Visual -->
+        <div class="about-visual scroll-reveal">
+          <div class="about-accent-box"></div>
+          <div class="about-img-placeholder">
+            <i class="fa fa-mountain"></i>
+            <img src="./assets/images/img4.jpg" alt="About EMI" class="about-img-main">
+          </div>
+
+        </div>
+
+        <!-- Content -->
+        <div class="about-content scroll-reveal-right">
+          <div class="section-tag" data-en="About Us" data-fr="À Propos de Nous">About Us</div>
+          <h2 class="section-title" data-en="Who Are <span>We?</span>" data-fr="Qui <span>Sommes-nous?</span>">Who Are
+            <span>We?</span></h2>
+          <div class="section-divider" style="margin: 14px 0 0; text-align:left;"></div>
+          <p data-en="EMPYRA MINING INNOVATIONS (EMI) is a Cameroonian company operating in the mining sector. EMI relies on innovation and mining intelligence to help establish sustainable practices that will positively impact mining in Cameroon."
+            data-fr="EMPYRA MINING INNOVATIONS (EMI) est une entreprise de droit camerounais qui opère 
+          dans le domaine des Mines. EMI entend s’appuyer sur l’innovation et l’intelligence 
+          minière pour Contribuer à la mise en place de pratiques durables afin d’impacter 
+          l’exploitation minière au Cameroun.">EMPYRA MINING INNOVATIONS (EMI) is a Cameroonian company operating in
+            the mining sector. EMI relies on innovation and mining intelligence to help establish sustainable practices
+            that will positively impact mining in Cameroon.</p>
+          <p data-en="Our vision is to contribute to the creation of sustainable and innovative operating conditions for the mining sector, in line with the environmental, social and economic aspirations of the Cameroonian State."
+            data-fr="Notre Vision et Contribuer à la mise en place de conditions d’exploitation durable et innovantes du 
+          secteur minier dans le respect des aspirations environnementales, sociales et 
+          économique de l’Etat camerounais.">Our vision is to contribute to the creation of sustainable and innovative
+            operating conditions for the mining sector, in line with the environmental, social and economic aspirations
+            of the Cameroonian State.</p>
+          <p data-en="Our mission is to respond effectively and innovatively to the challenges of sustainable and responsible mining operations, in line with the regulations and standards of the Cameroonian mining code and international norms such as ISO 20305, 14001, and IRMA."
+            data-fr="Notre mission Répondre de manière efficace et innovante aux défis de l’exploitation minière durable et 
+          responsable tels que relevés dans les rapports de l’ITIE, en conformité avec le code 
+          minier du Cameroun, les standards et les normes internationaux tels que ISO 20305,
+          14001 et IRMA."></p>
+          <div class="about-values">
+            <div class="value-item">
+              <div class="value-icon"><i class="fa fa-lightbulb"></i></div>
+              <div>
+                <strong data-en="Innovation" data-fr="Innovation">Innovation</strong>
+                <p data-en="Pioneering modern solutions" data-fr="Des solutions modernes pionnières">Pioneering modern
+                  solutions</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon"><i class="fa fa-leaf"></i></div>
+              <div>
+                <strong data-en="Sustainability" data-fr="Durabilité">Sustainability</strong>
+                <p data-en="Responsible environmental practices" data-fr="Pratiques environnementales responsables">
+                  Responsible environmental practices</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon"><i class="fa fa-shield-alt"></i></div>
+              <div>
+                <strong data-en="Integrity" data-fr="Intégrité">Integrity</strong>
+                <p data-en="Transparent and ethical conduct" data-fr="Conduite transparente et éthique">Transparent and
+                  ethical conduct</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-icon"><i class="fa fa-medal"></i></div>
+              <div>
+                <strong data-en="Excellence" data-fr="Excellence">Excellence</strong>
+                <p data-en="ISO & IRMA compliant standards" data-fr="Standards conformes ISO & IRMA">ISO & IRMA
+                  compliant standards</p>
+              </div>
+            </div>
+          </div>
+          <a href="about.html" class="btn btn-primary"><i class="fa fa-arrow-right"></i> <span data-en="Learn More"
+              data-fr="En Savoir Plus">Learn More</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+     SERVICES
+============================================= -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" data-en="What We Do" data-fr="Ce Que Nous Faisons">What We Do</div>
+        <h2 class="section-title" data-en="Our <span>Services</span>" data-fr="Nos <span>Services</span>">Our
+          <span>Services</span></h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-card-icon"><i class="ph ph-atom"></i></div>
+          <h3 data-en="Environmental Geochemistry & ARD" data-fr="Géochimie Environnementale & ARD">Environmental
+            Geochemistry & ARD</h3>
+          <p data-en="Our geochemistry experts assess the geochemical properties of mining waste and predict the potential for Acid Rock Drainage (ARD)."
+            data-fr="Nos experts en géochimie évaluent les propriétés géochimiques des déchets miniers et prédisent le potentiel d'ARD.">
+            Our geochemistry experts assess the geochemical properties of mining waste and predict the potential for
+            Acid Rock Drainage (ARD).</p>
+          <a href="service-geochemistry.html" class="service-card-link" data-en="Learn More →"
+            data-fr="En savoir plus →">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-icon"><i class="fa fa-search-plus"></i></div>
+          <h3 data-en="Independent Expertise & Audits" data-fr="Expertise Indépendante & Audits">Independent Expertise &
+            Audits</h3>
+          <p data-en="As an independent third party, we provide unbiased technical assessments and audits of mining projects and operations."
+            data-fr="En tant que tiers indépendant, nous fournissons des évaluations techniques et des audits impartiaux des projets miniers.">
+            As an independent third party, we provide unbiased technical assessments and audits of mining projects and
+            operations.</p>
+          <a href="service-audit.html" class="service-card-link">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-icon"><i class="ph ph-warning"></i></div>
+          <h3 data-en="Risk Management" data-fr="Gestion des Risques">Risk Management</h3>
+          <p data-en="Mining projects face multiple risks — geological uncertainties, technical failures, environmental incidents. We anticipate and mitigate them."
+            data-fr="Les projets miniers sont exposés à de multiples risques. incertitudes geologiques, defaillances techiques, incidents">
+            Mining projects face multiple risks — geological uncertainties, technical failures, environmental incidents.
+            We anticipate and mitigate them.</p>
+          <a href="service-risk.html" class="service-card-link">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-icon"><i class="fa fa-water"></i></div>
+          <h3 data-en="Mine Water Management" data-fr="Gestion des Eaux de Mine">Mine Water Management</h3>
+          <p data-en="We provide comprehensive solutions for managing surface and groundwater on mine sites throughout the project lifecycle."
+            data-fr="Nous fournissons des solutions complètes pour gérer les eaux superficielles et souterraines sur les sites miniers.">
+            We provide comprehensive solutions for managing surface and groundwater on mine sites throughout the project
+            lifecycle.</p>
+          <a href="service-water.html" class="service-card-link">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-icon"><i class="ph ph-sphere"></i></div>
+          <h3 data-en="Mineral Resource Modeling" data-fr="Modélisation Et Estimation Des Resources Minerales">Mineral
+            Resource Modeling</h3>
+          <p data-en="Accurate mineral resource estimation forms the foundation of any mining project. We deliver internationally compliant models."
+            data-fr="L'estimation précise des ressources minérales constitue la base de tout projet minier.">Accurate
+            mineral resource estimation forms the foundation of any mining project. We deliver internationally compliant
+            models.</p>
+          <a href="service-modeling.html" class="service-card-link">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-icon"><i class="fa fa-compass"></i></div>
+          <h3 data-en="Exploration Services" data-fr="Services d'Exploration">Exploration Services</h3>
+          <p data-en="Our expertise covers the entire discovery process, from preliminary prospecting to advanced drilling campaigns and resource evaluation."
+            data-fr="Notre expertise couvre l'ensemble du processus de découverte, de la prospection aux campagnes de forage avancées.">
+            Our expertise covers the entire discovery process, from preliminary prospecting to advanced drilling
+            campaigns and resource evaluation.</p>
+          <a href="service-exploration.html" class="service-card-link">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-icon"><i class="ph ph-books"></i></div>
+          <h3 data-en="Feasibility Studies" data-fr="Etudes De Faisabilite">Etudes De Faisabilite</h3>
+          <p data-en="Our expertise covers the entire discovery process, from preliminary prospecting to advanced drilling campaigns and resource evaluation."
+            data-fr="les etudes de faisabilite sont des outils essentiels pour determiner si un projet minier doit etre poursuivi">
+            Our expertise covers the entire discovery process, from preliminary prospecting to advanced drilling
+            campaigns and resource evaluation.</p>
+          <a href="service-exploration.html" class="service-card-link">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-icon"><i class="ph ph-magnifying-glass"></i></div>
+          <h3 data-en="Resource Modeling & Estimation" data-fr="Modelisation Et Estimation Des Resources Minerales">
+            Modelisation Et Estimation Des Resources Minerales</h3>
+          <p data-en="Our expertise covers the entire discovery process, from preliminary prospecting to advanced drilling campaigns and resource evaluation."
+            data-fr="L'estimation des resources minerales constitute la base de tout projet minier">L'estimation des
+            resources minerales constitute la base de tout projet minier</p>
+          <a href="service-exploration.html" class="service-card-link">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-icon"><i class="ph ph-sphere"></i></div>
+          <h3 data-en="Mining Operations Support" data-fr="Support aux operations Minieres">Support aux operations
+            Minieres</h3>
+          <p data-en="We provide technical assistance in mining planning, production scheduling, and operational optimization."
+            data-fr="Nous fournissons une assistance technique en planification miniere programmation de la production">
+            We provide technical assistance in mining planning, production scheduling, and operational optimization.</p>
+          <a href="service-exploration.html" class="service-card-link">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin-top: 44px;">
+        <a href="services.html" class="btn btn-primary"><i class="fa fa-th-large"></i> <span data-en="View All Services"
+            data-fr="Voir Tous les Services">View All Services</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+     INTELLIGENCE MINIÈRE — 3-SLIDE SLIDER
+============================================= -->
+  <section id="intelligence">
+    <div class="intel-slider-wrap">
+      <div class="intel-slider-track" id="intel-track">
+
+        <!-- ── SLIDE 1 ── -->
+        <div class="intel-slide intel-slide-1">
+          <div class="container">
+            <div class="intel-grid">
+              <div class="intel-content">
+                <div class="section-tag" data-en="Knowledge & Innovation" data-fr="Connaissance & Innovation">Knowledge
+                  & Innovation</div>
+                <h2 class="section-title light" data-en="Mining <span>Intelligence</span>"
+                  data-fr="Intelligence <span>Minière</span>">Mining <span>Intelligence</span></h2>
+                <div class="section-divider" style="margin-left:0; margin-bottom:18px;"></div>
+                <p data-en="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+                  data-fr="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                <div class="intel-features">
+                  <div class="intel-feature">
+                    <div class="intel-feature-icon"><i class="fa fa-chart-line"></i></div>
+                    <div>
+                      <h4 data-en="Operational Site Assistance" data-fr="Assistance Opérationnelle">Operational Site
+                        Assistance</h4>
+                      <p data-en="Lorem ipsum dolor sit amet consectetur adipiscing elit."
+                        data-fr="Lorem ipsum dolor sit amet consectetur adipiscing elit.">Lorem ipsum dolor sit amet
+                        consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                  <div class="intel-feature">
+                    <div class="intel-feature-icon"><i class="fa fa-shield-alt"></i></div>
+                    <div>
+                      <h4 data-en="Mining Risk Assessment" data-fr="Évaluation des Risques Miniers">Mining Risk
+                        Assessment</h4>
+                      <p data-en="Lorem ipsum dolor sit amet consectetur adipiscing elit."
+                        data-fr="Lorem ipsum dolor sit amet consectetur adipiscing elit.">Lorem ipsum dolor sit amet
+                        consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                  <div class="intel-feature">
+                    <div class="intel-feature-icon"><i class="fa fa-graduation-cap"></i></div>
+                    <div>
+                      <h4 data-en="EMI In-Situ Training" data-fr="Formation EMI In Situ">EMI In-Situ Training</h4>
+                      <p data-en="Lorem ipsum dolor sit amet consectetur adipiscing elit."
+                        data-fr="Lorem ipsum dolor sit amet consectetur adipiscing elit.">Lorem ipsum dolor sit amet
+                        consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                </div>
+                <a href="intelligence.html" class="btn btn-primary"><i class="fa fa-brain"></i> <span
+                    data-en="Discover More" data-fr="Découvrir Plus">Discover More</span></a>
+              </div>
+              <!-- Visual — REPLACE background with your image -->
+              <div class="intel-visual" style="background: url('./assets/images/img5.jpg')">
+                <i class="intel-visual-icon fa fa-mountain"></i>
+                <div class="intel-visual-overlay"></div>
+                <div class="intel-visual-badge" data-en="Operations Support" data-fr="Soutien aux Opérations">Operations
+                  Support</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SLIDE 2 ── -->
+        <div class="intel-slide intel-slide-2">
+          <div class="container">
+            <div class="intel-grid">
+              <div class="intel-content">
+                <div class="section-tag" data-en="Risk & Safety" data-fr="Risque & Sécurité">Risk & Safety</div>
+                <h2 class="section-title light" data-en="Risk <span>Evaluation</span>"
+                  data-fr="Évaluation des <span>Risques</span>">Risk <span>Evaluation</span></h2>
+                <div class="section-divider" style="margin-left:0; margin-bottom:18px;"></div>
+                <p data-en="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                  data-fr="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in
+                  voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <div class="intel-features">
+                  <div class="intel-feature">
+                    <div class="intel-feature-icon"><i class="fa fa-exclamation-triangle"></i></div>
+                    <div>
+                      <h4 data-en="Geological Risk Mapping" data-fr="Cartographie des Risques Géologiques">Geological
+                        Risk Mapping</h4>
+                      <p data-en="Lorem ipsum dolor sit amet consectetur adipiscing elit."
+                        data-fr="Lorem ipsum dolor sit amet consectetur adipiscing elit.">Lorem ipsum dolor sit amet
+                        consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                  <div class="intel-feature">
+                    <div class="intel-feature-icon"><i class="fa fa-hard-hat"></i></div>
+                    <div>
+                      <h4 data-en="Safety Protocol Design" data-fr="Conception de Protocoles de Sécurité">Safety
+                        Protocol Design</h4>
+                      <p data-en="Lorem ipsum dolor sit amet consectetur adipiscing elit."
+                        data-fr="Lorem ipsum dolor sit amet consectetur adipiscing elit.">Lorem ipsum dolor sit amet
+                        consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                  <div class="intel-feature">
+                    <div class="intel-feature-icon"><i class="fa fa-file-alt"></i></div>
+                    <div>
+                      <h4 data-en="Regulatory Compliance Reports" data-fr="Rapports de Conformité Réglementaire">
+                        Regulatory Compliance Reports</h4>
+                      <p data-en="Lorem ipsum dolor sit amet consectetur adipiscing elit."
+                        data-fr="Lorem ipsum dolor sit amet consectetur adipiscing elit.">Lorem ipsum dolor sit amet
+                        consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                </div>
+                <a href="intelligence.html" class="btn btn-primary"><i class="fa fa-shield-alt"></i> <span
+                    data-en="Learn More" data-fr="En Savoir Plus">Learn More</span></a>
+              </div>
+              <!-- Visual — REPLACE background with your image -->
+              <div class="intel-visual" style="background: url('./assets/images/img6.jpg')">
+                <i class="intel-visual-icon fa fa-exclamation-triangle"></i>
+                <div class="intel-visual-overlay"></div>
+                <div class="intel-visual-badge" data-en="Risk Management" data-fr="Gestion des Risques">Risk Management
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SLIDE 3 ── -->
+        <div class="intel-slide intel-slide-3">
+          <div class="container">
+            <div class="intel-grid">
+              <div class="intel-content">
+                <div class="section-tag" data-en="Water & Environment" data-fr="Eau & Environnement">Water & Environment
+                </div>
+                <h2 class="section-title light" data-en="Water <span>Management</span>"
+                  data-fr="Gestion des <span>Eaux</span>">Water <span>Management</span></h2>
+                <div class="section-divider" style="margin-left:0; margin-bottom:18px;"></div>
+                <p data-en="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                  data-fr="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non
+                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="intel-features">
+                  <div class="intel-feature">
+                    <div class="intel-feature-icon"><i class="fa fa-tint"></i></div>
+                    <div>
+                      <h4 data-en="Surface & Groundwater Control" data-fr="Contrôle des Eaux de Surface">Surface &
+                        Groundwater Control</h4>
+                      <p data-en="Lorem ipsum dolor sit amet consectetur adipiscing elit."
+                        data-fr="Lorem ipsum dolor sit amet consectetur adipiscing elit.">Lorem ipsum dolor sit amet
+                        consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                  <div class="intel-feature">
+                    <div class="intel-feature-icon"><i class="fa fa-leaf"></i></div>
+                    <div>
+                      <h4 data-en="Environmental Responsibility" data-fr="Responsabilité Environnementale">Environmental
+                        Responsibility</h4>
+                      <p data-en="Lorem ipsum dolor sit amet consectetur adipiscing elit."
+                        data-fr="Lorem ipsum dolor sit amet consectetur adipiscing elit.">Lorem ipsum dolor sit amet
+                        consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                  <div class="intel-feature">
+                    <div class="intel-feature-icon"><i class="fa fa-recycle"></i></div>
+                    <div>
+                      <h4 data-en="Mine Closure & Rehabilitation" data-fr="Fermeture & Réhabilitation">Mine Closure &
+                        Rehabilitation</h4>
+                      <p data-en="Lorem ipsum dolor sit amet consectetur adipiscing elit."
+                        data-fr="Lorem ipsum dolor sit amet consectetur adipiscing elit.">Lorem ipsum dolor sit amet
+                        consectetur adipiscing elit.</p>
+                    </div>
+                  </div>
+                </div>
+                <a href="intelligence.html" class="btn btn-primary"><i class="fa fa-water"></i> <span
+                    data-en="Discover More" data-fr="Découvrir Plus">Discover More</span></a>
+              </div>
+              <!-- Visual — REPLACE background with your image -->
+              <div class="intel-visual" style="background: url('./assets/images/img7.jpg')">
+                <i class="intel-visual-icon fa fa-water"></i>
+                <div class="intel-visual-overlay"></div>
+                <div class="intel-visual-badge" data-en="Water & Environment" data-fr="Eau & Environnement">Water &
+                  Environment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /intel-slider-track -->
+
+      <!-- Nav: arrows + dots -->
+      <div class="intel-slider-nav">
+        <button class="intel-arrow" id="intel-prev" aria-label="Previous"><i class="fa fa-chevron-left"></i></button>
+        <button class="intel-dot active" data-intel="0"></button>
+        <button class="intel-dot" data-intel="1"></button>
+        <button class="intel-dot" data-intel="2"></button>
+        <button class="intel-arrow" id="intel-next" aria-label="Next"><i class="fa fa-chevron-right"></i></button>
+      </div>
+
+    </div><!-- /intel-slider-wrap -->
+  </section>
+
+
+
+  <!-- =============================================
+     BLOG / NEWS — HORIZONTAL CARD SLIDER
+============================================= -->
+  <section id="blog">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" data-en="Latest Updates" data-fr="Dernières Mises à Jour">Latest Updates</div>
+        <h2 class="section-title" data-en="News &amp; <span>Blog</span>" data-fr="Actualités &amp; <span>Blog</span>">
+          News &amp; <span>Blog</span></h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="blog-slider-wrap">
+        <div class="blog-slider-track" id="blog-track">
+
+          <!-- Card 1 -->
+          <div class="blog-card">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,#0d2244,#1a3a6b);">
+              <i class="fa fa-mountain" style="font-size:3rem;color:rgba(255,255,255,0.08);"></i>
+              <span class="blog-cat" data-en="Mining" data-fr="Mines">Mining</span>
+              <img src="./assets/images/img8.jpg">
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fa fa-calendar"></i> March 10, 2025</span>
+                <span><i class="fa fa-user"></i> EMI Team</span>
+              </div>
+              <h3 data-en="Lorem Ipsum Dolor Sit Amet Consectetur Mining Innovations"
+                data-fr="Lorem ipsum dolor sit amet consectetur innovations minières">Lorem Ipsum Dolor Sit Amet
+                Consectetur Mining Innovations</h3>
+              <p data-en="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore."
+                data-fr="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore.</p>
+              <a href="blog-post.html" class="blog-card-link">Read More <i class="fa fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="blog-card">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,#0a3020,#1a5030);">
+              <i class="fa fa-leaf" style="font-size:3rem;color:rgba(255,255,255,0.08);"></i>
+              <span class="blog-cat" data-en="Environment" data-fr="Environnement">Environment</span>
+              <img src="./assets/images/img9.jpg">
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fa fa-calendar"></i> February 22, 2025</span>
+                <span><i class="fa fa-user"></i> EMI Team</span>
+              </div>
+              <h3 data-en="Sustainable Mining Practices Advancing in Central Africa"
+                data-fr="Pratiques minières durables en progression en Afrique Centrale">Sustainable Mining Practices
+                Advancing in Central Africa</h3>
+              <p data-en="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam quis nostrud exercitation."
+                data-fr="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam quis nostrud exercitation.">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam quis nostrud
+                exercitation.</p>
+              <a href="blog-post.html" class="blog-card-link">Read More <i class="fa fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="blog-card">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,#1a1a0a,#3a3010);">
+              <i class="fa fa-chart-bar" style="font-size:3rem;color:rgba(255,255,255,0.08);"></i>
+              <span class="blog-cat" data-en="Analysis" data-fr="Analyse">Analysis</span>
+              <img src="./assets/images/img10.jpg">
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fa fa-calendar"></i> January 15, 2025</span>
+                <span><i class="fa fa-user"></i> EMI Team</span>
+              </div>
+              <h3 data-en="ITIE Report 2024: Key Challenges for the Cameroonian Mining Sector"
+                data-fr="Rapport ITIE 2024: Défis Clés pour le Secteur Minier Camerounais">ITIE Report 2024: Key
+                Challenges for the Cameroonian Mining Sector</h3>
+              <p data-en="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate."
+                data-fr="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate.">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in
+                voluptate.</p>
+              <a href="blog-post.html" class="blog-card-link">Read More <i class="fa fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="blog-card">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,#1a0a0a,#3a1010);">
+              <i class="fa fa-hard-hat" style="font-size:3rem;color:rgba(255,255,255,0.08);"></i>
+              <span class="blog-cat" data-en="Operations" data-fr="Opérations">Operations</span>
+              <img src="./assets/img9.jpg">
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fa fa-calendar"></i> December 5, 2024</span>
+                <span><i class="fa fa-user"></i> EMI Team</span>
+              </div>
+              <h3 data-en="New Open-Pit Mining Standards Adopted Across Sub-Saharan Africa"
+                data-fr="Nouvelles Normes pour les Mines à Ciel Ouvert en Afrique Subsaharienne">New Open-Pit Mining
+                Standards Adopted Across Sub-Saharan Africa</h3>
+              <p data-en="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem."
+                data-fr="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error
+                sit voluptatem.</p>
+              <a href="blog-post.html" class="blog-card-link">Read More <i class="fa fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="blog-card">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,#0a0a1a,#101030);">
+              <i class="fa fa-water" style="font-size:3rem;color:rgba(255,255,255,0.08);"></i>
+              <span class="blog-cat" data-en="Water" data-fr="Eau">Water</span>
+              <img src="./assets/images/img9.jpg">
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fa fa-calendar"></i> November 18, 2024</span>
+                <span><i class="fa fa-user"></i> EMI Team</span>
+              </div>
+              <h3 data-en="Innovative Water Treatment Solutions for Mine Sites in 2025"
+                data-fr="Solutions Innovantes de Traitement des Eaux pour Sites Miniers 2025">Innovative Water Treatment
+                Solutions for Mine Sites in 2025</h3>
+              <p data-en="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit."
+                data-fr="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit
+                aspernatur aut odit aut fugit.</p>
+              <a href="blog-post.html" class="blog-card-link">Read More <i class="fa fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Blog slider nav -->
+      <div class="blog-slider-nav">
+        <button class="blog-arrow" id="blog-prev" aria-label="Previous"><i class="fa fa-chevron-left"></i></button>
+        <button class="blog-dot active" data-blog="0"></button>
+        <button class="blog-dot" data-blog="1"></button>
+        <button class="blog-dot" data-blog="2"></button>
+        <button class="blog-arrow" id="blog-next" aria-label="Next"><i class="fa fa-chevron-right"></i></button>
+      </div>
+
+      <div style="text-align:center; margin-top: 32px;">
+        <a href="blog.html" class="btn btn-primary"><i class="fa fa-newspaper"></i> <span data-en="View All News"
+            data-fr="Voir Toutes les Actualités">View All News</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+     CTA BANNER
+============================================= -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="section-tag" data-en="Work With Us" data-fr="Travaillez Avec Nous">Work With Us</div>
+        <h2 class="section-title light" data-en="Ready to Start Your <span>Mining Project?</span>"
+          data-fr="Prêt à Démarrer Votre <span>Projet Minier?</span>">Ready to Start Your <span>Mining Project?</span>
+        </h2>
+        <p data-en="Our team of experts is available to discuss your needs and offer tailored solutions aligned with international standards."
+          data-fr="Notre équipe d'experts est disponible pour discuter de vos besoins et proposer des solutions adaptées aux normes internationales.">
+          Our team of experts is available to discuss your needs and offer tailored solutions aligned with international
+          standards.</p>
+        <div class="cta-btns">
+          <a href="contact.html" class="btn btn-primary"><i class="fa fa-envelope"></i> <span data-en="Contact Us"
+              data-fr="Contactez-nous">Contact Us</span></a>
+          <a href="services.html" class="btn btn-outline"><i class="fa fa-hard-hat"></i> <span data-en="View Services"
+              data-fr="Voir les Services">View Services</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+     FOOTER
+============================================= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-wrap">
+            <div class="footer-logo-placeholder">
+              <img src="./logo.jpg" alt="EMI" class="footer-logo-img">
+            </div>
+          </a>
+          <p data-en="A Cameroonian company in the mining sector, leveraging innovation and mining intelligence to build sustainable practices."
+            data-fr="Entreprise camerounaise dans le secteur minier, s'appuyant sur l'innovation et l'intelligence minière pour des pratiques durables.">
+            A Cameroonian company leveraging innovation and mining intelligence to build sustainable practices.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-en="Quick Links" data-fr="Liens Rapides">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fa fa-chevron-right"></i><span data-en="Home"
+                  data-fr="Accueil">Home</span></a></li>
+            <li><a href="services.html"><i class="fa fa-chevron-right"></i><span data-en="Services"
+                  data-fr="Services">Services</span></a></li>
+            <li><a href="intelligence.html"><i class="fa fa-chevron-right"></i><span data-en="Mining Intelligence"
+                  data-fr="Intelligence Minière">Mining Intelligence</span></a></li>
+            <li><a href="blog.html"><i class="fa fa-chevron-right"></i><span data-en="News & Blog"
+                  data-fr="Actualités & Blog">News & Blog</span></a></li>
+            <li><a href="contact.html"><i class="fa fa-chevron-right"></i><span data-en="Contact"
+                  data-fr="Contact">Contact</span></a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-en="Our Services" data-fr="Nos Services">Our Services</h4>
+          <ul class="footer-links">
+            <li><a href="./services/service-exploration.html"><i class="fa fa-chevron-right"></i><span data-en="Exploration"
+                  data-fr="Exploration">Exploration</span></a></li>
+            <li><a href="./services/service-audit.html"><i class="fa fa-chevron-right"></i><span data-en="Audits & Expertise"
+                  data-fr="Audits & Expertise">Audits & Expertise</span></a></li>
+            <li><a href="./services/service-risk.html"><i class="fa fa-chevron-right"></i><span data-en="Risk Management"
+                  data-fr="Gestion des Risques">Risk Management</span></a></li>
+            <li><a href="./services/service-water.html"><i class="fa fa-chevron-right"></i><span data-en="Water Management"
+                  data-fr="Gestion des Eaux">Water Management</span></a></li>
+            <li><a href="./services/service-openpit.html"><i class="fa fa-chevron-right"></i><span data-en="Open-Pit Mining"
+                  data-fr="Mines à Ciel Ouvert">Open-Pit Mining</span></a></li>
+            <li><a href="./services/service-closure.html"><i class="fa fa-chevron-right"></i><span data-en="Mine Closure"
+                  data-fr="Fermeture de Mines">Mine Closure</span></a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-en="Contact" data-fr="Contact">Contact</h4>
+          <ul class="footer-contact">
+            <li>
+              <i class="fa fa-map-marker-alt"></i>
+              <div class="footer-location-wrap">
+                <span class="location-text" data-en="Rue 1.959, Quartier Bastos, Yaoundé, Cameroon"
+                  data-fr="Rue 1.959, Quartier Bastos, Yaoundé, Cameroun">Rue 1.959, Quartier Bastos, Yaoundé,
+                  Cameroon</span>
+                <div class="location-card">
+                  <a href="https://www.google.com/maps/search/Bastos+Yaounde+Cameroon" target="_blank" rel="noopener"
+                    style="display:block;">
+                    <div class="location-card-map-fallback"><img
+                        src="https://www.mining.com/wp-content/uploads/2018/04/fate-centerra-mine-not-sealed-kyrgyz-owned-company-yet-see-takeover-bid.jpg"
+                        alt="">
+                    </div>
+                  </a>
+                  <div class="location-card-body">
+                    <strong data-en="Our Office" data-fr="Notre Bureau">Our Office</strong>
+                    <p data-en="Rue 1.959, Quartier Bastos, Yaoundé, Cameroon"
+                      data-fr="Rue 1.959, Quartier Bastos, Yaoundé, Cameroun">Rue 1.959, Quartier Bastos, Yaoundé,
+                      Cameroon</p>
+                    <a href="https://www.google.com/maps/search/Bastos+Yaounde+Cameroon" target="_blank" rel="noopener"
+                      class="location-card-link">
+                      <i class="fa fa-external-link-alt"></i>
+                      <span data-en="Open in Google Maps" data-fr="Ouvrir dans Google Maps">Open in Google Maps</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li><i class="fa fa-phone"></i><span>+237 222 217 225 </span></li>
+            <li><i class="fa fa-envelope"></i><a href="mailto:info@empyragroup.com"
+                style="color:rgba(255,255,255,0.55);">info@empyragroup.com</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <span data-en="© 2025 Empyra Mining Innovations. All rights reserved."
+          data-fr="© 2025 Empyra Mining Innovations. Tous droits réservés.">© 2025 Empyra Mining Innovations. All rights
+          reserved.</span>
+        <span><a href="privacy.html" data-en="Privacy Policy" data-fr="Politique de Confidentialité">Privacy Policy</a>
+          · <a href="terms.html" data-en="Terms of Use" data-fr="Conditions d'Utilisation">Terms of Use</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================
+     BACK TO TOP BUTTON
+============================================= -->
+  <button id="back-to-top" aria-label="Back to top">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+
+  <!-- =============================================
+     JAVASCRIPT
+============================================= -->
+ 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+  </script>
+  <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
