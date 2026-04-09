@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services – EMI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+  <!-- Load shared dashboard styles first, then page-specific -->
+  <link rel="stylesheet" href="dashboard.css"/>
+  <link rel="stylesheet" href="dash-services.css"/>
+</head>
+<body>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- =============================================
+     SIDEBAR
+============================================= -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="dashboard.html" class="sidebar-logo-img-wrap">
+      <div class="sidebar-logo-placeholder">
+        <i class="fa fa-image"></i> Your Logo
+      </div>
+    </a>
+    <button class="sidebar-close-btn" id="sidebar-close"><i class="fa fa-times"></i></button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <span class="sidebar-section-label" data-en="Main" data-fr="Principal">Main</span>
+    <a href="dashboard.html" class="sidebar-link" data-page="dashboard">
+      <span class="nav-icon"><i class="ph ph-squares-four"></i></span>
+      <span data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</span>
+    </a>
+
+    <span class="sidebar-section-label" data-en="Content" data-fr="Contenu">Content</span>
+    <a href="dash-services.html" class="sidebar-link active" data-page="services">
+      <span class="nav-icon"><i class="ph ph-hard-hat"></i></span>
+      <span data-en="Services" data-fr="Services">Services</span>
+    </a>
+    <a href="dash-intelligence.html" class="sidebar-link">
+      <span class="nav-icon"><i class="ph ph-brain"></i></span>
+      <span data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</span>
+    </a>
+    <a href="dash-blog.html" class="sidebar-link">
+      <span class="nav-icon"><i class="ph ph-newspaper"></i></span>
+      <span data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</span>
+      <span class="nav-badge" id="badge-blog">3</span>
+    </a>
+    <a href="dash-actualite.html" class="sidebar-link">
+      <span class="nav-icon"><i class="ph ph-megaphone"></i></span>
+      <span data-en="Actualités" data-fr="Actualités">Actualités</span>
+    </a>
+
+    <span class="sidebar-section-label" data-en="Management" data-fr="Gestion">Management</span>
+    <a href="dash-users.html" class="sidebar-link">
+      <span class="nav-icon"><i class="ph ph-users-three"></i></span>
+      <span data-en="Users" data-fr="Utilisateurs">Users</span>
+    </a>
+    <a href="dash-contact.html" class="sidebar-link">
+      <span class="nav-icon"><i class="ph ph-envelope"></i></span>
+      <span data-en="Contact Messages" data-fr="Messages Contact">Contact Messages</span>
+      <span class="nav-badge" id="badge-contact">5</span>
+    </a>
+
+    <span class="sidebar-section-label" data-en="Account" data-fr="Compte">Account</span>
+    <a href="dash-profile.html" class="sidebar-link">
+      <span class="nav-icon"><i class="ph ph-user-circle"></i></span>
+      <span data-en="My Profile" data-fr="Mon Profil">My Profile</span>
+    </a>
+    <a href="index.html" class="sidebar-link">
+      <span class="nav-icon"><i class="ph ph-arrow-square-out"></i></span>
+      <span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span>
+    </a>
+    <a href="login.html" class="sidebar-link logout">
+      <span class="nav-icon"><i class="ph ph-sign-out"></i></span>
+      <span data-en="Logout" data-fr="Déconnexion">Logout</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="lang-toggle-row">
+      <span class="lang-toggle-label"><i class="fa fa-globe" style="color:var(--yellow);margin-right:5px;"></i><span data-en="Language" data-fr="Langue">Language</span></span>
+      <div class="lang-toggle-btns">
+        <button class="lang-toggle-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+        <button class="lang-toggle-btn" id="lang-fr" onclick="setLang('fr')">FR</button>
+      </div>
+    </div>
+    <div class="sidebar-version">EMI Admin v1.0</div>
+  </div>
+</aside>
+
+<!-- =============================================
+     TOPBAR
+============================================= -->
+<header class="dash-topbar">
+  <div class="topbar-left">
+    <button class="dash-hamburger" id="hamburger" aria-label="Toggle sidebar">
+      <span></span><span></span><span></span>
+    </button>
+    <div>
+      <div class="topbar-page-title" data-en="Services" data-fr="Services">Services</div>
+      <div class="dash-breadcrumb">
+        <a href="dashboard.html" data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</a>
+        <i class="fa fa-chevron-right"></i>
+        <span data-en="Services" data-fr="Services">Services</span>
+      </div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-search">
+      <i class="fa fa-search"></i>
+      <input type="text" data-placeholder-en="Search…" data-placeholder-fr="Rechercher…" placeholder="Search…"/>
+    </div>
+    <button class="topbar-notif-btn">
+      <i class="ph ph-bell" style="font-size:1.1rem;"></i>
+      <span class="notif-dot"></span>
+    </button>
+    <div class="topbar-profile" id="topbar-profile">
+      <button class="profile-trigger" id="profile-trigger">
+        <div class="profile-avatar"><span id="profile-initials">AD</span></div>
+        <span class="profile-name" id="profile-name-display">Admin</span>
+        <i class="fa fa-chevron-down profile-caret"></i>
+      </button>
+      <div class="profile-dropdown" id="profile-dropdown">
+        <div class="profile-dropdown-header">
+          <div class="profile-dropdown-name" id="dropdown-name">Administrator</div>
+          <div class="profile-dropdown-role" data-en="Admin • EMI Platform" data-fr="Admin • Plateforme EMI">Admin • EMI Platform</div>
+        </div>
+        <a href="dash-profile.html"><i class="ph ph-user-circle"></i><span data-en="My Profile" data-fr="Mon Profil">My Profile</span></a>
+        <a href="index.html"><i class="ph ph-arrow-square-out"></i><span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span></a>
+        <a href="login.html" class="logout-link" id="logout-btn"><i class="ph ph-sign-out"></i><span data-en="Logout" data-fr="Déconnexion">Logout</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- =============================================
+     MAIN CONTENT
+============================================= -->
+<main class="dash-main">
+
+  <!-- Page header -->
+  <div class="dash-page-header">
+    <div>
+      <h1 data-en="Manage <span>Services</span>" data-fr="Gérer les <span>Services</span>">Manage <span>Services</span></h1>
+      <div class="dash-breadcrumb" style="margin-top:4px;">
+        <a href="dashboard.html" data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</a>
+        <i class="fa fa-chevron-right"></i>
+        <span data-en="Services" data-fr="Services">Services</span>
+      </div>
+    </div>
+    <button class="btn btn-primary" id="btn-add-service">
+      <i class="ph ph-plus-circle"></i>
+      <span data-en="Add Service" data-fr="Ajouter un Service">Add Service</span>
+    </button>
+  </div>
+
+  <!-- Toolbar: search + filter + count -->
+  <div class="services-toolbar">
+    <div class="toolbar-left">
+      <div class="toolbar-search">
+        <i class="fa fa-search"></i>
+        <input type="text" id="search-services"
+               data-placeholder-en="Search services…"
+               data-placeholder-fr="Rechercher un service…"
+               placeholder="Search services…"/>
+      </div>
+      <select class="toolbar-filter" id="filter-category">
+        <option value="" data-en="All Categories" data-fr="Toutes les Catégories">All Categories</option>
+        <option value="environment" data-en="Environment & Sustainability" data-fr="Environnement & Durabilité">Environment & Sustainability</option>
+        <option value="audit"       data-en="Audits & Risk Management"    data-fr="Audits & Gestion des Risques">Audits & Risk Management</option>
+        <option value="exploration" data-en="Exploration & Resources"      data-fr="Exploration & Ressources">Exploration & Resources</option>
+        <option value="engineering" data-en="Engineering & Operations"     data-fr="Ingénierie & Opérations">Engineering & Operations</option>
+      </select>
+      <select class="toolbar-filter" id="filter-status">
+        <option value=""         data-en="All Statuses" data-fr="Tous les Statuts">All Statuses</option>
+        <option value="published" data-en="Published"   data-fr="Publié">Published</option>
+        <option value="draft"     data-en="Draft"       data-fr="Brouillon">Draft</option>
+      </select>
+    </div>
+    <div class="results-count" id="results-count">
+      <strong id="count-number">—</strong> <span data-en="services" data-fr="services">services</span>
+    </div>
+  </div>
+
+  <!-- Services grid -->
+  <div class="services-grid" id="services-grid">
+    <!-- Skeleton loading cards -->
+    <div class="skeleton-card">
+      <div class="skeleton-line" style="height:16px;width:40%;"></div>
+      <div class="skeleton-line" style="height:22px;width:80%;"></div>
+      <div class="skeleton-line" style="height:14px;width:100%;"></div>
+      <div class="skeleton-line" style="height:14px;width:90%;"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton-line" style="height:16px;width:40%;"></div>
+      <div class="skeleton-line" style="height:22px;width:80%;"></div>
+      <div class="skeleton-line" style="height:14px;width:100%;"></div>
+      <div class="skeleton-line" style="height:14px;width:70%;"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton-line" style="height:16px;width:40%;"></div>
+      <div class="skeleton-line" style="height:22px;width:80%;"></div>
+      <div class="skeleton-line" style="height:14px;width:100%;"></div>
+      <div class="skeleton-line" style="height:14px;width:85%;"></div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" id="pagination"></div>
+
+</main>
+
+<!-- =============================================
+     TOAST CONTAINER
+============================================= -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- =============================================
+     MODAL: ADD / EDIT SERVICE
+============================================= -->
+<div class="modal-backdrop" id="modal-form">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon add" id="modal-form-icon">
+          <i class="ph ph-plus-circle"></i>
+        </div>
+        <div>
+          <div class="modal-title" id="modal-form-title" data-en="Add New Service" data-fr="Ajouter un Service">Add New Service</div>
+          <div class="modal-subtitle" id="modal-form-subtitle" data-en="Fill in the details below" data-fr="Remplissez les détails ci-dessous">Fill in the details below</div>
+        </div>
+      </div>
+      <button class="modal-close" id="close-modal-form"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="modal-body">
+      <form id="service-form" novalidate>
+        <input type="hidden" id="service-id"/>
+
+        <!-- Title -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-en="Title (English) <span class='req'>*</span>" data-fr="Titre (Anglais) <span class='req'>*</span>">Title (English) <span class="req">*</span></label>
+            <input type="text" class="form-control" id="svc-title-en"
+                   data-placeholder-en="e.g. Mine Water Management"
+                   data-placeholder-fr="ex. Gestion des Eaux de Mine"
+                   placeholder="e.g. Mine Water Management" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-en="Title (French) <span class='req'>*</span>" data-fr="Titre (Français) <span class='req'>*</span>">Title (French) <span class="req">*</span></label>
+            <input type="text" class="form-control" id="svc-title-fr"
+                   placeholder="ex. Gestion des Eaux de Mine" required/>
+          </div>
+        </div>
+
+        <!-- Category + Status -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-en="Category <span class='req'>*</span>" data-fr="Catégorie <span class='req'>*</span>">Category <span class="req">*</span></label>
+            <select class="form-control" id="svc-category" required>
+              <option value="" data-en="— Select —" data-fr="— Sélectionner —">— Select —</option>
+              <option value="environment" data-en="Environment & Sustainability" data-fr="Environnement & Durabilité">Environment & Sustainability</option>
+              <option value="audit"       data-en="Audits & Risk Management"    data-fr="Audits & Gestion des Risques">Audits & Risk Management</option>
+              <option value="exploration" data-en="Exploration & Resources"      data-fr="Exploration & Ressources">Exploration & Resources</option>
+              <option value="engineering" data-en="Engineering & Operations"     data-fr="Ingénierie & Opérations">Engineering & Operations</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-en="Status <span class='req'>*</span>" data-fr="Statut <span class='req'>*</span>">Status <span class="req">*</span></label>
+            <select class="form-control" id="svc-status" required>
+              <option value="published" data-en="Published" data-fr="Publié">Published</option>
+              <option value="draft"     data-en="Draft"     data-fr="Brouillon">Draft</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Icon picker -->
+        <div class="form-group">
+          <label class="form-label" data-en="Phosphor Icon Name" data-fr="Nom de l'Icône Phosphor">Phosphor Icon Name</label>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <input type="text" class="form-control" id="svc-icon"
+                   placeholder="e.g. ph-water, ph-atom, ph-leaf"
+                   style="flex:1;"
+                   oninput="previewIcon(this.value)"/>
+            <div id="icon-preview" style="width:42px;height:42px;border-radius:8px;background:var(--off-white);border:1px solid var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">
+              <i class="ph ph-star"></i>
+            </div>
+          </div>
+          <p class="form-hint" data-en="Browse icons at phosphoricons.com — use the 'regular' name e.g. ph-water" data-fr="Parcourez les icônes sur phosphoricons.com — utilisez le nom regular ex. ph-water">Browse icons at phosphoricons.com</p>
+        </div>
+
+        <!-- Description EN -->
+        <div class="form-group">
+          <label class="form-label" data-en="Description (English) <span class='req'>*</span>" data-fr="Description (Anglais) <span class='req'>*</span>">Description (English) <span class="req">*</span></label>
+          <textarea class="form-control" id="svc-desc-en"
+                    data-placeholder-en="Describe this service in English…"
+                    data-placeholder-fr="Décrivez ce service en anglais…"
+                    placeholder="Describe this service in English…" required></textarea>
+        </div>
+
+        <!-- Description FR -->
+        <div class="form-group">
+          <label class="form-label" data-en="Description (French) <span class='req'>*</span>" data-fr="Description (Français) <span class='req'>*</span>">Description (French) <span class="req">*</span></label>
+          <textarea class="form-control" id="svc-desc-fr"
+                    placeholder="Décrivez ce service en français…" required></textarea>
+        </div>
+
+        <!-- Page link -->
+        <div class="form-group">
+          <label class="form-label" data-en="Page URL / Slug" data-fr="URL / Slug de la Page">Page URL / Slug</label>
+          <input type="text" class="form-control" id="svc-slug"
+                 placeholder="e.g. service-water.html"/>
+          <p class="form-hint" data-en="Link to the service detail page on the public site" data-fr="Lien vers la page de détail du service sur le site public">Link to the service detail page</p>
+        </div>
+
+        <!-- Image upload -->
+        <div class="form-group">
+          <label class="form-label" data-en="Service Image" data-fr="Image du Service">Service Image</label>
+          <div class="img-upload-area" id="upload-area">
+            <input type="file" id="svc-image" accept="image/*" onchange="previewImage(event)"/>
+            <i class="ph ph-image" style="font-size:2rem;color:var(--gray-light);display:block;margin-bottom:8px;"></i>
+            <p data-en="Click or drag to upload an image" data-fr="Cliquez ou glissez pour télécharger une image">Click or drag to upload an image</p>
+            <p class="upload-hint">PNG, JPG, WEBP — max 2MB</p>
+            <img class="img-preview" id="img-preview-el" alt="Preview"/>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="cancel-form" data-en="Cancel" data-fr="Annuler">Cancel</button>
+      <button class="btn btn-primary" id="submit-form">
+        <i class="ph ph-floppy-disk"></i>
+        <span id="submit-btn-label" data-en="Save Service" data-fr="Enregistrer">Save Service</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     MODAL: VIEW SERVICE
+============================================= -->
+<div class="modal-backdrop" id="modal-view">
+  <div class="modal-card wide">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon view"><i class="ph ph-eye"></i></div>
+        <div>
+          <div class="modal-title" id="view-modal-title">Service Details</div>
+          <div class="modal-subtitle" id="view-modal-cat">—</div>
+        </div>
+      </div>
+      <button class="modal-close" id="close-modal-view"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="view-modal-body">
+      <!-- Populated by JS -->
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="view-to-edit">
+        <i class="ph ph-pencil-simple"></i>
+        <span data-en="Edit This Service" data-fr="Modifier ce Service">Edit This Service</span>
+      </button>
+      <button class="btn btn-outline" onclick="closeModal('modal-view')" data-en="Close" data-fr="Fermer">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     MODAL: DELETE CONFIRMATION
+============================================= -->
+<div class="modal-backdrop" id="modal-delete">
+  <div class="modal-card small">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon delete"><i class="ph ph-trash"></i></div>
+        <div>
+          <div class="modal-title" data-en="Delete Service" data-fr="Supprimer le Service">Delete Service</div>
+          <div class="modal-subtitle" data-en="This action cannot be undone" data-fr="Cette action est irréversible">This action cannot be undone</div>
+        </div>
+      </div>
+      <button class="modal-close" id="close-modal-delete"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="delete-confirm-body">
+      <div class="delete-icon"><i class="ph ph-warning"></i></div>
+      <h3 data-en="Are you sure?" data-fr="Êtes-vous sûr ?">Are you sure?</h3>
+      <p data-en="You are about to permanently delete:" data-fr="Vous êtes sur le point de supprimer définitivement :">You are about to permanently delete:</p>
+      <div class="delete-service-name" id="delete-service-name">Service Name</div>
+      <p data-en="This will remove the service from the public site and cannot be recovered." data-fr="Cela supprimera le service du site public et ne pourra pas être récupéré.">This will remove the service from the public site and cannot be recovered.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-delete')" data-en="Cancel" data-fr="Annuler">Cancel</button>
+      <button class="btn btn-danger" id="confirm-delete-btn">
+        <i class="ph ph-trash"></i>
+        <span data-en="Yes, Delete" data-fr="Oui, Supprimer">Yes, Delete</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="dash-services-script.js"></script>
+</body>
+</html>

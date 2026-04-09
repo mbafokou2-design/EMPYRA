@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard – EMI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+
+<!-- =============================================
+     SIDEBAR OVERLAY
+============================================= -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- =============================================
+     SIDEBAR
+============================================= -->
+<aside class="sidebar" id="sidebar">
+
+  <!-- Logo + close -->
+  <div class="sidebar-logo">
+    <a href="dashboard.html" class="sidebar-logo-img-wrap">
+      <div class="sidebar-logo-placeholder">
+        <i class="fa fa-image"></i> Your Logo
+      </div>
+      <!--
+        REPLACE placeholder with:
+        <img src="logo.png" alt="EMI" class="sidebar-logo-img">
+        For black logos on dark sidebar add:
+        style="filter: brightness(0) invert(1);"
+      -->
+    </a>
+    <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close menu">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav" id="sidebar-nav">
+
+    <span class="sidebar-section-label" data-en="Main" data-fr="Principal">Main</span>
+
+    <a href="dashboard.html" class="sidebar-link active" data-page="dashboard">
+      <span class="nav-icon"><i class="ph ph-squares-four"></i></span>
+      <span data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</span>
+    </a>
+
+    <span class="sidebar-section-label" data-en="Content" data-fr="Contenu">Content</span>
+
+    <a href="dash-services.html" class="sidebar-link" data-page="services">
+      <span class="nav-icon"><i class="ph ph-hard-hat"></i></span>
+      <span data-en="Services" data-fr="Services">Services</span>
+    </a>
+
+    <a href="dash-intelligence.html" class="sidebar-link" data-page="intelligence">
+      <span class="nav-icon"><i class="ph ph-brain"></i></span>
+      <span data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</span>
+    </a>
+
+    <a href="dash-blog.html" class="sidebar-link" data-page="blog">
+      <span class="nav-icon"><i class="ph ph-newspaper"></i></span>
+      <span data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</span>
+      <span class="nav-badge" id="badge-blog">3</span>
+    </a>
+
+    <a href="dash-actualite.html" class="sidebar-link" data-page="actualite">
+      <span class="nav-icon"><i class="ph ph-megaphone"></i></span>
+      <span data-en="Actualités" data-fr="Actualités">Actualités</span>
+    </a>
+
+    <span class="sidebar-section-label" data-en="Management" data-fr="Gestion">Management</span>
+
+    <a href="dash-users.html" class="sidebar-link" data-page="users">
+      <span class="nav-icon"><i class="ph ph-users-three"></i></span>
+      <span data-en="Users" data-fr="Utilisateurs">Users</span>
+    </a>
+
+    <a href="dash-contact.html" class="sidebar-link" data-page="contact">
+      <span class="nav-icon"><i class="ph ph-envelope"></i></span>
+      <span data-en="Contact Messages" data-fr="Messages Contact">Contact Messages</span>
+      <span class="nav-badge" id="badge-contact">5</span>
+    </a>
+
+    <span class="sidebar-section-label" data-en="Account" data-fr="Compte">Account</span>
+
+    <a href="dash-profile.html" class="sidebar-link" data-page="profile">
+      <span class="nav-icon"><i class="ph ph-user-circle"></i></span>
+      <span data-en="My Profile" data-fr="Mon Profil">My Profile</span>
+    </a>
+
+    <a href="index.html" class="sidebar-link" data-page="site">
+      <span class="nav-icon"><i class="ph ph-arrow-square-out"></i></span>
+      <span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span>
+    </a>
+
+    <a href="login.html" class="sidebar-link logout" data-page="logout">
+      <span class="nav-icon"><i class="ph ph-sign-out"></i></span>
+      <span data-en="Logout" data-fr="Déconnexion">Logout</span>
+    </a>
+
+  </nav>
+
+  <!-- Sidebar footer: language + version -->
+  <div class="sidebar-footer">
+    <div class="lang-toggle-row">
+      <span class="lang-toggle-label"><i class="fa fa-globe" style="color:var(--yellow);margin-right:5px;"></i><span data-en="Language" data-fr="Langue">Language</span></span>
+      <div class="lang-toggle-btns">
+        <button class="lang-toggle-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+        <button class="lang-toggle-btn" id="lang-fr" onclick="setLang('fr')">FR</button>
+      </div>
+    </div>
+    <div class="sidebar-version">EMI Admin v1.0</div>
+  </div>
+
+</aside>
+
+<!-- =============================================
+     TOPBAR
+============================================= -->
+<header class="dash-topbar">
+
+  <div class="topbar-left">
+    <!-- Hamburger — toggles sidebar on all screens -->
+    <button class="dash-hamburger" id="hamburger" aria-label="Toggle sidebar">
+      <span></span><span></span><span></span>
+    </button>
+    <div>
+      <div class="topbar-page-title" data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</div>
+      <div class="dash-breadcrumb">
+        <span data-en="Home" data-fr="Accueil">Home</span>
+        <i class="fa fa-chevron-right"></i>
+        <span data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="topbar-right">
+    <!-- Search -->
+    <div class="topbar-search">
+      <i class="fa fa-search"></i>
+      <input type="text" id="topbar-search-input"
+             data-placeholder-en="Search…"
+             data-placeholder-fr="Rechercher…"
+             placeholder="Search…"/>
+    </div>
+
+    <!-- Notifications -->
+    <button class="topbar-notif-btn" aria-label="Notifications">
+      <i class="ph ph-bell" style="font-size:1.1rem;"></i>
+      <span class="notif-dot"></span>
+    </button>
+
+    <!-- Profile avatar with dropdown -->
+    <div class="topbar-profile" id="topbar-profile">
+      <button class="profile-trigger" id="profile-trigger" aria-label="Profile menu">
+        <!--
+          PROFILE PHOTO SETUP:
+          The .profile-avatar shows initials by default.
+          To show a real photo, replace the span with:
+          <img src="profile-photo.jpg" alt="Admin">
+          OR set via JS (see dashboard-script.js)
+        -->
+        <div class="profile-avatar" id="profile-avatar">
+          <span id="profile-initials">AD</span>
+        </div>
+        <span class="profile-name" id="profile-name-display">Admin</span>
+        <i class="fa fa-chevron-down profile-caret"></i>
+      </button>
+
+      <!-- Dropdown on hover/click -->
+      <div class="profile-dropdown" id="profile-dropdown">
+        <div class="profile-dropdown-header">
+          <div class="profile-dropdown-name" id="dropdown-name">Administrator</div>
+          <div class="profile-dropdown-role" data-en="Admin • EMI Platform" data-fr="Admin • Plateforme EMI">Admin • EMI Platform</div>
+        </div>
+        <a href="dash-profile.html">
+          <i class="ph ph-user-circle"></i>
+          <span data-en="My Profile" data-fr="Mon Profil">My Profile</span>
+        </a>
+        <a href="index.html">
+          <i class="ph ph-arrow-square-out"></i>
+          <span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span>
+        </a>
+        <a href="login.html" class="logout-link" id="logout-btn">
+          <i class="ph ph-sign-out"></i>
+          <span data-en="Logout" data-fr="Déconnexion">Logout</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- =============================================
+     MAIN CONTENT
+============================================= -->
+<main class="dash-main">
+
+  <!-- Welcome banner -->
+  <div class="welcome-banner">
+    <div class="welcome-text">
+      <h2 data-en="Welcome back, <span>Admin</span>" data-fr="Bienvenue, <span>Admin</span>">Welcome back, <span>Admin</span></h2>
+      <p id="welcome-date" data-en="Here's what's happening on the EMI platform today." data-fr="Voici ce qui se passe sur la plateforme EMI aujourd'hui.">Here's what's happening on the EMI platform today.</p>
+    </div>
+    <div class="welcome-actions">
+      <a href="dash-blog.html" class="btn btn-primary"><i class="ph ph-plus"></i><span data-en="New Post" data-fr="Nouvel Article">New Post</span></a>
+      <a href="dash-contact.html" class="btn btn-outline" style="color:var(--white);border-color:rgba(255,255,255,0.3);"><i class="ph ph-envelope"></i><span data-en="Messages" data-fr="Messages">Messages</span></a>
+    </div>
+  </div>
+
+  <!-- ── STAT CARDS ── -->
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <div class="stat-card-icon">
+        <i class="ph ph-users-three" style="font-size:1.5rem;"></i>
+      </div>
+      <div class="stat-card-content">
+        <div class="stat-card-label" data-en="Total Users" data-fr="Utilisateurs Totaux">Total Users</div>
+        <div class="stat-card-value" id="stat-users">—</div>
+        <div class="stat-card-meta up" id="stat-users-meta">
+          <i class="fa fa-arrow-up"></i>
+          <span data-en="Loading…" data-fr="Chargement…">Loading…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card yellow">
+      <div class="stat-card-icon">
+        <i class="ph ph-hard-hat" style="font-size:1.5rem;"></i>
+      </div>
+      <div class="stat-card-content">
+        <div class="stat-card-label" data-en="Services" data-fr="Services">Services</div>
+        <div class="stat-card-value" id="stat-services">—</div>
+        <div class="stat-card-meta" id="stat-services-meta">
+          <span data-en="Loading…" data-fr="Chargement…">Loading…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card green">
+      <div class="stat-card-icon">
+        <i class="ph ph-brain" style="font-size:1.5rem;"></i>
+      </div>
+      <div class="stat-card-content">
+        <div class="stat-card-label" data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</div>
+        <div class="stat-card-value" id="stat-intelligence">—</div>
+        <div class="stat-card-meta" id="stat-intelligence-meta">
+          <span data-en="Loading…" data-fr="Chargement…">Loading…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card coral">
+      <div class="stat-card-icon">
+        <i class="ph ph-newspaper" style="font-size:1.5rem;"></i>
+      </div>
+      <div class="stat-card-content">
+        <div class="stat-card-label" data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</div>
+        <div class="stat-card-value" id="stat-blog">—</div>
+        <div class="stat-card-meta" id="stat-blog-meta">
+          <span data-en="Loading…" data-fr="Chargement…">Loading…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card purple">
+      <div class="stat-card-icon">
+        <i class="ph ph-megaphone" style="font-size:1.5rem;"></i>
+      </div>
+      <div class="stat-card-content">
+        <div class="stat-card-label" data-en="Actualités" data-fr="Actualités">Actualités</div>
+        <div class="stat-card-value" id="stat-actualite">—</div>
+        <div class="stat-card-meta" id="stat-actualite-meta">
+          <span data-en="Loading…" data-fr="Chargement…">Loading…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card teal">
+      <div class="stat-card-icon">
+        <i class="ph ph-envelope" style="font-size:1.5rem;"></i>
+      </div>
+      <div class="stat-card-content">
+        <div class="stat-card-label" data-en="Unread Messages" data-fr="Messages Non Lus">Unread Messages</div>
+        <div class="stat-card-value" id="stat-messages">—</div>
+        <div class="stat-card-meta" id="stat-messages-meta">
+          <span data-en="Loading…" data-fr="Chargement…">Loading…</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── PANELS ROW ── -->
+  <div class="dash-panels-grid wide-left" style="margin-bottom:20px;">
+
+    <!-- Recent Activity -->
+    <div class="dash-panel">
+      <div class="dash-panel-header">
+        <div class="dash-panel-title">
+          <i class="ph ph-activity"></i>
+          <span data-en="Recent Activity" data-fr="Activité Récente">Recent Activity</span>
+        </div>
+        <a href="#" class="btn btn-outline btn-sm" data-en="View All" data-fr="Voir Tout">View All</a>
+      </div>
+      <div class="dash-panel-body">
+        <div class="activity-list" id="activity-list">
+          <!-- Populated by JS from API -->
+          <div class="empty-state">
+            <i class="ph ph-spinner" style="font-size:2rem;color:var(--gray);"></i>
+            <p data-en="Loading activity…" data-fr="Chargement…">Loading activity…</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats / Status Panel -->
+    <div class="dash-panel">
+      <div class="dash-panel-header">
+        <div class="dash-panel-title">
+          <i class="ph ph-chart-pie-slice"></i>
+          <span data-en="Content Overview" data-fr="Vue d'Ensemble">Content Overview</span>
+        </div>
+      </div>
+      <div class="dash-panel-body">
+        <div id="overview-list">
+          <!-- Populated by JS -->
+          <div class="empty-state">
+            <i class="ph ph-spinner" style="font-size:2rem;color:var(--gray);"></i>
+            <p data-en="Loading…" data-fr="Chargement…">Loading…</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── RECENT USERS TABLE ── -->
+  <div class="dash-panel">
+    <div class="dash-panel-header">
+      <div class="dash-panel-title">
+        <i class="ph ph-users"></i>
+        <span data-en="Recent Users" data-fr="Utilisateurs Récents">Recent Users</span>
+      </div>
+      <a href="dash-users.html" class="btn btn-dark btn-sm">
+        <i class="ph ph-users-three"></i>
+        <span data-en="All Users" data-fr="Tous les Utilisateurs">All Users</span>
+      </a>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="dash-table">
+        <thead>
+          <tr>
+            <th data-en="Name" data-fr="Nom">Name</th>
+            <th data-en="Email" data-fr="Email">Email</th>
+            <th data-en="Country" data-fr="Pays">Country</th>
+            <th data-en="Registered" data-fr="Inscrit">Registered</th>
+            <th data-en="Status" data-fr="Statut">Status</th>
+          </tr>
+        </thead>
+        <tbody id="users-table-body">
+          <!-- Populated by JS from API -->
+          <tr>
+            <td colspan="5" style="text-align:center;padding:28px;color:var(--gray);">
+              <i class="ph ph-spinner"></i>
+              <span data-en=" Loading users…" data-fr=" Chargement…"> Loading users…</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<script src="dashboard-script.js"></script>
+</body>
+</html>
