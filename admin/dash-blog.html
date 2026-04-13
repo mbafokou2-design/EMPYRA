@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog & News – EMI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+  <link rel="stylesheet" href="dashboard.css"/>
+  <link rel="stylesheet" href="dash-blog.css"/>
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="dashboard.html" class="sidebar-logo-img-wrap">
+      <div class="sidebar-logo-placeholder"><i class="fa fa-image"></i> Your Logo</div>
+    </a>
+    <button class="sidebar-close-btn" id="sidebar-close"><i class="fa fa-times"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <span class="sidebar-section-label" data-en="Main" data-fr="Principal">Main</span>
+    <a href="dashboard.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-squares-four"></i></span><span data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</span></a>
+    <span class="sidebar-section-label" data-en="Content" data-fr="Contenu">Content</span>
+    <a href="dash-services.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-hard-hat"></i></span><span data-en="Services" data-fr="Services">Services</span></a>
+    <a href="dash-intelligence.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-brain"></i></span><span data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</span></a>
+    <a href="dash-blog.html" class="sidebar-link active"><span class="nav-icon"><i class="ph ph-newspaper"></i></span><span data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</span></a>
+    <a href="dash-actualite.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-megaphone"></i></span><span data-en="Actualités" data-fr="Actualités">Actualités</span></a>
+    <span class="sidebar-section-label" data-en="Management" data-fr="Gestion">Management</span>
+    <a href="dash-users.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-users-three"></i></span><span data-en="Users" data-fr="Utilisateurs">Users</span></a>
+    <a href="dash-contact.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-envelope"></i></span><span data-en="Contact Messages" data-fr="Messages Contact">Contact Messages</span><span class="nav-badge">5</span></a>
+    <span class="sidebar-section-label" data-en="Account" data-fr="Compte">Account</span>
+    <a href="dash-profile.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-user-circle"></i></span><span data-en="My Profile" data-fr="Mon Profil">My Profile</span></a>
+    <a href="index.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-arrow-square-out"></i></span><span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span></a>
+    <a href="login.html" class="sidebar-link logout"><span class="nav-icon"><i class="ph ph-sign-out"></i></span><span data-en="Logout" data-fr="Déconnexion">Logout</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="lang-toggle-row">
+      <span class="lang-toggle-label"><i class="fa fa-globe" style="color:var(--yellow);margin-right:5px;"></i><span data-en="Language" data-fr="Langue">Language</span></span>
+      <div class="lang-toggle-btns">
+        <button class="lang-toggle-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+        <button class="lang-toggle-btn" id="lang-fr" onclick="setLang('fr')">FR</button>
+      </div>
+    </div>
+    <div class="sidebar-version">EMI Admin v1.0</div>
+  </div>
+</aside>
+
+<!-- TOPBAR -->
+<header class="dash-topbar">
+  <div class="topbar-left">
+    <button class="dash-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    <div>
+      <div class="topbar-page-title" data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</div>
+      <div class="dash-breadcrumb">
+        <a href="dashboard.html" data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</a>
+        <i class="fa fa-chevron-right"></i>
+        <span data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</span>
+      </div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-search">
+      <i class="fa fa-search"></i>
+      <input type="text" data-placeholder-en="Search…" data-placeholder-fr="Rechercher…" placeholder="Search…"/>
+    </div>
+    <button class="topbar-notif-btn"><i class="ph ph-bell" style="font-size:1.1rem;"></i><span class="notif-dot"></span></button>
+    <div class="topbar-profile" id="topbar-profile">
+      <button class="profile-trigger" id="profile-trigger">
+        <div class="profile-avatar"><span id="profile-initials">AD</span></div>
+        <span class="profile-name" id="profile-name-display">Admin</span>
+        <i class="fa fa-chevron-down profile-caret"></i>
+      </button>
+      <div class="profile-dropdown" id="profile-dropdown">
+        <div class="profile-dropdown-header">
+          <div class="profile-dropdown-name" id="dropdown-name">Administrator</div>
+          <div class="profile-dropdown-role" data-en="Admin • EMI Platform" data-fr="Admin • Plateforme EMI">Admin • EMI Platform</div>
+        </div>
+        <a href="dash-profile.html"><i class="ph ph-user-circle"></i><span data-en="My Profile" data-fr="Mon Profil">My Profile</span></a>
+        <a href="index.html"><i class="ph ph-arrow-square-out"></i><span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span></a>
+        <a href="login.html" class="logout-link" id="logout-btn"><i class="ph ph-sign-out"></i><span data-en="Logout" data-fr="Déconnexion">Logout</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="dash-main">
+  <div class="dash-page-header">
+    <div>
+      <h1 data-en="Blog &amp; <span>News</span>" data-fr="Blog &amp; <span>Actualités</span>">Blog &amp; <span>News</span></h1>
+      <div class="dash-breadcrumb" style="margin-top:4px;">
+        <a href="dashboard.html" data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</a>
+        <i class="fa fa-chevron-right"></i>
+        <span data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</span>
+      </div>
+    </div>
+    <button class="btn btn-primary" id="btn-add">
+      <i class="ph ph-plus-circle"></i>
+      <span data-en="Add Post" data-fr="Ajouter un Article">Add Post</span>
+    </button>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="page-toolbar">
+    <div class="toolbar-left">
+      <div class="toolbar-search">
+        <i class="fa fa-search"></i>
+        <input type="text" id="search-input"
+               data-placeholder-en="Search blog posts…"
+               data-placeholder-fr="Rechercher des articles…"
+               placeholder="Search blog posts…"/>
+      </div>
+      <select class="toolbar-filter" id="filter-category">
+        <option value="" data-en="All Categories" data-fr="Toutes les Catégories">All Categories</option>
+        <option value="mining"       data-en="Mining"            data-fr="Mines">Mining</option>
+        <option value="environment"  data-en="Environment"       data-fr="Environnement">Environment</option>
+        <option value="analysis"     data-en="Analysis"          data-fr="Analyse">Analysis</option>
+        <option value="technology"   data-en="Technology"        data-fr="Technologie">Technology</option>
+        <option value="sustainability" data-en="Sustainability"  data-fr="Durabilité">Sustainability</option>
+        <option value="interview"    data-en="Interview"         data-fr="Interview">Interview</option>
+      </select>
+      <select class="toolbar-filter" id="filter-status">
+        <option value=""          data-en="All Statuses" data-fr="Tous les Statuts">All Statuses</option>
+        <option value="published" data-en="Published"   data-fr="Publié">Published</option>
+        <option value="draft"     data-en="Draft"       data-fr="Brouillon">Draft</option>
+      </select>
+    </div>
+    <div class="results-count"><strong id="count-number">—</strong> <span data-en="posts" data-fr="articles">posts</span></div>
+  </div>
+
+  <!-- Grid -->
+  <div class="posts-grid" id="posts-grid">
+    <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:16px;width:60%;margin:0 auto 8px;"></div><div class="skeleton-line" style="height:13px;width:90%;margin:0 auto 6px;"></div><div class="skeleton-line" style="height:13px;width:75%;margin:0 auto;"></div></div></div>
+    <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:16px;width:60%;margin:0 auto 8px;"></div><div class="skeleton-line" style="height:13px;width:90%;margin:0 auto 6px;"></div><div class="skeleton-line" style="height:13px;width:80%;margin:0 auto;"></div></div></div>
+    <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line" style="height:16px;width:60%;margin:0 auto 8px;"></div><div class="skeleton-line" style="height:13px;width:90%;margin:0 auto 6px;"></div><div class="skeleton-line" style="height:13px;width:70%;margin:0 auto;"></div></div></div>
+  </div>
+
+  <div class="pagination" id="pagination"></div>
+</main>
+
+<div class="toast-container" id="toast-container"></div>
+
+<!-- MODAL: ADD/EDIT -->
+<div class="modal-backdrop" id="modal-form">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon add" id="modal-form-icon"><i class="ph ph-plus-circle"></i></div>
+        <div>
+          <div class="modal-title" id="modal-form-title">Add Blog Post</div>
+          <div class="modal-subtitle" id="modal-form-subtitle">Fill in the details below</div>
+        </div>
+      </div>
+      <button class="modal-close" id="close-modal-form"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="post-form" novalidate>
+        <input type="hidden" id="post-id"/>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Title (EN) <span class="req">*</span></label>
+            <input type="text" class="form-control" id="post-title-en" placeholder="Title in English" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Title (FR) <span class="req">*</span></label>
+            <input type="text" class="form-control" id="post-title-fr" placeholder="Titre en français" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-en="Category <span class='req'>*</span>" data-fr="Catégorie <span class='req'>*</span>">Category <span class="req">*</span></label>
+            <select class="form-control" id="post-category" required>
+              <option value="" data-en="— Select —" data-fr="— Sélectionner —">— Select —</option>
+              <option value="mining"        data-en="Mining"         data-fr="Mines">Mining</option>
+              <option value="environment"   data-en="Environment"    data-fr="Environnement">Environment</option>
+              <option value="analysis"      data-en="Analysis"       data-fr="Analyse">Analysis</option>
+              <option value="technology"    data-en="Technology"     data-fr="Technologie">Technology</option>
+              <option value="sustainability" data-en="Sustainability" data-fr="Durabilité">Sustainability</option>
+              <option value="interview"     data-en="Interview"      data-fr="Interview">Interview</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-en="Status <span class='req'>*</span>" data-fr="Statut <span class='req'>*</span>">Status <span class="req">*</span></label>
+            <select class="form-control" id="post-status" required>
+              <option value="published" data-en="Published" data-fr="Publié">Published</option>
+              <option value="draft"     data-en="Draft"     data-fr="Brouillon">Draft</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-en="Phosphor Icon Name" data-fr="Nom de l'Icône">Phosphor Icon Name</label>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <input type="text" class="form-control" id="post-icon" placeholder="e.g. ph-newspaper, ph-article" style="flex:1;" oninput="previewIcon(this.value)"/>
+            <div id="icon-preview" style="width:42px;height:42px;border-radius:8px;background:var(--off-white);border:1px solid var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;"><i class="ph ph-newspaper"></i></div>
+          </div>
+          <p class="form-hint">phosphoricons.com — e.g. ph-newspaper, ph-article, ph-pen</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Text (EN) <span class="req">*</span></label>
+          <textarea class="form-control" id="post-text-en" placeholder="Blog content in English…" style="min-height:110px;" required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Text (FR) <span class="req">*</span></label>
+          <textarea class="form-control" id="post-text-fr" placeholder="Contenu du blog en français…" style="min-height:110px;" required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-en="Cover Image" data-fr="Image de Couverture">Cover Image</label>
+          <div id="current-img-wrap" style="display:none;">
+            <p class="current-img-label" data-en="Current image:" data-fr="Image actuelle :">Current image:</p>
+            <img id="current-img-preview" src="" alt="current" style="width:100%;max-height:140px;object-fit:cover;border-radius:8px;margin-bottom:10px;"/>
+            <p class="form-hint" data-en="Upload below to replace." data-fr="Téléchargez ci-dessous pour remplacer.">Upload below to replace.</p>
+          </div>
+          <div class="img-upload-area">
+            <input type="file" id="post-image" accept="image/*" onchange="previewImage(event)"/>
+            <i class="ph ph-image"></i>
+            <p data-en="Click or drag to upload" data-fr="Cliquez ou glissez pour uploader">Click or drag to upload</p>
+            <p class="upload-hint">PNG, JPG, WEBP — max 3MB</p>
+            <img class="img-preview" id="img-preview-el" alt="Preview"/>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="cancel-form" data-en="Cancel" data-fr="Annuler">Cancel</button>
+      <button class="btn btn-primary" id="submit-form">
+        <i class="ph ph-floppy-disk"></i>
+        <span id="submit-btn-label" data-en="Save Post" data-fr="Enregistrer">Save Post</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: VIEW -->
+<div class="modal-backdrop" id="modal-view">
+  <div class="modal-card wide">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon view"><i class="ph ph-eye"></i></div>
+        <div>
+          <div class="modal-title" id="view-title">Post Details</div>
+          <div class="modal-subtitle" id="view-cat">—</div>
+        </div>
+      </div>
+      <button class="modal-close" id="close-modal-view"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="view-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="view-to-edit"><i class="ph ph-pencil-simple"></i><span data-en="Edit Post" data-fr="Modifier">Edit Post</span></button>
+      <button class="btn btn-outline" onclick="closeModal('modal-view')" data-en="Close" data-fr="Fermer">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: DELETE -->
+<div class="modal-backdrop" id="modal-delete">
+  <div class="modal-card small">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon delete"><i class="ph ph-trash"></i></div>
+        <div>
+          <div class="modal-title" data-en="Delete Post" data-fr="Supprimer l'Article">Delete Post</div>
+          <div class="modal-subtitle" data-en="This action cannot be undone" data-fr="Irréversible">This action cannot be undone</div>
+        </div>
+      </div>
+      <button class="modal-close" id="close-modal-delete"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="delete-confirm-body">
+      <div class="delete-icon"><i class="ph ph-warning"></i></div>
+      <h3 data-en="Are you sure?" data-fr="Êtes-vous sûr ?">Are you sure?</h3>
+      <p data-en="You are about to permanently delete:" data-fr="Vous allez supprimer :">You are about to permanently delete:</p>
+      <div class="delete-item-name" id="delete-item-name">Title</div>
+      <p data-en="This cannot be recovered." data-fr="Cette action est irréversible.">This cannot be recovered.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-delete')" data-en="Cancel" data-fr="Annuler">Cancel</button>
+      <button class="btn btn-danger" id="confirm-delete-btn"><i class="ph ph-trash"></i><span data-en="Yes, Delete" data-fr="Oui, Supprimer">Yes, Delete</span></button>
+    </div>
+  </div>
+</div>
+
+<script src="dash-blog-script.js"></script>
+</body>
+</html>

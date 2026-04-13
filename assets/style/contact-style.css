@@ -426,7 +426,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 #footer { background: var(--blue-dark); color: rgba(255,255,255,0.65); padding: 70px 0 0; font-size: 0.9rem; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .footer-brand p { line-height: 1.8; margin: 16px 0; color: rgba(255,255,255,0.5); font-size: 0.87rem; }
-.footer-socials { display: flex; gap: 10px; margin-top: 6px; }
+.footer-socials { display: flex; gap: 10px; margin-top: 10%; }
 .social-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); transition: var(--transition); }
 .social-icon:hover { background: var(--yellow); color: var(--blue-dark); }
 .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--yellow); display: inline-block; }
