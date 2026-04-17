@@ -393,6 +393,39 @@
    .slide-3 {
      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
    }
+      .slide-4{
+     background: linear-gradient(135deg, #0a1628 0%, #1a3a6b 60%, #0d2244 100%);
+   }
+
+   .slide-5 {
+     background: linear-gradient(135deg, #0d2244 0%, #0a3020 50%, #1a3a6b 100%);
+   }
+
+   .slide-6 {
+     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+   }
+      .slide-7 {
+     background: linear-gradient(135deg, #0a1628 0%, #1a3a6b 60%, #0d2244 100%);
+   }
+
+   .slide-8 {
+     background: linear-gradient(135deg, #0d2244 0%, #0a3020 50%, #1a3a6b 100%);
+   }
+
+   .slide-9 {
+     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+   }
+      .slide-10 {
+     background: linear-gradient(135deg, #0a1628 0%, #1a3a6b 60%, #0d2244 100%);
+   }
+
+   .slide-11 {
+     background: linear-gradient(135deg, #0d2244 0%, #0a3020 50%, #1a3a6b 100%);
+   }
+
+   .slide-12 {
+     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+   }
 
    /* Decorative overlay pattern */
    .slide::before {

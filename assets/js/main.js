@@ -1,6 +1,6 @@
 // =====================start of index.html
 /* -----------------------------------------------
-   HERO SLIDER
+   HERO SLIDER  (12 slides — auto-detected)
 ----------------------------------------------- */
 const slides      = document.querySelectorAll('.slide');
 const dots        = document.querySelectorAll('.dot');
