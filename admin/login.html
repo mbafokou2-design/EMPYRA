@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – EMI Admin</title>
+  <link rel="icon" type="image/png" href="../Logo Files/fav.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+  <link rel="stylesheet" href="./css/login.css"/>
+</head>
+<body>
+
+<div class="login-wrapper">
+
+  <!-- =============================================
+       LEFT PANEL — brand / decorative
+  ============================================= -->
+  <div class="login-left">
+    <div class="left-inner-ring"></div>
+    <div class="left-content">
+
+      <!-- Logo -->
+      <div class="login-logo">
+        <div class="login-logo-img-wrap">
+          <div class="login-logo-placeholder">
+           <img src="../Logo Files/logo.png" alt="EMI" class="login-logo-img">
+          </div>
+        </div>
+      </div>
+
+      <h2 class="left-heading" data-en="Welcome to the <span>EMI</span> Admin Platform" data-fr="Bienvenue sur la Plateforme <span>EMI</span>">Welcome to the <span>EMI</span> Admin Platform</h2>
+      <p class="left-sub" data-en="Manage your mining services, content, users and intelligence reports all in one place." data-fr="Gérez vos services miniers, contenus, utilisateurs et rapports d'intelligence en un seul endroit.">Manage your mining services, content, users and intelligence reports all in one place.</p>
+
+      <div class="left-features">
+        <div class="left-feature">
+          <div class="left-feature-icon"><i class="ph ph-hard-hat"></i></div>
+          <div class="left-feature-text">
+            <strong data-en="Services Management" data-fr="Gestion des Services">Services Management</strong>
+            <span data-en="Add, edit and publish services" data-fr="Ajoutez, modifiez et publiez des services">Add, edit and publish services</span>
+          </div>
+        </div>
+        <div class="left-feature">
+          <div class="left-feature-icon"><i class="ph ph-brain"></i></div>
+          <div class="left-feature-text">
+            <strong data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</strong>
+            <span data-en="Publish reports and analysis" data-fr="Publiez des rapports et analyses">Publish reports and analysis</span>
+          </div>
+        </div>
+        <div class="left-feature">
+          <div class="left-feature-icon"><i class="ph ph-users-three"></i></div>
+          <div class="left-feature-text">
+            <strong data-en="User Management" data-fr="Gestion des Utilisateurs">User Management</strong>
+            <span data-en="View and manage platform users" data-fr="Consultez et gérez les utilisateurs">View and manage platform users</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =============================================
+       RIGHT PANEL — login form
+  ============================================= -->
+  <div class="login-right">
+
+    <!-- Language switcher -->
+    <div class="login-lang">
+      <button class="login-lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+      <button class="login-lang-btn" id="lang-fr" onclick="setLang('fr')">FR</button>
+    </div>
+
+    <!-- Back to site -->
+    <a href="../index.html" class="back-to-site">
+      <i class="ph ph-arrow-left"></i>
+      <span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span>
+    </a>
+
+    <div class="login-card">
+
+      <div class="login-card-header">
+        <span class="login-card-eyebrow" data-en="Admin Access" data-fr="Accès Administrateur">Admin Access</span>
+        <h1 class="login-card-title" data-en="Sign <span>In</span>" data-fr="Se <span>Connecter</span>">Sign <span>In</span></h1>
+        <p class="login-card-sub" data-en="Enter your credentials to access the EMI administration panel." data-fr="Entrez vos identifiants pour accéder au panneau d'administration EMI.">Enter your credentials to access the EMI administration panel.</p>
+      </div>
+
+      <!-- Error alert -->
+      <div class="login-error" id="login-error" role="alert">
+        <i class="ph ph-warning-circle"></i>
+        <span id="login-error-msg" data-en="Invalid email or password. Please try again." data-fr="Email ou mot de passe incorrect. Veuillez réessayer.">Invalid email or password. Please try again.</span>
+      </div>
+
+      <form id="login-form" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="email" data-en="Email Address" data-fr="Adresse Email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control"
+                 data-placeholder-en="admin@empyragroup.com"
+                 data-placeholder-fr="admin@empyragroup.com"
+                 placeholder="admin@empyragroup.com"
+                 autocomplete="email" required/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password" data-en="Password" data-fr="Mot de Passe">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="password" name="password" class="form-control"
+                   data-placeholder-en="Enter your password"
+                   data-placeholder-fr="Entrez votre mot de passe"
+                   placeholder="Enter your password"
+                   autocomplete="current-password" required/>
+            <button type="button" class="toggle-password" id="toggle-pwd" aria-label="Show password">
+              <i class="fa fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-options">
+          <label class="remember-me">
+            <input type="checkbox" id="remember-me"/>
+            <span data-en="Remember me" data-fr="Se souvenir de moi">Remember me</span>
+          </label>
+          <a href="#" class="forgot-link" id="forgot-link" data-en="Forgot password?" data-fr="Mot de passe oublié ?">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-login" id="login-btn">
+          <i class="ph ph-sign-in"></i>
+          <span id="login-btn-label" data-en="Sign In" data-fr="Se Connecter">Sign In</span>
+        </button>
+
+      </form>
+
+      <div class="login-footer">
+        <span data-en="© 2025 Empyra Mining Innovations." data-fr="© 2025 Empyra Mining Innovations.">© 2025 Empyra Mining Innovations.</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="./js/login-script.js"></script>
+</body>
+</html>

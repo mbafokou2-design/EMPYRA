@@ -4,14 +4,15 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Services – EMI Admin</title>
+  <link rel="icon" type="image/png" href="../Logo Files/fav.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
   <!-- Load shared dashboard styles first, then page-specific -->
-  <link rel="stylesheet" href="dashboard.css"/>
-  <link rel="stylesheet" href="dash-services.css"/>
+  <link rel="stylesheet" href="./css/dashboard.css"/>
+  <link rel="stylesheet" href="./css/dash-services.css"/>
 </head>
 <body>
 
@@ -22,67 +23,80 @@
      SIDEBAR
 ============================================= -->
 <aside class="sidebar" id="sidebar">
+
+  <!-- Logo + close -->
   <div class="sidebar-logo">
     <a href="dashboard.html" class="sidebar-logo-img-wrap">
       <div class="sidebar-logo-placeholder">
-        <i class="fa fa-image"></i> Your Logo
+        <img src="../Logo Files/logo.png" alt="EMI" class="sidebar-logo-img">
       </div>
+      <!--
+        REPLACE placeholder with:
+        <img src="logo.png" alt="EMI" class="sidebar-logo-img">
+        For black logos on dark sidebar add:
+        style="filter: brightness(0) invert(1);"
+      -->
     </a>
-    <button class="sidebar-close-btn" id="sidebar-close"><i class="fa fa-times"></i></button>
+    <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close menu">
+      <i class="fa fa-times"></i>
+    </button>
   </div>
 
-  <nav class="sidebar-nav">
+  <!-- Navigation -->
+  <nav class="sidebar-nav" id="sidebar-nav">
+
     <span class="sidebar-section-label" data-en="Main" data-fr="Principal">Main</span>
+
     <a href="dashboard.html" class="sidebar-link" data-page="dashboard">
       <span class="nav-icon"><i class="ph ph-squares-four"></i></span>
       <span data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</span>
     </a>
 
     <span class="sidebar-section-label" data-en="Content" data-fr="Contenu">Content</span>
+
     <a href="dash-services.html" class="sidebar-link active" data-page="services">
       <span class="nav-icon"><i class="ph ph-hard-hat"></i></span>
       <span data-en="Services" data-fr="Services">Services</span>
     </a>
-    <a href="dash-intelligence.html" class="sidebar-link">
+
+    <a href="dash-intelligence.html" class="sidebar-link" data-page="intelligence">
       <span class="nav-icon"><i class="ph ph-brain"></i></span>
       <span data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</span>
     </a>
-    <a href="dash-blog.html" class="sidebar-link">
+
+    <a href="dash-blog.html" class="sidebar-link" data-page="blog">
       <span class="nav-icon"><i class="ph ph-newspaper"></i></span>
       <span data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</span>
       <span class="nav-badge" id="badge-blog">3</span>
     </a>
-    <a href="dash-actualite.html" class="sidebar-link">
+
+    <a href="dash-actualite.html" class="sidebar-link" data-page="actualite">
       <span class="nav-icon"><i class="ph ph-megaphone"></i></span>
       <span data-en="Actualités" data-fr="Actualités">Actualités</span>
     </a>
 
     <span class="sidebar-section-label" data-en="Management" data-fr="Gestion">Management</span>
-    <a href="dash-users.html" class="sidebar-link">
+
+    <a href="dash-users.html" class="sidebar-link" data-page="users">
       <span class="nav-icon"><i class="ph ph-users-three"></i></span>
       <span data-en="Users" data-fr="Utilisateurs">Users</span>
     </a>
-    <a href="dash-contact.html" class="sidebar-link">
-      <span class="nav-icon"><i class="ph ph-envelope"></i></span>
-      <span data-en="Contact Messages" data-fr="Messages Contact">Contact Messages</span>
-      <span class="nav-badge" id="badge-contact">5</span>
-    </a>
 
     <span class="sidebar-section-label" data-en="Account" data-fr="Compte">Account</span>
-    <a href="dash-profile.html" class="sidebar-link">
-      <span class="nav-icon"><i class="ph ph-user-circle"></i></span>
-      <span data-en="My Profile" data-fr="Mon Profil">My Profile</span>
-    </a>
-    <a href="index.html" class="sidebar-link">
+
+    <a href="../index.html" class="sidebar-link" data-page="site">
       <span class="nav-icon"><i class="ph ph-arrow-square-out"></i></span>
       <span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span>
     </a>
-    <a href="login.html" class="sidebar-link logout">
+
+    <a href="login.html" class="sidebar-link logout" data-page="logout">
       <span class="nav-icon"><i class="ph ph-sign-out"></i></span>
       <span data-en="Logout" data-fr="Déconnexion">Logout</span>
     </a>
+
   </nav>
 
+  <!-- Sidebar footer: language + version -->
   <div class="sidebar-footer">
     <div class="lang-toggle-row">
       <span class="lang-toggle-label"><i class="fa fa-globe" style="color:var(--yellow);margin-right:5px;"></i><span data-en="Language" data-fr="Langue">Language</span></span>
@@ -93,50 +107,80 @@
     </div>
     <div class="sidebar-version">EMI Admin v1.0</div>
   </div>
+
 </aside>
 
 <!-- =============================================
      TOPBAR
 ============================================= -->
+
 <header class="dash-topbar">
+
   <div class="topbar-left">
+    <!-- Hamburger — toggles sidebar on all screens -->
     <button class="dash-hamburger" id="hamburger" aria-label="Toggle sidebar">
       <span></span><span></span><span></span>
     </button>
     <div>
-      <div class="topbar-page-title" data-en="Services" data-fr="Services">Services</div>
+      <div class="topbar-page-title" data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</div>
       <div class="dash-breadcrumb">
-        <a href="dashboard.html" data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</a>
+        <span data-en="Home" data-fr="Accueil">Home</span>
         <i class="fa fa-chevron-right"></i>
-        <span data-en="Services" data-fr="Services">Services</span>
+        <span data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</span>
       </div>
     </div>
   </div>
+
   <div class="topbar-right">
+    <!-- Search -->
     <div class="topbar-search">
       <i class="fa fa-search"></i>
-      <input type="text" data-placeholder-en="Search…" data-placeholder-fr="Rechercher…" placeholder="Search…"/>
+      <input type="text" id="topbar-search-input"
+             data-placeholder-en="Search…"
+             data-placeholder-fr="Rechercher…"
+             placeholder="Search…"/>
     </div>
-    <button class="topbar-notif-btn">
+
+    <!-- Notifications -->
+    <button class="topbar-notif-btn" aria-label="Notifications">
       <i class="ph ph-bell" style="font-size:1.1rem;"></i>
       <span class="notif-dot"></span>
     </button>
+
+    <!-- Profile avatar with dropdown -->
     <div class="topbar-profile" id="topbar-profile">
-      <button class="profile-trigger" id="profile-trigger">
-        <div class="profile-avatar"><span id="profile-initials">AD</span></div>
+      <button class="profile-trigger" id="profile-trigger" aria-label="Profile menu">
+        <!--
+          PROFILE PHOTO SETUP:
+          The .profile-avatar shows initials by default.
+          To show a real photo, replace the span with:
+          <img src="profile-photo.jpg" alt="Admin">
+          OR set via JS (see dashboard-script.js)
+        -->
+        <div class="profile-avatar" id="profile-avatar">
+          <span id="profile-initials">AD</span>
+        </div>
         <span class="profile-name" id="profile-name-display">Admin</span>
         <i class="fa fa-chevron-down profile-caret"></i>
       </button>
+
+      <!-- Dropdown on hover/click -->
       <div class="profile-dropdown" id="profile-dropdown">
         <div class="profile-dropdown-header">
           <div class="profile-dropdown-name" id="dropdown-name">Administrator</div>
           <div class="profile-dropdown-role" data-en="Admin • EMI Platform" data-fr="Admin • Plateforme EMI">Admin • EMI Platform</div>
         </div>
-        <a href="dash-profile.html"><i class="ph ph-user-circle"></i><span data-en="My Profile" data-fr="Mon Profil">My Profile</span></a>
-        <a href="index.html"><i class="ph ph-arrow-square-out"></i><span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span></a>
-        <a href="login.html" class="logout-link" id="logout-btn"><i class="ph ph-sign-out"></i><span data-en="Logout" data-fr="Déconnexion">Logout</span></a>
+        <a href="../index.html">
+          <i class="ph ph-arrow-square-out"></i>
+          <span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span>
+        </a>
+        <a href="login.html" class="logout-link" id="logout-btn">
+          <i class="ph ph-sign-out"></i>
+          <span data-en="Logout" data-fr="Déconnexion">Logout</span>
+        </a>
       </div>
     </div>
+
   </div>
 </header>
 
@@ -405,6 +449,6 @@
   </div>
 </div>
 
-<script src="dash-services-script.js"></script>
+<script src="./js/dash-services-script.js"></script>
 </body>
 </html>

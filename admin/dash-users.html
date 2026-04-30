@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Users – EMI Admin</title>
+  <link rel="icon" type="image/png" href="../Logo Files/fav.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+  <link rel="stylesheet" href="./css/dashboard.css"/>
+  <link rel="stylesheet" href="./css/dash-users.css"/>
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+  <!-- Logo + close -->
+  <div class="sidebar-logo">
+    <a href="dashboard.html" class="sidebar-logo-img-wrap">
+      <div class="sidebar-logo-placeholder">
+        <img src="../Logo Files/logo.png" alt="EMI" class="sidebar-logo-img">
+      </div>
+      <!--
+        REPLACE placeholder with:
+        <img src="logo.png" alt="EMI" class="sidebar-logo-img">
+        For black logos on dark sidebar add:
+        style="filter: brightness(0) invert(1);"
+      -->
+    </a>
+    <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close menu">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav" id="sidebar-nav">
+
+    <span class="sidebar-section-label" data-en="Main" data-fr="Principal">Main</span>
+
+    <a href="dashboard.html" class="sidebar-link" data-page="dashboard">
+      <span class="nav-icon"><i class="ph ph-squares-four"></i></span>
+      <span data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</span>
+    </a>
+
+    <span class="sidebar-section-label" data-en="Content" data-fr="Contenu">Content</span>
+
+    <a href="dash-services.html" class="sidebar-link" data-page="services">
+      <span class="nav-icon"><i class="ph ph-hard-hat"></i></span>
+      <span data-en="Services" data-fr="Services">Services</span>
+    </a>
+
+    <a href="dash-intelligence.html" class="sidebar-link" data-page="intelligence">
+      <span class="nav-icon"><i class="ph ph-brain"></i></span>
+      <span data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</span>
+    </a>
+
+    <a href="dash-blog.html" class="sidebar-link" data-page="blog">
+      <span class="nav-icon"><i class="ph ph-newspaper"></i></span>
+      <span data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</span>
+      <span class="nav-badge" id="badge-blog">3</span>
+    </a>
+
+    <a href="dash-actualite.html" class="sidebar-link" data-page="actualite">
+      <span class="nav-icon"><i class="ph ph-megaphone"></i></span>
+      <span data-en="Actualités" data-fr="Actualités">Actualités</span>
+    </a>
+
+    <span class="sidebar-section-label" data-en="Management" data-fr="Gestion">Management</span>
+
+    <a href="dash-users.html" class="sidebar-link active" data-page="users">
+      <span class="nav-icon"><i class="ph ph-users-three"></i></span>
+      <span data-en="Users" data-fr="Utilisateurs">Users</span>
+    </a>
+
+    <a href="dash-contact.html" class="sidebar-link" data-page="contact">
+      <span class="nav-icon"><i class="ph ph-envelope"></i></span>
+      <span data-en="Contact Messages" data-fr="Messages Contact">Contact Messages</span>
+      <span class="nav-badge" id="badge-contact">5</span>
+    </a>
+
+    <span class="sidebar-section-label" data-en="Account" data-fr="Compte">Account</span>
+
+    <a href="dash-profile.html" class="sidebar-link" data-page="profile">
+      <span class="nav-icon"><i class="ph ph-user-circle"></i></span>
+      <span data-en="My Profile" data-fr="Mon Profil">My Profile</span>
+    </a>
+
+    <a href="index.html" class="sidebar-link" data-page="site">
+      <span class="nav-icon"><i class="ph ph-arrow-square-out"></i></span>
+      <span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span>
+    </a>
+
+    <a href="login.html" class="sidebar-link logout" data-page="logout">
+      <span class="nav-icon"><i class="ph ph-sign-out"></i></span>
+      <span data-en="Logout" data-fr="Déconnexion">Logout</span>
+    </a>
+
+  </nav>
+
+  <!-- Sidebar footer: language + version -->
+  <div class="sidebar-footer">
+    <div class="lang-toggle-row">
+      <span class="lang-toggle-label"><i class="fa fa-globe" style="color:var(--yellow);margin-right:5px;"></i><span data-en="Language" data-fr="Langue">Language</span></span>
+      <div class="lang-toggle-btns">
+        <button class="lang-toggle-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+        <button class="lang-toggle-btn" id="lang-fr" onclick="setLang('fr')">FR</button>
+      </div>
+    </div>
+    <div class="sidebar-version">EMI Admin v1.0</div>
+  </div>
+
+</aside>
+
+<!-- TOPBAR -->
+<header class="dash-topbar">
+  <div class="topbar-left">
+    <button class="dash-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    <div>
+      <div class="topbar-page-title" data-en="Users" data-fr="Utilisateurs">Users</div>
+      <div class="dash-breadcrumb">
+        <a href="dashboard.html" data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</a>
+        <i class="fa fa-chevron-right"></i>
+        <span data-en="Users" data-fr="Utilisateurs">Users</span>
+      </div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-search">
+      <i class="fa fa-search"></i>
+      <input type="text" data-placeholder-en="Search…" data-placeholder-fr="Rechercher…" placeholder="Search…"/>
+    </div>
+    <button class="topbar-notif-btn"><i class="ph ph-bell" style="font-size:1.1rem;"></i><span class="notif-dot"></span></button>
+    <div class="topbar-profile" id="topbar-profile">
+      <button class="profile-trigger" id="profile-trigger">
+        <div class="profile-avatar"><span id="profile-initials">AD</span></div>
+        <span class="profile-name" id="profile-name-display">Admin</span>
+        <i class="fa fa-chevron-down profile-caret"></i>
+      </button>
+      <div class="profile-dropdown" id="profile-dropdown">
+        <div class="profile-dropdown-header">
+          <div class="profile-dropdown-name" id="dropdown-name">Administrator</div>
+          <div class="profile-dropdown-role" data-en="Admin • EMI Platform" data-fr="Admin • Plateforme EMI">Admin • EMI Platform</div>
+        </div>
+        <a href="dash-profile.html"><i class="ph ph-user-circle"></i><span data-en="My Profile" data-fr="Mon Profil">My Profile</span></a>
+        <a href="index.html"><i class="ph ph-arrow-square-out"></i><span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span></a>
+        <a href="login.html" class="logout-link" id="logout-btn"><i class="ph ph-sign-out"></i><span data-en="Logout" data-fr="Déconnexion">Logout</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="dash-main">
+
+  <!-- Page header -->
+  <div class="dash-page-header">
+    <div>
+      <h1 data-en="Manage <span>Users</span>" data-fr="Gérer les <span>Utilisateurs</span>">Manage <span>Users</span></h1>
+      <div class="dash-breadcrumb" style="margin-top:4px;">
+        <a href="dashboard.html" data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</a>
+        <i class="fa fa-chevron-right"></i>
+        <span data-en="Users" data-fr="Utilisateurs">Users</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini stat cards -->
+  <div class="users-stats">
+    <div class="users-stat-card">
+      <div class="usc-icon blue"><i class="ph ph-users-three"></i></div>
+      <div>
+        <div class="usc-value" id="stat-total">—</div>
+        <div class="usc-label" data-en="Total Users" data-fr="Utilisateurs Totaux">Total Users</div>
+      </div>
+    </div>
+    <div class="users-stat-card">
+      <div class="usc-icon green"><i class="ph ph-check-circle"></i></div>
+      <div>
+        <div class="usc-value" id="stat-active">—</div>
+        <div class="usc-label" data-en="Active" data-fr="Actifs">Active</div>
+      </div>
+    </div>
+    <div class="users-stat-card">
+      <div class="usc-icon yellow"><i class="ph ph-clock"></i></div>
+      <div>
+        <div class="usc-value" id="stat-new">—</div>
+        <div class="usc-label" data-en="New This Month" data-fr="Nouveaux ce Mois">New This Month</div>
+      </div>
+    </div>
+    <div class="users-stat-card">
+      <div class="usc-icon coral"><i class="ph ph-prohibit"></i></div>
+      <div>
+        <div class="usc-value" id="stat-inactive">—</div>
+        <div class="usc-label" data-en="Inactive" data-fr="Inactifs">Inactive</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="page-toolbar">
+    <div class="toolbar-left">
+      <div class="toolbar-search">
+        <i class="fa fa-search"></i>
+        <input type="text" id="search-input"
+               data-placeholder-en="Search by name, email or country…"
+               data-placeholder-fr="Rechercher par nom, email ou pays…"
+               placeholder="Search by name, email or country…"/>
+      </div>
+      <select class="toolbar-filter" id="filter-country">
+        <option value="" data-en="All Countries" data-fr="Tous les Pays">All Countries</option>
+        <!-- Populated dynamically by JS from user data -->
+      </select>
+      <select class="toolbar-filter" id="filter-status">
+        <option value=""         data-en="All Statuses" data-fr="Tous les Statuts">All Statuses</option>
+        <option value="active"   data-en="Active"       data-fr="Actif">Active</option>
+        <option value="inactive" data-en="Inactive"     data-fr="Inactif">Inactive</option>
+      </select>
+    </div>
+    <div class="results-count"><strong id="count-number">—</strong> <span data-en="users" data-fr="utilisateurs">users</span></div>
+  </div>
+
+  <!-- Users Table -->
+  <div class="users-panel">
+    <div class="users-panel-header">
+      <div class="users-panel-title">
+        <i class="ph ph-users-three"></i>
+        <span data-en="All Users" data-fr="Tous les Utilisateurs">All Users</span>
+      </div>
+    </div>
+    <div class="users-table-wrap">
+      <table class="users-table">
+        <thead>
+          <tr>
+            <th data-en="User" data-fr="Utilisateur">User</th>
+            <th data-en="Country" data-fr="Pays">Country</th>
+            <th data-en="Phone" data-fr="Téléphone">Phone</th>
+            <th data-en="Registered" data-fr="Inscrit">Registered</th>
+            <th data-en="Status" data-fr="Statut">Status</th>
+            <th data-en="Actions" data-fr="Actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="users-tbody">
+          <tr>
+            <td colspan="6" style="text-align:center;padding:36px;color:var(--gray);">
+              <i class="ph ph-spinner" style="font-size:1.4rem;"></i>
+              <span data-en=" Loading users…" data-fr=" Chargement…"> Loading users…</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+</main>
+
+<div class="toast-container" id="toast-container"></div>
+
+<!-- MODAL: VIEW USER -->
+<div class="modal-backdrop" id="modal-view">
+  <div class="modal-card wide">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon view"><i class="ph ph-user-circle"></i></div>
+        <div>
+          <div class="modal-title" id="view-modal-title" data-en="User Profile" data-fr="Profil Utilisateur">User Profile</div>
+          <div class="modal-subtitle" id="view-modal-sub">—</div>
+        </div>
+      </div>
+      <button class="modal-close" id="close-modal-view"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="view-modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="view-to-edit"><i class="ph ph-pencil-simple"></i><span data-en="Edit User" data-fr="Modifier">Edit User</span></button>
+      <button class="btn btn-outline" onclick="closeModal('modal-view')" data-en="Close" data-fr="Fermer">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: EDIT USER -->
+<div class="modal-backdrop" id="modal-edit">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon edit"><i class="ph ph-pencil-simple"></i></div>
+        <div>
+          <div class="modal-title" data-en="Edit User" data-fr="Modifier l'Utilisateur">Edit User</div>
+          <div class="modal-subtitle" id="edit-modal-sub">—</div>
+        </div>
+      </div>
+      <button class="modal-close" id="close-modal-edit"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="edit-user-form" novalidate>
+        <input type="hidden" id="edit-user-id"/>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name <span class="req">*</span></label>
+            <input type="text" class="form-control" id="edit-first-name" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name <span class="req">*</span></label>
+            <input type="text" class="form-control" id="edit-last-name" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email <span class="req">*</span></label>
+          <input type="email" class="form-control" id="edit-email" required/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-en="Phone" data-fr="Téléphone">Phone</label>
+            <input type="tel" class="form-control" id="edit-phone"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-en="Country" data-fr="Pays">Country</label>
+            <input type="text" class="form-control" id="edit-country"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-en="Status <span class='req'>*</span>" data-fr="Statut <span class='req'>*</span>">Status <span class="req">*</span></label>
+          <select class="form-control" id="edit-status" required>
+            <option value="active"   data-en="Active"   data-fr="Actif">Active</option>
+            <option value="inactive" data-en="Inactive" data-fr="Inactif">Inactive</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="cancel-edit" data-en="Cancel" data-fr="Annuler">Cancel</button>
+      <button class="btn btn-primary" id="submit-edit">
+        <i class="ph ph-floppy-disk"></i>
+        <span data-en="Save Changes" data-fr="Enregistrer">Save Changes</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: DELETE USER -->
+<div class="modal-backdrop" id="modal-delete">
+  <div class="modal-card small">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-icon delete"><i class="ph ph-trash"></i></div>
+        <div>
+          <div class="modal-title" data-en="Delete User" data-fr="Supprimer l'Utilisateur">Delete User</div>
+          <div class="modal-subtitle" data-en="This action cannot be undone" data-fr="Irréversible">This action cannot be undone</div>
+        </div>
+      </div>
+      <button class="modal-close" id="close-modal-delete"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="delete-confirm-body">
+      <div class="delete-icon"><i class="ph ph-warning"></i></div>
+      <h3 data-en="Are you sure?" data-fr="Êtes-vous sûr ?">Are you sure?</h3>
+      <p data-en="You are about to permanently delete:" data-fr="Vous allez supprimer :">You are about to permanently delete:</p>
+      <div class="delete-item-name" id="delete-user-name">User Name</div>
+      <p data-en="Their account and all associated data will be removed." data-fr="Leur compte et toutes les données associées seront supprimés.">Their account and all associated data will be removed.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-delete')" data-en="Cancel" data-fr="Annuler">Cancel</button>
+      <button class="btn btn-danger" id="confirm-delete-btn"><i class="ph ph-trash"></i><span data-en="Yes, Delete" data-fr="Oui, Supprimer">Yes, Delete</span></button>
+    </div>
+  </div>
+</div>
+
+<script src="./js/dash-users-script.js"></script>
+</body>
+</html>
