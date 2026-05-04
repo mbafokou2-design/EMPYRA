@@ -21,28 +21,74 @@
      SIDEBAR
 ============================================= -->
 <aside class="sidebar" id="sidebar">
+
+  <!-- Logo + close -->
   <div class="sidebar-logo">
     <a href="dashboard.html" class="sidebar-logo-img-wrap">
-      <div class="sidebar-logo-placeholder"><i class="fa fa-image"></i> Your Logo</div>
+      <div class="sidebar-logo-placeholder">
+        <img src="../Logo Files/logo.png" alt="EMI" class="sidebar-logo-img">
+      </div>
     </a>
-    <button class="sidebar-close-btn" id="sidebar-close"><i class="fa fa-times"></i></button>
+    <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close menu">
+      <i class="fa fa-times"></i>
+    </button>
   </div>
-  <nav class="sidebar-nav">
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav" id="sidebar-nav">
+
     <span class="sidebar-section-label" data-en="Main" data-fr="Principal">Main</span>
-    <a href="dashboard.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-squares-four"></i></span><span data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</span></a>
+
+    <a href="dashboard.html" class="sidebar-link" data-page="dashboard">
+      <span class="nav-icon"><i class="ph ph-squares-four"></i></span>
+      <span data-en="Dashboard" data-fr="Tableau de Bord">Dashboard</span>
+    </a>
+
     <span class="sidebar-section-label" data-en="Content" data-fr="Contenu">Content</span>
-    <a href="dash-services.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-hard-hat"></i></span><span data-en="Services" data-fr="Services">Services</span></a>
-    <a href="dash-intelligence.html" class="sidebar-link active"><span class="nav-icon"><i class="ph ph-brain"></i></span><span data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</span></a>
-    <a href="dash-blog.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-newspaper"></i></span><span data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</span><span class="nav-badge">3</span></a>
-    <a href="dash-actualite.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-megaphone"></i></span><span data-en="Actualités" data-fr="Actualités">Actualités</span></a>
+
+    <a href="dash-services.html" class="sidebar-link" data-page="services">
+      <span class="nav-icon"><i class="ph ph-hard-hat"></i></span>
+      <span data-en="Services" data-fr="Services">Services</span>
+    </a>
+
+    <a href="dash-intelligence.html" class="sidebar-link active" data-page="intelligence">
+      <span class="nav-icon"><i class="ph ph-brain"></i></span>
+      <span data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</span>
+    </a>
+
+    <a href="dash-blog.html" class="sidebar-link" data-page="blog">
+      <span class="nav-icon"><i class="ph ph-newspaper"></i></span>
+      <span data-en="Blog & News" data-fr="Blog & Actualités">Blog & News</span>
+      <span class="nav-badge" id="badge-blog">3</span>
+    </a>
+
+    <a href="dash-actualite.html" class="sidebar-link" data-page="actualite">
+      <span class="nav-icon"><i class="ph ph-megaphone"></i></span>
+      <span data-en="Actualités" data-fr="Actualités">Actualités</span>
+    </a>
+
     <span class="sidebar-section-label" data-en="Management" data-fr="Gestion">Management</span>
-    <a href="dash-users.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-users-three"></i></span><span data-en="Users" data-fr="Utilisateurs">Users</span></a>
-    <a href="dash-contact.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-envelope"></i></span><span data-en="Contact Messages" data-fr="Messages Contact">Contact Messages</span><span class="nav-badge">5</span></a>
+
+    <a href="dash-users.html" class="sidebar-link" data-page="users">
+      <span class="nav-icon"><i class="ph ph-users-three"></i></span>
+      <span data-en="Users" data-fr="Utilisateurs">Users</span>
+    </a>
+
     <span class="sidebar-section-label" data-en="Account" data-fr="Compte">Account</span>
-    <a href="dash-profile.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-user-circle"></i></span><span data-en="My Profile" data-fr="Mon Profil">My Profile</span></a>
-    <a href="index.html" class="sidebar-link"><span class="nav-icon"><i class="ph ph-arrow-square-out"></i></span><span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span></a>
-    <a href="login.html" class="sidebar-link logout"><span class="nav-icon"><i class="ph ph-sign-out"></i></span><span data-en="Logout" data-fr="Déconnexion">Logout</span></a>
+
+    <a href="../index.html" class="sidebar-link" data-page="site">
+      <span class="nav-icon"><i class="ph ph-arrow-square-out"></i></span>
+      <span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span>
+    </a>
+
+    <a href="login.html" class="sidebar-link logout" data-page="logout">
+      <span class="nav-icon"><i class="ph ph-sign-out"></i></span>
+      <span data-en="Logout" data-fr="Déconnexion">Logout</span>
+    </a>
+
   </nav>
+
+  <!-- Sidebar footer: language + version -->
   <div class="sidebar-footer">
     <div class="lang-toggle-row">
       <span class="lang-toggle-label"><i class="fa fa-globe" style="color:var(--yellow);margin-right:5px;"></i><span data-en="Language" data-fr="Langue">Language</span></span>
@@ -53,6 +99,7 @@
     </div>
     <div class="sidebar-version">EMI Admin v1.0</div>
   </div>
+
 </aside>
 
 <!-- =============================================
@@ -87,8 +134,7 @@
           <div class="profile-dropdown-name" id="dropdown-name">Administrator</div>
           <div class="profile-dropdown-role" data-en="Admin • EMI Platform" data-fr="Admin • Plateforme EMI">Admin • EMI Platform</div>
         </div>
-        <a href="dash-profile.html"><i class="ph ph-user-circle"></i><span data-en="My Profile" data-fr="Mon Profil">My Profile</span></a>
-        <a href="index.html"><i class="ph ph-arrow-square-out"></i><span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span></a>
+        <a href="../index.html"><i class="ph ph-arrow-square-out"></i><span data-en="Back to Site" data-fr="Retour au Site">Back to Site</span></a>
         <a href="login.html" class="logout-link" id="logout-btn"><i class="ph ph-sign-out"></i><span data-en="Logout" data-fr="Déconnexion">Logout</span></a>
       </div>
     </div>

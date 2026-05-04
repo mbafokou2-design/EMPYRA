@@ -1,7 +1,6 @@
 /* =============================================
    EMI DASHBOARD — dash-intelligence-script.js
-   Mining Intelligence: list, add, edit,
-   delete, view. Fully API-ready.
+   ✅ = live endpoint (backend built)
 ============================================= */
 
 /* ── LANGUAGE ── */
@@ -54,9 +53,9 @@ document.addEventListener('click', function(e) {
     var nameEl     = document.getElementById('profile-name-display');
     var initialsEl = document.getElementById('profile-initials');
     var dropName   = document.getElementById('dropdown-name');
-    if (nameEl && user.name)     nameEl.textContent     = user.name;
+    if (nameEl     && user.name) nameEl.textContent     = user.name;
     if (initialsEl && user.name) initialsEl.textContent = user.initials || user.name.charAt(0).toUpperCase();
-    if (dropName && user.name)   dropName.textContent   = user.name;
+    if (dropName   && user.name) dropName.textContent   = user.name;
   } catch(e) {}
 })();
 
@@ -65,7 +64,6 @@ var logoutBtn = document.getElementById('logout-btn');
 if (logoutBtn) {
   logoutBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    /* BACKEND: POST /api/logout with Bearer token, then clear */
     localStorage.removeItem('emi_token');
     localStorage.removeItem('emi_admin_user');
     window.location.href = 'login.html';
@@ -73,13 +71,9 @@ if (logoutBtn) {
 }
 
 /* =============================================
-   API CONFIGURATION
-   STEP 1 — Replace API_BASE with your URL:
-     var API_BASE = 'https://your-api.com/api';
-   STEP 2 — After login store token:
-     localStorage.setItem('emi_token', token);
+   ✅ API CONFIG
 ============================================= */
-var API_BASE = 'https://your-api.com/api'; // ← REPLACE
+var API_BASE = 'http://localhost:5000/api';
 
 function getHeaders() {
   return {
@@ -96,10 +90,30 @@ function apiRequest(method, endpoint, body) {
     return res.json();
   });
 }
-var apiGet    = function(ep)       { return apiRequest('GET',    ep); };
-var apiPost   = function(ep, body) { return apiRequest('POST',   ep, body); };
-var apiPut    = function(ep, body) { return apiRequest('PUT',    ep, body); };
-var apiDelete = function(ep)       { return apiRequest('DELETE', ep); };
+var apiGet    = function(ep) { return apiRequest('GET',    ep); };
+var apiDelete = function(ep) { return apiRequest('DELETE', ep); };
+
+/* multipart/form-data for image uploads */
+function apiPostForm(endpoint, formData) {
+  return fetch(API_BASE + endpoint, {
+    method:  'POST',
+    headers: { 'Authorization': 'Bearer ' + (localStorage.getItem('emi_token') || '') },
+    body:    formData
+  }).then(function(res) {
+    if (res.status === 401) { window.location.href = 'login.html'; return; }
+    return res.json();
+  });
+}
+function apiPutForm(endpoint, formData) {
+  return fetch(API_BASE + endpoint, {
+    method:  'PUT',
+    headers: { 'Authorization': 'Bearer ' + (localStorage.getItem('emi_token') || '') },
+    body:    formData
+  }).then(function(res) {
+    if (res.status === 401) { window.location.href = 'login.html'; return; }
+    return res.json();
+  });
+}
 
 /* ── TOAST ── */
 function showToast(type, title, detail) {
@@ -119,7 +133,6 @@ function showToast(type, title, detail) {
 function openModal(id)  { var el = document.getElementById(id); if (el) { el.classList.add('open');    document.body.style.overflow = 'hidden'; } }
 function closeModal(id) { var el = document.getElementById(id); if (el) { el.classList.remove('open'); document.body.style.overflow = ''; } }
 function closeAllModals() { ['modal-form','modal-view','modal-delete'].forEach(closeModal); }
-
 document.getElementById('close-modal-form').addEventListener('click',   function() { closeModal('modal-form'); });
 document.getElementById('close-modal-view').addEventListener('click',   function() { closeModal('modal-view'); });
 document.getElementById('close-modal-delete').addEventListener('click', function() { closeModal('modal-delete'); });
@@ -128,79 +141,49 @@ document.getElementById('cancel-form').addEventListener('click',        function
   document.getElementById(id).addEventListener('click', function(e) { if (e.target === this) closeModal(id); });
 });
 
-/* =============================================
-   CATEGORY CONFIG
-============================================= */
+/* ── CATEGORY CONFIG ── */
 var CATS = {
-  operations:  { en: 'Operations Support',    fr: 'Soutien aux Opérations', icon: 'ph-chart-line',      col: 0 },
-  risk:        { en: 'Risk Assessment',        fr: 'Évaluation des Risques', icon: 'ph-shield-warning',  col: 1 },
-  water:       { en: 'Mine Water Management',  fr: 'Gestion des Eaux',       icon: 'ph-waves',           col: 2 },
-  environment: { en: 'Environment',            fr: 'Environnement',          icon: 'ph-leaf',            col: 3 },
-  closure:     { en: 'Mine Closure',           fr: 'Fermeture de Mine',      icon: 'ph-x-circle',        col: 4 },
-  training:    { en: 'EMI In-Situ Training',   fr: 'Formation EMI In Situ',  icon: 'ph-graduation-cap',  col: 5 }
+  operations:  { en: 'Operations Support',   fr: 'Soutien aux Opérations', icon: 'ph-chart-line',     col: 0 },
+  risk:        { en: 'Risk Assessment',       fr: 'Évaluation des Risques', icon: 'ph-shield-warning', col: 1 },
+  water:       { en: 'Mine Water Management', fr: 'Gestion des Eaux',       icon: 'ph-waves',          col: 2 },
+  environment: { en: 'Environment',           fr: 'Environnement',          icon: 'ph-leaf',           col: 3 },
+  closure:     { en: 'Mine Closure',          fr: 'Fermeture de Mine',      icon: 'ph-x-circle',       col: 4 },
+  training:    { en: 'EMI In-Situ Training',  fr: 'Formation EMI In Situ',  icon: 'ph-graduation-cap', col: 5 }
 };
 function getCatLabel(key) {
   var lang = localStorage.getItem('emi_lang') || 'en';
   return CATS[key] ? (lang === 'fr' ? CATS[key].fr : CATS[key].en) : key;
 }
 
-/* =============================================
-   STATE
-============================================= */
+/* Helper — always returns a STRING so === comparisons are safe */
+function uid(item) { return String(item._id || item.id || ''); }
+
+/* ── STATE ── */
 var STATE = {
-  items:       [],
-  filtered:    [],
-  currentPage: 1,
-  perPage:     6,
-  editingId:   null,
-  deletingId:  null,
-  deletingName: ''
+  items: [], filtered: [],
+  currentPage: 1, perPage: 6,
+  editingId: null, deletingId: null, deletingName: ''
 };
 
 /* =============================================
-   LOAD FROM API
-
-   GET /intelligence
-   Expected array:
-   [
-     {
-       id:         1,
-       title_en:   "Mining Risk Evaluation",
-       title_fr:   "Évaluation des Risques Miniers",
-       category:   "risk",         // key from CATS
-       status:     "published",    // "published" | "draft"
-       icon:       "ph-shield-warning",
-       text_en:    "Lorem ipsum…",
-       text_fr:    "Lorem ipsum…",
-       image_url:  "https://cdn.com/image.jpg",  // optional
-       created_at: "2025-01-10T10:00:00Z"
-     }
-   ]
+   ✅ LOAD — GET /api/intelligence
 ============================================= */
 function loadItems() {
   var grid = document.getElementById('intel-grid');
-  grid.innerHTML = '<div class="intel-loading"><i class="ph ph-spinner" style="font-size:1.5rem;"></i><span data-en=" Loading…" data-fr=" Chargement…"> Loading…</span></div>';
+  grid.innerHTML = '<div class="intel-loading"><i class="ph ph-spinner" style="font-size:1.5rem;"></i><span> Loading…</span></div>';
 
   apiGet('/intelligence').then(function(data) {
-    STATE.items = data || [];
+    if (!data) return;
+    STATE.items = data;
     applyFilters();
   }).catch(function() {
-    /* Demo data — remove when backend is connected */
-    STATE.items = [
-      { id:1, title_en:'Mining Risk Evaluation',           title_fr:'Évaluation des Risques Miniers',    category:'risk',        status:'published', icon:'ph-shield-warning',  text_en:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', text_fr:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.', created_at:'2025-01-10' },
-      { id:2, title_en:'Operational Site Assistance',      title_fr:'Assistance Opérationnelle de Sites', category:'operations',  status:'published', icon:'ph-chart-line',      text_en:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco.', text_fr:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.', created_at:'2025-02-05' },
-      { id:3, title_en:'Mine Water Management',            title_fr:'Gestion des Eaux de Mine',           category:'water',       status:'published', icon:'ph-waves',           text_en:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate.', text_fr:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor.', created_at:'2025-02-18' },
-      { id:4, title_en:'Environmental Responsibility',     title_fr:'Responsabilité Environnementale',    category:'environment', status:'published', icon:'ph-leaf',            text_en:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident.', text_fr:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat.', created_at:'2025-03-01' },
-      { id:5, title_en:'Mine Closure Planning',            title_fr:'Planification de Fermeture de Mine', category:'closure',     status:'draft',     icon:'ph-x-circle',        text_en:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sunt in culpa qui officia deserunt mollit anim id est laborum.', text_fr:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sunt in culpa qui officia.', created_at:'2025-03-14' },
-      { id:6, title_en:'EMI In-Situ Training Programme',   title_fr:'Programme de Formation EMI In Situ', category:'training',    status:'published', icon:'ph-graduation-cap',  text_en:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut.', text_fr:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem.', created_at:'2025-03-22' }
-    ];
+    showToast('error', 'Load failed', 'Could not reach the server.');
+    STATE.items = [];
     applyFilters();
   });
 }
 
-/* =============================================
-   FILTER + SEARCH
-============================================= */
+/* ── FILTERS ── */
 function applyFilters() {
   var lang     = localStorage.getItem('emi_lang') || 'en';
   var query    = document.getElementById('search-intel').value.toLowerCase().trim();
@@ -210,10 +193,9 @@ function applyFilters() {
   STATE.filtered = STATE.items.filter(function(item) {
     var title = (lang === 'fr' ? item.title_fr : item.title_en) || '';
     var text  = (lang === 'fr' ? item.text_fr  : item.text_en)  || '';
-    var matchQ = !query    || title.toLowerCase().includes(query) || text.toLowerCase().includes(query);
-    var matchC = !category || item.category === category;
-    var matchS = !status   || item.status   === status;
-    return matchQ && matchC && matchS;
+    return (!query    || title.toLowerCase().includes(query) || text.toLowerCase().includes(query)) &&
+           (!category || item.category === category) &&
+           (!status   || item.status   === status);
   });
 
   STATE.currentPage = 1;
@@ -221,14 +203,11 @@ function applyFilters() {
   renderGrid();
   renderPagination();
 }
-
-document.getElementById('search-intel').addEventListener('input',   applyFilters);
+document.getElementById('search-intel').addEventListener('input',     applyFilters);
 document.getElementById('filter-category').addEventListener('change', applyFilters);
 document.getElementById('filter-status').addEventListener('change',   applyFilters);
 
-/* =============================================
-   RENDER GRID
-============================================= */
+/* ── RENDER GRID ── */
 function renderGrid() {
   var lang  = localStorage.getItem('emi_lang') || 'en';
   var grid  = document.getElementById('intel-grid');
@@ -238,32 +217,35 @@ function renderGrid() {
   if (page.length === 0) {
     grid.innerHTML =
       '<div class="intel-empty">' +
-        '<i class="ph ph-magnifying-glass" style="font-size:3rem;color:var(--gray-light);"></i>' +
-        '<h3>' + (lang === 'fr' ? 'Aucune entrée trouvée' : 'No entries found') + '</h3>' +
-        '<p>' + (lang === 'fr' ? 'Modifiez vos filtres.' : 'Try adjusting your filters.') + '</p>' +
+      '<i class="ph ph-magnifying-glass" style="font-size:3rem;color:var(--gray-light);"></i>' +
+      '<h3>' + (lang==='fr' ? 'Aucune entrée trouvée' : 'No entries found')     + '</h3>' +
+      '<p>'  + (lang==='fr' ? 'Modifiez vos filtres.'  : 'Try adjusting your filters.') + '</p>' +
       '</div>';
     return;
   }
 
   grid.innerHTML = page.map(function(item, idx) {
+    var id       = uid(item);
     var cat      = CATS[item.category] || {};
-    var catLabel = lang === 'fr' ? (cat.fr || item.category) : (cat.en || item.category);
-    var title    = lang === 'fr' ? item.title_fr : item.title_en;
-    var text     = lang === 'fr' ? item.text_fr  : item.text_en;
+    var catLabel = lang==='fr' ? (cat.fr || item.category) : (cat.en || item.category);
+    var title    = lang==='fr' ? item.title_fr : item.title_en;
+    var text     = lang==='fr' ? item.text_fr  : item.text_en;
     var icon     = item.icon || (cat.icon || 'ph-brain');
     var colCls   = 'ic-col-' + ((cat.col !== undefined ? cat.col : idx) % 6);
+    var dateRaw  = item.createdAt || item.created_at;
+    var dateStr  = dateRaw
+      ? new Date(dateRaw).toLocaleDateString(lang==='fr' ? 'fr-FR' : 'en-US', { year:'numeric', month:'short', day:'numeric' })
+      : '—';
 
     var photoHtml = item.image_url
       ? '<img src="' + item.image_url + '" alt="' + title + '"/>'
       : '<div class="ic-photo-placeholder"><i class="ph ph-image"></i></div>';
 
     var statusBadge = item.status === 'published'
-      ? '<span class="badge badge-green"><i class="fa fa-circle" style="font-size:0.45rem;"></i>' + (lang === 'fr' ? 'Publié' : 'Published') + '</span>'
-      : '<span class="badge badge-yellow">' + (lang === 'fr' ? 'Brouillon' : 'Draft') + '</span>';
+      ? '<span class="badge badge-green"><i class="fa fa-circle" style="font-size:0.45rem;"></i>' + (lang==='fr'?'Publié':'Published') + '</span>'
+      : '<span class="badge badge-yellow">' + (lang==='fr'?'Brouillon':'Draft') + '</span>';
 
-    var dateStr = item.created_at ? new Date(item.created_at).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { year:'numeric', month:'short', day:'numeric' }) : '—';
-
-    return '<div class="intel-card" data-id="' + item.id + '">' +
+    return '<div class="intel-card" data-id="' + id + '">' +
       '<div class="ic-photo">' +
         photoHtml +
         '<span class="ic-cat-tag">' + catLabel + '</span>' +
@@ -275,12 +257,11 @@ function renderGrid() {
       '</div>' +
       '<div class="ic-footer">' +
         '<span class="ic-date"><i class="ph ph-calendar-blank"></i>' + dateStr + '</span>' +
-        '<div style="display:flex;align-items:center;gap:8px;">' +
-          statusBadge +
+        '<div style="display:flex;align-items:center;gap:8px;">' + statusBadge +
           '<div class="ic-actions">' +
-            '<button class="ic-action-btn view"   onclick="openViewModal('   + item.id + ')" title="' + (lang==='fr'?'Voir':'View') + '"><i class="ph ph-eye"></i></button>' +
-            '<button class="ic-action-btn edit"   onclick="openEditModal('   + item.id + ')" title="' + (lang==='fr'?'Modifier':'Edit') + '"><i class="ph ph-pencil-simple"></i></button>' +
-            '<button class="ic-action-btn delete" onclick="openDeleteModal(' + item.id + ', \'' + title.replace(/'/g,"\\'") + '\')" title="' + (lang==='fr'?'Supprimer':'Delete') + '"><i class="ph ph-trash"></i></button>' +
+            '<button class="ic-action-btn view"   data-id="' + id + '" onclick="openViewModal(this.dataset.id)"   title="' + (lang==='fr'?'Voir':'View')      + '"><i class="ph ph-eye"></i></button>' +
+            '<button class="ic-action-btn edit"   data-id="' + id + '" onclick="openEditModal(this.dataset.id)"   title="' + (lang==='fr'?'Modifier':'Edit')   + '"><i class="ph ph-pencil-simple"></i></button>' +
+            '<button class="ic-action-btn delete" data-id="' + id + '" data-name="' + (title||'').replace(/"/g,'&quot;') + '" onclick="openDeleteModal(this.dataset.id, this.dataset.name)" title="' + (lang==='fr'?'Supprimer':'Delete') + '"><i class="ph ph-trash"></i></button>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -288,65 +269,53 @@ function renderGrid() {
   }).join('');
 }
 
-/* =============================================
-   PAGINATION
-============================================= */
+/* ── PAGINATION ── */
 function renderPagination() {
   var total = Math.ceil(STATE.filtered.length / STATE.perPage);
   var pag   = document.getElementById('pagination');
   if (total <= 1) { pag.innerHTML = ''; return; }
   var html = '<button class="page-btn" onclick="changePage(' + (STATE.currentPage-1) + ')" ' + (STATE.currentPage===1?'disabled':'') + '><i class="fa fa-chevron-left"></i></button>';
-  for (var i = 1; i <= total; i++) {
-    html += '<button class="page-btn ' + (i===STATE.currentPage?'active':'') + '" onclick="changePage(' + i + ')">' + i + '</button>';
-  }
+  for (var i = 1; i <= total; i++) html += '<button class="page-btn ' + (i===STATE.currentPage?'active':'') + '" onclick="changePage(' + i + ')">' + i + '</button>';
   html += '<button class="page-btn" onclick="changePage(' + (STATE.currentPage+1) + ')" ' + (STATE.currentPage===total?'disabled':'') + '><i class="fa fa-chevron-right"></i></button>';
   pag.innerHTML = html;
 }
 function changePage(p) {
   var total = Math.ceil(STATE.filtered.length / STATE.perPage);
   if (p < 1 || p > total) return;
-  STATE.currentPage = p;
-  renderGrid();
-  renderPagination();
+  STATE.currentPage = p; renderGrid(); renderPagination();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* =============================================
-   ADD MODAL
-============================================= */
+/* ── ADD ── */
 document.getElementById('btn-add-intel').addEventListener('click', function() {
   var lang = localStorage.getItem('emi_lang') || 'en';
-  STATE.editingId = null;
-  resetForm();
-  document.getElementById('modal-form-icon').className   = 'modal-header-icon add';
-  document.getElementById('modal-form-icon').innerHTML   = '<i class="ph ph-plus-circle"></i>';
+  STATE.editingId = null; resetForm();
+  document.getElementById('modal-form-icon').className      = 'modal-header-icon add';
+  document.getElementById('modal-form-icon').innerHTML      = '<i class="ph ph-plus-circle"></i>';
   document.getElementById('modal-form-title').textContent   = lang==='fr' ? 'Ajouter une Entrée'    : 'Add Intelligence Entry';
   document.getElementById('modal-form-subtitle').textContent = lang==='fr' ? 'Remplissez les détails' : 'Fill in the details below';
   document.getElementById('submit-btn-label').textContent   = lang==='fr' ? 'Enregistrer'           : 'Save Entry';
   openModal('modal-form');
 });
 
-/* =============================================
-   EDIT MODAL
-============================================= */
+/* ── EDIT ── */
 function openEditModal(id) {
   var lang = localStorage.getItem('emi_lang') || 'en';
-  var item = STATE.items.find(function(i) { return i.id === id; });
-  if (!item) return;
-  STATE.editingId = id;
-  resetForm();
+  id = String(id);
+  var item = STATE.items.find(function(i) { return uid(i) === id; });
+  if (!item) { console.warn('openEditModal: item not found for id', id); return; }
 
-  document.getElementById('intel-id').value        = item.id;
-  document.getElementById('intel-title-en').value  = item.title_en  || '';
-  document.getElementById('intel-title-fr').value  = item.title_fr  || '';
-  document.getElementById('intel-category').value  = item.category  || '';
-  document.getElementById('intel-status').value    = item.status    || 'published';
-  document.getElementById('intel-icon').value      = item.icon      || '';
-  document.getElementById('intel-text-en').value   = item.text_en   || '';
-  document.getElementById('intel-text-fr').value   = item.text_fr   || '';
+  STATE.editingId = id; resetForm();
+  document.getElementById('intel-id').value       = id;
+  document.getElementById('intel-title-en').value = item.title_en || '';
+  document.getElementById('intel-title-fr').value = item.title_fr || '';
+  document.getElementById('intel-category').value = item.category || '';
+  document.getElementById('intel-status').value   = item.status   || 'published';
+  document.getElementById('intel-icon').value     = item.icon     || '';
+  document.getElementById('intel-text-en').value  = item.text_en  || '';
+  document.getElementById('intel-text-fr').value  = item.text_fr  || '';
   previewIcon(item.icon || '');
 
-  // Show current image if exists
   if (item.image_url) {
     var wrap = document.getElementById('current-img-wrap');
     var img  = document.getElementById('current-img-preview');
@@ -354,43 +323,44 @@ function openEditModal(id) {
     if (img)  img.src = item.image_url;
   }
 
-  document.getElementById('modal-form-icon').className    = 'modal-header-icon edit';
-  document.getElementById('modal-form-icon').innerHTML    = '<i class="ph ph-pencil-simple"></i>';
-  document.getElementById('modal-form-title').textContent    = lang==='fr' ? 'Modifier l\'Entrée'  : 'Edit Entry';
+  document.getElementById('modal-form-icon').className      = 'modal-header-icon edit';
+  document.getElementById('modal-form-icon').innerHTML      = '<i class="ph ph-pencil-simple"></i>';
+  document.getElementById('modal-form-title').textContent   = lang==='fr' ? 'Modifier l\'Entrée'  : 'Edit Entry';
   document.getElementById('modal-form-subtitle').textContent = lang==='fr' ? (item.title_fr||'') : (item.title_en||'');
-  document.getElementById('submit-btn-label').textContent    = lang==='fr' ? 'Mettre à Jour'       : 'Update Entry';
+  document.getElementById('submit-btn-label').textContent   = lang==='fr' ? 'Mettre à Jour'       : 'Update Entry';
   openModal('modal-form');
 }
 
-/* =============================================
-   VIEW MODAL
-============================================= */
+/* ── VIEW ── */
 function openViewModal(id) {
   var lang = localStorage.getItem('emi_lang') || 'en';
-  var item = STATE.items.find(function(i) { return i.id === id; });
-  if (!item) return;
+  id = String(id);
+  var item = STATE.items.find(function(i) { return uid(i) === id; });
+  if (!item) { console.warn('openViewModal: item not found for id', id); return; }
+
   var catLabel = getCatLabel(item.category);
   var title    = lang==='fr' ? item.title_fr : item.title_en;
   var text     = lang==='fr' ? item.text_fr  : item.text_en;
+  var dateRaw  = item.createdAt || item.created_at;
+  var dateStr  = dateRaw
+    ? new Date(dateRaw).toLocaleDateString(lang==='fr' ? 'fr-FR' : 'en-US', { year:'numeric', month:'long', day:'numeric' })
+    : '—';
 
   document.getElementById('view-title').textContent = title;
   document.getElementById('view-cat').textContent   = catLabel;
   document.getElementById('view-to-edit').onclick   = function() { closeModal('modal-view'); openEditModal(id); };
 
-  var body = document.getElementById('view-body');
   var imgHtml = item.image_url
     ? '<img src="' + item.image_url + '" alt="' + title + '" class="view-hero-img"/>'
     : '<div class="view-hero-placeholder"><i class="ph ph-image"></i></div>';
 
-  var dateStr = item.created_at ? new Date(item.created_at).toLocaleDateString(lang==='fr'?'fr-FR':'en-US', { year:'numeric', month:'long', day:'numeric' }) : '—';
-
-  body.innerHTML =
+  document.getElementById('view-body').innerHTML =
     imgHtml +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">' +
       '<div><div class="form-label" style="margin-bottom:4px;">' + (lang==='fr'?'Catégorie':'Category') + '</div><span class="badge badge-blue">' + catLabel + '</span></div>' +
       '<div><div class="form-label" style="margin-bottom:4px;">Status</div><span class="badge ' + (item.status==='published'?'badge-green':'badge-yellow') + '">' + (item.status==='published'?(lang==='fr'?'Publié':'Published'):(lang==='fr'?'Brouillon':'Draft')) + '</span></div>' +
       '<div><div class="form-label" style="margin-bottom:4px;">Icon</div><div style="display:flex;align-items:center;gap:8px;"><i class="ph ' + (item.icon||'ph-brain') + '" style="font-size:1.3rem;color:var(--blue-light);"></i><code style="font-size:0.8rem;color:var(--gray);">' + (item.icon||'—') + '</code></div></div>' +
-      '<div><div class="form-label" style="margin-bottom:4px;">' + (lang==='fr'?'Date':'Date') + '</div><span style="font-size:0.85rem;color:var(--text-body);">' + dateStr + '</span></div>' +
+      '<div><div class="form-label" style="margin-bottom:4px;">Date</div><span style="font-size:0.85rem;color:var(--text-body);">' + dateStr + '</span></div>' +
     '</div>' +
     '<div style="margin-bottom:14px;"><div class="form-label" style="margin-bottom:6px;">Text (EN)</div><p style="font-size:0.9rem;color:var(--text-body);line-height:1.75;">' + (item.text_en||'—') + '</p></div>' +
     '<div><div class="form-label" style="margin-bottom:6px;">Text (FR)</div><p style="font-size:0.9rem;color:var(--text-body);line-height:1.75;">' + (item.text_fr||'—') + '</p></div>';
@@ -399,7 +369,7 @@ function openViewModal(id) {
 }
 
 /* =============================================
-   DELETE
+   ✅ DELETE — DELETE /api/intelligence/:id
 ============================================= */
 function openDeleteModal(id, name) {
   STATE.deletingId   = id;
@@ -410,115 +380,108 @@ function openDeleteModal(id, name) {
 
 document.getElementById('confirm-delete-btn').addEventListener('click', function() {
   var lang = localStorage.getItem('emi_lang') || 'en';
-  var id   = STATE.deletingId;
-  if (!id) return;
+  var id   = STATE.deletingId; if (!id) return;
   var btn  = this;
-  btn.disabled = true;
-  btn.innerHTML = '<i class="ph ph-spinner"></i> ' + (lang==='fr'?'Suppression…':'Deleting…');
+  btn.disabled  = true;
+  btn.innerHTML = '<i class="ph ph-spinner"></i> ' + (lang==='fr' ? 'Suppression…' : 'Deleting…');
 
-  /*
-  ── BACKEND DELETE ──────────────────────────────────
-  DELETE /intelligence/{id}
-  Expected response: { success: true }
-  ─────────────────────────────────────────────────────
-  */
-  apiDelete('/intelligence/' + id).then(function() {
-    afterDelete(lang);
-  }).catch(function() {
-    afterDelete(lang); // Demo: remove locally
-  });
+  apiDelete('/intelligence/' + id).then(afterDel).catch(afterDel);
 
-  function afterDelete(lang) {
-    STATE.items    = STATE.items.filter(function(i) { return i.id !== id; });
+  function afterDel() {
+    STATE.items = STATE.items.filter(function(i) { return uid(i) !== String(id); });
     applyFilters();
     closeModal('modal-delete');
     showToast('success',
       lang==='fr' ? 'Entrée supprimée' : 'Entry deleted',
       '"' + STATE.deletingName + '" ' + (lang==='fr' ? 'a été supprimée.' : 'has been removed.')
     );
-    STATE.deletingId = null;
-    btn.disabled = false;
-    btn.innerHTML = '<i class="ph ph-trash"></i> <span>' + (lang==='fr'?'Oui, Supprimer':'Yes, Delete') + '</span>';
+    STATE.deletingId   = null;
+    STATE.deletingName = '';
+    btn.disabled  = false;
+    btn.innerHTML = '<i class="ph ph-trash"></i> <span>' + (lang==='fr' ? 'Oui, Supprimer' : 'Yes, Delete') + '</span>';
   }
 });
 
 /* =============================================
-   FORM SUBMIT — Add / Edit
-
-   ADD:  POST /intelligence
-   EDIT: PUT  /intelligence/{id}
-
-   REQUEST BODY:
-   {
-     title_en:  "Mining Risk Evaluation",
-     title_fr:  "Évaluation des Risques Miniers",
-     category:  "risk",
-     status:    "published",
-     icon:      "ph-shield-warning",
-     text_en:   "Description in English…",
-     text_fr:   "Description en français…"
-   }
-
-   For image: use FormData, append "image" field.
-   Response should include the full saved object
-   (including id and image_url if uploaded).
+   ✅ FORM SUBMIT — ADD / EDIT
+   POST /api/intelligence      → create
+   PUT  /api/intelligence/:id  → update
+   Sends multipart/form-data for Cloudinary image.
 ============================================= */
 document.getElementById('submit-form').addEventListener('click', function() {
-  var lang = localStorage.getItem('emi_lang') || 'en';
+  var lang   = localStorage.getItem('emi_lang') || 'en';
+  var isEdit = STATE.editingId !== null;
+  var btn    = this;
 
-  var payload = {
-    title_en:  document.getElementById('intel-title-en').value.trim(),
-    title_fr:  document.getElementById('intel-title-fr').value.trim(),
-    category:  document.getElementById('intel-category').value,
-    status:    document.getElementById('intel-status').value,
-    icon:      document.getElementById('intel-icon').value.trim(),
-    text_en:   document.getElementById('intel-text-en').value.trim(),
-    text_fr:   document.getElementById('intel-text-fr').value.trim()
-  };
+  var title_en  = document.getElementById('intel-title-en').value.trim();
+  var title_fr  = document.getElementById('intel-title-fr').value.trim();
+  var category  = document.getElementById('intel-category').value;
+  var status    = document.getElementById('intel-status').value;
+  var icon      = document.getElementById('intel-icon').value.trim();
+  var text_en   = document.getElementById('intel-text-en').value.trim();
+  var text_fr   = document.getElementById('intel-text-fr').value.trim();
+  var imageFile = document.getElementById('intel-image').files[0];
 
-  if (!payload.title_en || !payload.title_fr || !payload.category || !payload.text_en || !payload.text_fr) {
+  if (!title_en || !title_fr || !category || !text_en || !text_fr) {
     showToast('error',
-      lang==='fr' ? 'Champs manquants' : 'Missing fields',
+      lang==='fr' ? 'Champs manquants'                          : 'Missing fields',
       lang==='fr' ? 'Remplissez tous les champs obligatoires.' : 'Please fill all required fields.'
     );
     return;
   }
 
-  var btn    = document.getElementById('submit-form');
-  var isEdit = STATE.editingId !== null;
-  btn.disabled = true;
-  btn.innerHTML = '<i class="ph ph-spinner"></i> ' + (lang==='fr'?'Enregistrement…':'Saving…');
+  var formData = new FormData();
+  formData.append('title_en', title_en);
+  formData.append('title_fr', title_fr);
+  formData.append('category', category);
+  formData.append('status',   status);
+  formData.append('icon',     icon);
+  formData.append('text_en',  text_en);
+  formData.append('text_fr',  text_fr);
+  if (imageFile) formData.append('image', imageFile);
 
-  var endpoint = isEdit ? '/intelligence/' + STATE.editingId : '/intelligence';
-  var method   = isEdit ? apiPut : apiPost;
+  btn.disabled  = true;
+  btn.innerHTML = '<i class="ph ph-spinner"></i> ' + (lang==='fr' ? 'Enregistrement…' : 'Saving…');
 
-  method(endpoint, payload).then(function(data) {
-    afterSave(data, isEdit, payload, lang);
+  var request = isEdit
+    ? apiPutForm('/intelligence/' + STATE.editingId, formData)
+    : apiPostForm('/intelligence', formData);
+
+  request.then(function(data) {
+    afterSave(data);
   }).catch(function() {
-    afterSave(null, isEdit, payload, lang); // Demo mode
+    showToast('error', 'Error', 'Could not save. Please try again.');
+    btn.disabled  = false;
+    btn.innerHTML = '<i class="ph ph-floppy-disk"></i> <span>' + (lang==='fr' ? 'Enregistrer' : 'Save Entry') + '</span>';
   });
 
-  function afterSave(data, isEdit, payload, lang) {
-    if (isEdit) {
-      var idx = STATE.items.findIndex(function(i) { return i.id === STATE.editingId; });
-      if (idx !== -1) Object.assign(STATE.items[idx], payload, data || {});
-    } else {
-      STATE.items.unshift(Object.assign({ id: Date.now() }, payload, data || {}));
+  function afterSave(data) {
+    if (!data || (data.message && !data._id && !data.id)) {
+      showToast('error', 'Error', (data && data.message) || 'Server error.');
+      btn.disabled  = false;
+      btn.innerHTML = '<i class="ph ph-floppy-disk"></i> <span>' + (lang==='fr' ? 'Enregistrer' : 'Save Entry') + '</span>';
+      return;
     }
+
+    if (isEdit) {
+      var idx = STATE.items.findIndex(function(i) { return uid(i) === String(STATE.editingId); });
+      if (idx !== -1) STATE.items[idx] = data;
+    } else {
+      STATE.items.unshift(data);
+    }
+
     applyFilters();
     closeModal('modal-form');
     showToast('success',
-      isEdit ? (lang==='fr'?'Entrée mise à jour':'Entry updated') : (lang==='fr'?'Entrée ajoutée':'Entry added'),
-      '"' + payload.title_en + '" ' + (lang==='fr'?'enregistrée.':'saved successfully.')
+      isEdit ? (lang==='fr' ? 'Entrée mise à jour' : 'Entry updated') : (lang==='fr' ? 'Entrée ajoutée' : 'Entry added'),
+      '"' + title_en + '" ' + (lang==='fr' ? 'enregistrée.' : 'saved successfully.')
     );
-    btn.disabled = false;
-    btn.innerHTML = '<i class="ph ph-floppy-disk"></i> <span>' + (lang==='fr'?'Enregistrer':'Save Entry') + '</span>';
+    btn.disabled  = false;
+    btn.innerHTML = '<i class="ph ph-floppy-disk"></i> <span>' + (lang==='fr' ? 'Enregistrer' : 'Save Entry') + '</span>';
   }
 });
 
-/* =============================================
-   ICON PREVIEW
-============================================= */
+/* ── ICON PREVIEW ── */
 function previewIcon(val) {
   var preview = document.getElementById('icon-preview');
   if (!preview) return;
@@ -528,9 +491,7 @@ function previewIcon(val) {
   preview.innerHTML = '<i class="ph ' + cls + '"></i>';
 }
 
-/* =============================================
-   IMAGE PREVIEW
-============================================= */
+/* ── IMAGE PREVIEW ── */
 function previewImage(event) {
   var file    = event.target.files[0];
   var preview = document.getElementById('img-preview-el');
@@ -541,9 +502,7 @@ function previewImage(event) {
   }
 }
 
-/* =============================================
-   RESET FORM
-============================================= */
+/* ── RESET FORM ── */
 function resetForm() {
   document.getElementById('intel-form').reset();
   document.getElementById('intel-id').value = '';
@@ -556,20 +515,3 @@ function resetForm() {
 
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded', function() { loadItems(); });
-
-/*
-  =============================================
-  BACKEND API SUMMARY
-  =============================================
-  GET    /intelligence         → Load all entries
-  POST   /intelligence         → Create entry
-  PUT    /intelligence/{id}    → Update entry
-  DELETE /intelligence/{id}    → Delete entry
-
-  For image upload use FormData (not JSON):
-    var fd = new FormData();
-    fd.append('title_en', ...);
-    fd.append('image', file);
-    fetch(API_BASE + '/intelligence', { method:'POST', headers: { Authorization:... }, body: fd });
-  =============================================
-*/
