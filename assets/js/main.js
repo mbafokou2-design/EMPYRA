@@ -2,8 +2,8 @@
 /* -----------------------------------------------
    HERO SLIDER  (12 slides — auto-detected)
 ----------------------------------------------- */
-const slides      = document.querySelectorAll('.slide');
-const dots        = document.querySelectorAll('.dot');
+let slides      = document.querySelectorAll('.slide');
+let dots        = document.querySelectorAll('.dot');
 const sliderTrack = document.getElementById('slider-track');
 let currentSlide  = 0;
 let autoSlide;

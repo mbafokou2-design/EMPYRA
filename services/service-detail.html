@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="page-title">Service – EMPYRA MINING INNOVATIONS</title>
+  <link rel="icon" type="image/png" href="../Logo Files/fav.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+  <link rel="stylesheet" href="../assets/style/service-water.css"/>
+  <link rel="stylesheet" href="../assets/style/style.css"/>
+  <link rel="stylesheet" href="../assets/style/content.css"/>
+</head>
+<body>
+
+<!-- =============================================
+     NAVBAR — identical to all other pages
+============================================= -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+
+      <a href="../index.html" class="nav-logo">
+        <div class="logo-placeholder">
+          <img src="../Logo Files/logo.png" alt="EMI" class="logo-img">
+        </div>
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu">
+
+        <li class="nav-item"><a href="../index.html" class="nav-link" data-en="Home" data-fr="Accueil">Home</a></li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span data-en="Our Company" data-fr="Notre Entreprise">Our Company</span>
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <ul class="dropdown">
+            <li><a href="../our_Company/team.html"><i class="fa fa-users"></i><span data-en="Senior Management" data-fr="Direction Générale">Senior Management</span></a></li>
+            <li><a href="../our_Company/governance.html"><i class="fa fa-shield-alt"></i><span data-en="Governance" data-fr="Gouvernance">Governance</span></a></li>
+            <li><a href="../our_Company/impact.html"><i class="fa fa-globe"></i><span data-en="Our Community Impact" data-fr="Notre Impact Communautaire">Our Community Impact</span></a></li>
+            <li><a href="../our_Company/downloads.html"><i class="fa fa-download"></i><span data-en="Downloads" data-fr="Téléchargements">Downloads</span></a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="../services.html" class="nav-link active-page">
+            <span data-en="Services" data-fr="Services">Services</span>
+            <i class="fa fa-chevron-down"></i>
+          </a>
+          <!-- Mega dropdown — populated dynamically by JS from API -->
+          <ul class="dropdown mega" id="nav-services-dropdown">
+            <div class="dropdown-loading" style="padding:20px;color:var(--gray);font-size:0.85rem;">
+              <i class="fa fa-spinner fa-spin"></i> Loading services…
+            </div>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a href="../intelligence.html" class="nav-link" data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</a></li>
+        <li class="nav-item"><a href="../blog.html" class="nav-link" data-en="News & Blog" data-fr="Actualités & Blog">News & Blog</a></li>
+        <li class="nav-item"><a href="../contact.html" class="nav-link" data-en="Contact" data-fr="Contact">Contact</a></li>
+
+        <!-- LANGUAGE SWITCHER -->
+        <li class="nav-item nav-lang" id="nav-lang">
+          <button class="lang-trigger" id="lang-trigger" aria-label="Change language">
+            <i class="fa fa-globe globe"></i>
+            <span id="lang-label">EN</span>
+            <i class="fa fa-chevron-down"></i>
+          </button>
+          <div class="lang-dropdown" id="lang-dropdown">
+            <button class="lang-option active" id="opt-en" onclick="setLang('en')"><span class="flag">🇬🇧</span> English</button>
+            <button class="lang-option" id="opt-fr" onclick="setLang('fr')"><span class="flag">🇫🇷</span> Français</button>
+          </div>
+        </li>
+
+      </ul>
+
+      <div class="nav-right">
+        <button class="nav-search-btn" id="search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
+        <div class="search-popup" id="search-popup">
+          <div class="search-popup-inner">
+            <span class="search-popup-label" data-en="Search the site" data-fr="Rechercher">Search the site</span>
+            <div class="search-input-wrap">
+              <input type="text" class="search-input" id="search-input"
+                data-placeholder-en="Services, news, projects…"
+                data-placeholder-fr="Services, actualités, projets…"
+                placeholder="Services, news, projects…" autocomplete="off"/>
+              <button class="search-submit-btn" id="search-submit" aria-label="Go"><i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="search-suggestions">
+              <button class="search-suggestion-tag" data-en="Exploration" data-fr="Exploration">Exploration</button>
+              <button class="search-suggestion-tag" data-en="Water" data-fr="Eau">Water</button>
+              <button class="search-suggestion-tag" data-en="Risk" data-fr="Risque">Risk</button>
+              <button class="search-suggestion-tag" data-en="Intelligence" data-fr="Intelligence">Intelligence</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- =============================================
+     PAGE HERO — populated by JS
+============================================= -->
+<section id="page-hero">
+  <div class="hero-ring"></div>
+  <div class="hero-watermark" id="hero-watermark">
+    <i class="ph ph-hard-hat"></i>
+  </div>
+  <div class="container page-hero-inner">
+    <h1 id="hero-title">Loading…</h1>
+    <nav class="breadcrumb">
+      <a href="../index.html" data-en="Home" data-fr="Accueil">Home</a>
+      <i class="fa fa-chevron-right"></i>
+      <a href="../services.html" data-en="Services" data-fr="Services">Services</a>
+      <i class="fa fa-chevron-right"></i>
+      <span id="breadcrumb-title">—</span>
+    </nav>
+  </div>
+</section>
+
+<!-- =============================================
+     SERVICE MAIN — populated by JS
+============================================= -->
+<section id="service-main">
+  <div class="container">
+    <div class="service-layout">
+
+      <!-- MAIN CONTENT — populated by JS -->
+      <div class="service-content" id="service-content">
+        <!-- Loading skeleton -->
+        <div class="skeleton-card" style="height:280px;margin-bottom:24px;"></div>
+        <div class="skeleton-line" style="height:16px;width:40%;margin-bottom:12px;"></div>
+        <div class="skeleton-line" style="height:28px;width:70%;margin-bottom:20px;"></div>
+        <div class="skeleton-line" style="height:14px;width:100%;margin-bottom:8px;"></div>
+        <div class="skeleton-line" style="height:14px;width:90%;margin-bottom:8px;"></div>
+        <div class="skeleton-line" style="height:14px;width:95%;margin-bottom:8px;"></div>
+        <div class="skeleton-line" style="height:14px;width:80%;"></div>
+      </div>
+
+      <!-- SIDEBAR — populated by JS -->
+      <aside class="service-sidebar">
+        <div class="sidebar-card" id="sidebar-card">
+          <div class="sidebar-card-head">
+            <h4 id="sidebar-cat-title">Related Services</h4>
+          </div>
+          <div class="sidebar-card-body">
+            <ul class="sidebar-services-list" id="sidebar-services-list">
+              <li style="padding:12px;color:var(--gray);font-size:0.85rem;">
+                <i class="fa fa-spinner fa-spin"></i> Loading…
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     404 STATE — hidden by default
+============================================= -->
+<div id="service-not-found" style="display:none; text-align:center; padding:80px 20px;">
+  <i class="ph ph-warning-circle" style="font-size:4rem;color:var(--gray-light);display:block;margin-bottom:16px;"></i>
+  <h2 data-en="Service Not Found" data-fr="Service Introuvable">Service Not Found</h2>
+  <p data-en="This service does not exist or has been removed." data-fr="Ce service n'existe pas ou a été supprimé." style="color:var(--gray);margin:12px 0 24px;">
+    This service does not exist or has been removed.
+  </p>
+  <a href="../services.html" class="btn btn-primary">
+    <i class="fa fa-arrow-left"></i>
+    <span data-en="Back to Services" data-fr="Retour aux Services">Back to Services</span>
+  </a>
+</div>
+
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo-wrap">
+          <div class="footer-logo-placeholder">
+            <img src="../Logo Files/logo.png" alt="EMI" class="footer-logo-img">
+          </div>
+        </a>
+        <p data-en="Experts in mining intelligence and sustainable mining operations"
+           data-fr="Experts en intelligence minière et exploitation minière durable">
+          A Cameroonian company leveraging innovation and mining intelligence to build sustainable practices.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-en="Quick Links" data-fr="Liens Rapides">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html"><i class="fa fa-chevron-right"></i><span data-en="Home" data-fr="Accueil">Home</span></a></li>
+          <li><a href="../services.html"><i class="fa fa-chevron-right"></i><span data-en="Services" data-fr="Services">Services</span></a></li>
+          <li><a href="../intelligence.html"><i class="fa fa-chevron-right"></i><span data-en="Mining Intelligence" data-fr="Intelligence Minière">Mining Intelligence</span></a></li>
+          <li><a href="../blog.html"><i class="fa fa-chevron-right"></i><span data-en="News & Blog" data-fr="Actualités & Blog">News & Blog</span></a></li>
+          <li><a href="../contact.html"><i class="fa fa-chevron-right"></i><span data-en="Contact" data-fr="Contact">Contact</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-fr="Nos Catégories de Services" data-en="Our Service Categories">Our Service Categories</h4>
+        <ul class="footer-links">
+          <li><a href="../services.html"><i class="fa fa-chevron-right"></i><span data-fr="Environnement & Gestion Durable" data-en="Environment & Sustainable Management">Environment & Sustainable Management</span></a></li>
+          <li><a href="../services.html"><i class="fa fa-chevron-right"></i><span data-fr="Évaluation des Ressources & Exploration" data-en="Resource Assessment & Exploration">Resource Assessment & Exploration</span></a></li>
+          <li><a href="../services.html"><i class="fa fa-chevron-right"></i><span data-fr="Audits, Expertise & Gestion des Risques" data-en="Audits, Expertise & Risk Management">Audits, Expertise & Risk Management</span></a></li>
+          <li><a href="../services.html"><i class="fa fa-chevron-right"></i><span data-fr="Ingénierie & Exploitation Minière" data-en="Engineering & Mining Operations">Engineering & Mining Operations</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-en="Contact" data-fr="Contact">Contact</h4>
+        <ul class="footer-contact">
+          <li><i class="fa fa-map-marker-alt"></i><span data-en="Rue 1.959, Quartier Bastos, Yaoundé, Cameroon" data-fr="Rue 1.959, Quartier Bastos, Yaoundé, Cameroun">Rue 1.959, Quartier Bastos, Yaoundé, Cameroon</span></li>
+          <li><i class="fa fa-phone"></i><span>+237 222 217 225</span></li>
+          <li><i class="fa fa-envelope"></i><a href="mailto:info@empyragroup.com" style="color:rgba(255,255,255,0.55);">info@empyragroup.com</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <span data-en="© 2025 Empyra Mining Innovations. All rights reserved." data-fr="© 2025 Empyra Mining Innovations. Tous droits réservés.">© 2025 Empyra Mining Innovations. All rights reserved.</span>
+      <span><a href="#" data-en="Privacy Policy" data-fr="Politique de Confidentialité">Privacy Policy</a> · <a href="#" data-en="Terms of Use" data-fr="Conditions d'Utilisation">Terms of Use</a></span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa fa-chevron-up"></i></button>
+
+<!-- service-water-script.js handles navbar, lang, back-to-top etc. -->
+<script src="../assets/js/service-water-script.js"></script>
+<script src="../assets/js/service-index.js"></script>
+<script src="../assets/js/service-links.js"></script>
+
+<!-- service-detail-script.js handles the dynamic content rendering -->
+<script src="../assets/js/service-detail-script.js"></script>
+
+</body>
+</html>

@@ -263,16 +263,20 @@
 <!-- =============================================
      MODAL: ADD / EDIT SERVICE
 ============================================= -->
+<!-- =============================================
+     REPLACE YOUR EXISTING modal-form IN dash-services.html
+     WITH THIS BLOCK
+============================================= -->
 <div class="modal-backdrop" id="modal-form">
-  <div class="modal-card">
+  <div class="modal-card" style="max-width:780px;">
     <div class="modal-header">
       <div class="modal-header-left">
         <div class="modal-header-icon add" id="modal-form-icon">
           <i class="ph ph-plus-circle"></i>
         </div>
         <div>
-          <div class="modal-title" id="modal-form-title" data-en="Add New Service" data-fr="Ajouter un Service">Add New Service</div>
-          <div class="modal-subtitle" id="modal-form-subtitle" data-en="Fill in the details below" data-fr="Remplissez les détails ci-dessous">Fill in the details below</div>
+          <div class="modal-title" id="modal-form-title">Add New Service</div>
+          <div class="modal-subtitle" id="modal-form-subtitle">Fill in the details below</div>
         </div>
       </div>
       <button class="modal-close" id="close-modal-form"><i class="fa fa-times"></i></button>
@@ -282,89 +286,144 @@
       <form id="service-form" novalidate>
         <input type="hidden" id="service-id"/>
 
-        <!-- Title -->
+        <!-- ══ BASIC INFO ══ -->
+        <p class="form-section-divider">Basic Information</p>
+
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" data-en="Title (English) <span class='req'>*</span>" data-fr="Titre (Anglais) <span class='req'>*</span>">Title (English) <span class="req">*</span></label>
-            <input type="text" class="form-control" id="svc-title-en"
-                   data-placeholder-en="e.g. Mine Water Management"
-                   data-placeholder-fr="ex. Gestion des Eaux de Mine"
-                   placeholder="e.g. Mine Water Management" required/>
+            <label class="form-label">Title (English) <span class="req">*</span></label>
+            <input type="text" class="form-control" id="svc-title-en" placeholder="e.g. Mine Water Management" required/>
           </div>
           <div class="form-group">
-            <label class="form-label" data-en="Title (French) <span class='req'>*</span>" data-fr="Titre (Français) <span class='req'>*</span>">Title (French) <span class="req">*</span></label>
-            <input type="text" class="form-control" id="svc-title-fr"
-                   placeholder="ex. Gestion des Eaux de Mine" required/>
+            <label class="form-label">Titre (Français) <span class="req">*</span></label>
+            <input type="text" class="form-control" id="svc-title-fr" placeholder="ex. Gestion des Eaux de Mine" required/>
           </div>
         </div>
 
-        <!-- Category + Status -->
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" data-en="Category <span class='req'>*</span>" data-fr="Catégorie <span class='req'>*</span>">Category <span class="req">*</span></label>
+            <label class="form-label">Category <span class="req">*</span></label>
             <select class="form-control" id="svc-category" required>
-              <option value="" data-en="— Select —" data-fr="— Sélectionner —">— Select —</option>
-              <option value="environment" data-en="Environment & Sustainability" data-fr="Environnement & Durabilité">Environment & Sustainability</option>
-              <option value="audit"       data-en="Audits & Risk Management"    data-fr="Audits & Gestion des Risques">Audits & Risk Management</option>
-              <option value="exploration" data-en="Exploration & Resources"      data-fr="Exploration & Ressources">Exploration & Resources</option>
-              <option value="engineering" data-en="Engineering & Operations"     data-fr="Ingénierie & Opérations">Engineering & Operations</option>
+              <option value="">— Select —</option>
+              <option value="environment">Environment & Sustainability</option>
+              <option value="audit">Audits & Risk Management</option>
+              <option value="exploration">Exploration & Resources</option>
+              <option value="engineering">Engineering & Operations</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label" data-en="Status <span class='req'>*</span>" data-fr="Statut <span class='req'>*</span>">Status <span class="req">*</span></label>
+            <label class="form-label">Status <span class="req">*</span></label>
             <select class="form-control" id="svc-status" required>
-              <option value="published" data-en="Published" data-fr="Publié">Published</option>
-              <option value="draft"     data-en="Draft"     data-fr="Brouillon">Draft</option>
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
             </select>
           </div>
         </div>
 
-        <!-- Icon picker -->
-        <div class="form-group">
-          <label class="form-label" data-en="Phosphor Icon Name" data-fr="Nom de l'Icône Phosphor">Phosphor Icon Name</label>
-          <div style="display:flex;gap:10px;align-items:center;">
-            <input type="text" class="form-control" id="svc-icon"
-                   placeholder="e.g. ph-water, ph-atom, ph-leaf"
-                   style="flex:1;"
-                   oninput="previewIcon(this.value)"/>
-            <div id="icon-preview" style="width:42px;height:42px;border-radius:8px;background:var(--off-white);border:1px solid var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">
-              <i class="ph ph-star"></i>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Phosphor Icon</label>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <input type="text" class="form-control" id="svc-icon" placeholder="e.g. ph-water, ph-leaf" style="flex:1;" oninput="previewIcon(this.value)"/>
+              <div id="icon-preview" style="width:42px;height:42px;border-radius:8px;background:var(--off-white);border:1px solid var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">
+                <i class="ph ph-star"></i>
+              </div>
             </div>
+            <p class="form-hint">phosphoricons.com — e.g. ph-water, ph-leaf, ph-mountain</p>
           </div>
-          <p class="form-hint" data-en="Browse icons at phosphoricons.com — use the 'regular' name e.g. ph-water" data-fr="Parcourez les icônes sur phosphoricons.com — utilisez le nom regular ex. ph-water">Browse icons at phosphoricons.com</p>
+          <div class="form-group">
+            <label class="form-label">Slug (URL)</label>
+            <input type="text" class="form-control" id="svc-slug" placeholder="auto-generated from title"/>
+            <p class="form-hint">service-detail.html?slug=<strong id="slug-preview">your-slug</strong></p>
+          </div>
         </div>
 
-        <!-- Description EN -->
-        <div class="form-group">
-          <label class="form-label" data-en="Description (English) <span class='req'>*</span>" data-fr="Description (Anglais) <span class='req'>*</span>">Description (English) <span class="req">*</span></label>
-          <textarea class="form-control" id="svc-desc-en"
-                    data-placeholder-en="Describe this service in English…"
-                    data-placeholder-fr="Décrivez ce service en anglais…"
-                    placeholder="Describe this service in English…" required></textarea>
+        <!-- Short card description -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Short Description (EN) <span class="req">*</span></label>
+            <textarea class="form-control" id="svc-desc-en" placeholder="Brief description for service cards…" style="min-height:70px;" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description Courte (FR) <span class="req">*</span></label>
+            <textarea class="form-control" id="svc-desc-fr" placeholder="Description courte pour les cartes…" style="min-height:70px;" required></textarea>
+          </div>
         </div>
 
-        <!-- Description FR -->
-        <div class="form-group">
-          <label class="form-label" data-en="Description (French) <span class='req'>*</span>" data-fr="Description (Français) <span class='req'>*</span>">Description (French) <span class="req">*</span></label>
-          <textarea class="form-control" id="svc-desc-fr"
-                    placeholder="Décrivez ce service en français…" required></textarea>
+        <!-- ══ PAGE CONTENT ══ -->
+        <p class="form-section-divider">Page Content — shown on the public service detail page</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Intro Paragraph (EN)</label>
+            <textarea class="form-control" id="svc-intro-en" placeholder="Main opening paragraph…" style="min-height:80px;"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Paragraphe Intro (FR)</label>
+            <textarea class="form-control" id="svc-intro-fr" placeholder="Paragraphe d'introduction…" style="min-height:80px;"></textarea>
+          </div>
         </div>
 
-        <!-- Page link -->
-        <div class="form-group">
-          <label class="form-label" data-en="Page URL / Slug" data-fr="URL / Slug de la Page">Page URL / Slug</label>
-          <input type="text" class="form-control" id="svc-slug"
-                 placeholder="e.g. service-water.html"/>
-          <p class="form-hint" data-en="Link to the service detail page on the public site" data-fr="Lien vers la page de détail du service sur le site public">Link to the service detail page</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Body Paragraph (EN)</label>
+            <textarea class="form-control" id="svc-body-en" placeholder="Second paragraph…" style="min-height:80px;"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Corps du Texte (FR)</label>
+            <textarea class="form-control" id="svc-body-fr" placeholder="Deuxième paragraphe…" style="min-height:80px;"></textarea>
+          </div>
         </div>
 
-        <!-- Image upload -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Additional Paragraph (EN)</label>
+            <textarea class="form-control" id="svc-body2-en" placeholder="Optional third paragraph…" style="min-height:70px;"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Paragraphe Supplémentaire (FR)</label>
+            <textarea class="form-control" id="svc-body2-fr" placeholder="Troisième paragraphe optionnel…" style="min-height:70px;"></textarea>
+          </div>
+        </div>
+
+        <!-- Bullet list -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Services List (EN) — one item per line</label>
+            <textarea class="form-control" id="svc-bullets-en"
+              placeholder="Grade control and analysis&#10;Environmental impact assessments&#10;Mine-to-mill optimization&#10;Training"
+              style="min-height:100px;font-family:monospace;font-size:0.84rem;"></textarea>
+            <p class="form-hint">Each line = one bullet point on the page.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Liste des Services (FR) — un élément par ligne</label>
+            <textarea class="form-control" id="svc-bullets-fr"
+              placeholder="Contrôle de teneur&#10;Études d'impact environnemental&#10;Optimisation mine-usine&#10;Formations"
+              style="min-height:100px;font-family:monospace;font-size:0.84rem;"></textarea>
+            <p class="form-hint">Chaque ligne = une puce sur la page.</p>
+          </div>
+        </div>
+
+        <!-- Closing highlight -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Closing Highlight (EN)</label>
+            <textarea class="form-control" id="svc-highlight-en" placeholder="EMPYRA Mining Innovations is a reliable partner for…" style="min-height:60px;"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mise en Avant Finale (FR)</label>
+            <textarea class="form-control" id="svc-highlight-fr" placeholder="EMPYRA Mining Innovations est un partenaire fiable pour…" style="min-height:60px;"></textarea>
+          </div>
+        </div>
+
+        <!-- ══ IMAGE ══ -->
+        <p class="form-section-divider">Service Image</p>
+
         <div class="form-group">
-          <label class="form-label" data-en="Service Image" data-fr="Image du Service">Service Image</label>
           <div class="img-upload-area" id="upload-area">
             <input type="file" id="svc-image" accept="image/*" onchange="previewImage(event)"/>
             <i class="ph ph-image" style="font-size:2rem;color:var(--gray-light);display:block;margin-bottom:8px;"></i>
-            <p data-en="Click or drag to upload an image" data-fr="Cliquez ou glissez pour télécharger une image">Click or drag to upload an image</p>
+            <p>Click or drag to upload an image</p>
             <p class="upload-hint">PNG, JPG, WEBP — max 2MB</p>
             <img class="img-preview" id="img-preview-el" alt="Preview"/>
           </div>
@@ -374,46 +433,16 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-outline" id="cancel-form" data-en="Cancel" data-fr="Annuler">Cancel</button>
-      <button class="btn btn-primary" id="submit-form">
+      <button class="btn btn-outline" id="cancel-form">Cancel</button>
+      <button type="button" class="btn btn-primary" id="submit-form">
         <i class="ph ph-floppy-disk"></i>
-        <span id="submit-btn-label" data-en="Save Service" data-fr="Enregistrer">Save Service</span>
+        <span id="submit-btn-label">Save Service</span>
       </button>
     </div>
   </div>
 </div>
 
-<!-- =============================================
-     MODAL: VIEW SERVICE
-============================================= -->
-<div class="modal-backdrop" id="modal-view">
-  <div class="modal-card wide">
-    <div class="modal-header">
-      <div class="modal-header-left">
-        <div class="modal-header-icon view"><i class="ph ph-eye"></i></div>
-        <div>
-          <div class="modal-title" id="view-modal-title">Service Details</div>
-          <div class="modal-subtitle" id="view-modal-cat">—</div>
-        </div>
-      </div>
-      <button class="modal-close" id="close-modal-view"><i class="fa fa-times"></i></button>
-    </div>
-    <div class="modal-body" id="view-modal-body">
-      <!-- Populated by JS -->
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-outline" id="view-to-edit">
-        <i class="ph ph-pencil-simple"></i>
-        <span data-en="Edit This Service" data-fr="Modifier ce Service">Edit This Service</span>
-      </button>
-      <button class="btn btn-outline" onclick="closeModal('modal-view')" data-en="Close" data-fr="Fermer">Close</button>
-    </div>
-  </div>
-</div>
-
-<!-- =============================================
-     MODAL: DELETE CONFIRMATION
-============================================= -->
+<!-- MODAL: DELETE -->
 <div class="modal-backdrop" id="modal-delete">
   <div class="modal-card small">
     <div class="modal-header">
@@ -421,7 +450,7 @@
         <div class="modal-header-icon delete"><i class="ph ph-trash"></i></div>
         <div>
           <div class="modal-title" data-en="Delete Service" data-fr="Supprimer le Service">Delete Service</div>
-          <div class="modal-subtitle" data-en="This action cannot be undone" data-fr="Cette action est irréversible">This action cannot be undone</div>
+          <div class="modal-subtitle" data-en="This action cannot be undone" data-fr="Irréversible">This action cannot be undone</div>
         </div>
       </div>
       <button class="modal-close" id="close-modal-delete"><i class="fa fa-times"></i></button>
@@ -429,16 +458,13 @@
     <div class="delete-confirm-body">
       <div class="delete-icon"><i class="ph ph-warning"></i></div>
       <h3 data-en="Are you sure?" data-fr="Êtes-vous sûr ?">Are you sure?</h3>
-      <p data-en="You are about to permanently delete:" data-fr="Vous êtes sur le point de supprimer définitivement :">You are about to permanently delete:</p>
-      <div class="delete-service-name" id="delete-service-name">Service Name</div>
-      <p data-en="This will remove the service from the public site and cannot be recovered." data-fr="Cela supprimera le service du site public et ne pourra pas être récupéré.">This will remove the service from the public site and cannot be recovered.</p>
+      <p data-en="You are about to permanently delete:" data-fr="Vous allez supprimer :">You are about to permanently delete:</p>
+      <div class="delete-item-name" id="delete-service-name">Service name</div>
+      <p data-en="This cannot be recovered." data-fr="Cette action est irréversible.">This cannot be recovered.</p>
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal('modal-delete')" data-en="Cancel" data-fr="Annuler">Cancel</button>
-      <button class="btn btn-danger" id="confirm-delete-btn">
-        <i class="ph ph-trash"></i>
-        <span data-en="Yes, Delete" data-fr="Oui, Supprimer">Yes, Delete</span>
-      </button>
+      <button class="btn btn-danger" id="confirm-delete-btn"><i class="ph ph-trash"></i><span data-en="Yes, Delete" data-fr="Oui, Supprimer">Yes, Delete</span></button>
     </div>
   </div>
 </div>

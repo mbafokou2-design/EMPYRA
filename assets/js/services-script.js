@@ -124,5 +124,104 @@ var btt = document.getElementById('back-to-top');
 window.addEventListener('scroll', function() { btt.classList.toggle('visible', window.scrollY > 400); });
 btt.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
+/* --- LOAD DYNAMIC SERVICES FROM DASHBOARD --- */
+function loadDynamicServices() {
+  var API_BASE = 'http://localhost:5000/api';
+  fetch(API_BASE + '/services')
+    .then(function(response) {
+      if (!response.ok) throw new Error('Failed to fetch services');
+      return response.json();
+    })
+    .then(function(services) {
+      renderCategoriesGrid(services);
+    })
+    .catch(function(error) {
+      console.error('Error loading dynamic services:', error);
+      // Fallback to static content if API fails
+    });
+}
+
+function renderCategoriesGrid(services) {
+  var lang = localStorage.getItem('emi_lang') || 'en';
+  var grid = document.querySelector('.categories-grid');
+  if (!grid) return;
+
+  var categoryConfig = {
+    environment: {
+      label_en: 'Environment & Sustainable Management',
+      label_fr: 'Environnement & Gestion Durable',
+      icon: 'fa-leaf'
+    },
+    audit: {
+      label_en: 'Audits, Expertise & Risk Management',
+      label_fr: 'Audits, Expertise & Gestion des Risques',
+      icon: 'fa-search-plus'
+    },
+    exploration: {
+      label_en: 'Resource Assessment & Exploration',
+      label_fr: 'Évaluation des Ressources & Exploration',
+      icon: 'fa-compass'
+    },
+    engineering: {
+      label_en: 'Engineering & Mining Operations',
+      label_fr: 'Ingénierie & Exploitation Minière',
+      icon: 'fa-cogs'
+    }
+  };
+
+  var groups = {};
+  services.forEach(function(service) {
+    if (service.status !== 'published') return;
+    var category = service.category || 'other';
+    groups[category] = groups[category] || [];
+    groups[category].push(service);
+  });
+
+  var html = Object.keys(groups).map(function(category) {
+    var cfg = categoryConfig[category] || {
+      label_en: category,
+      label_fr: category,
+      icon: 'fa-star'
+    };
+    var label = lang === 'fr' ? cfg.label_fr : cfg.label_en;
+
+    var servicesHtml = groups[category].map(function(service) {
+      var title = lang === 'fr' ? service.title_fr : service.title_en;
+      var href = './services/service-detail.html?slug=' + encodeURIComponent(service.slug || service.id);
+      return '<li>' +
+        '<a href="' + href + '" class="category-link">' +
+          '<span class="category-link-left">' +
+            '<i class="fa ' + cfg.icon + '"></i>' +
+            '<span data-en="' + (service.title_en || service.title) + '" data-fr="' + (service.title_fr || service.title) + '">' + title + '</span>' +
+          '</span>' +
+          '<i class="fa fa-chevron-right category-link-arrow"></i>' +
+        '</a>' +
+      '</li>';
+    }).join('');
+
+    return '<div class="category-card reveal">' +
+      '<div class="category-card-header">' +
+        '<div class="category-icon"><i class="fa ' + cfg.icon + '"></i></div>' +
+        '<h3 data-en="' + cfg.label_en + '" data-fr="' + cfg.label_fr + '">' + label + '</h3>' +
+      '</div>' +
+      '<ul class="category-links">' +
+        servicesHtml +
+      '</ul>' +
+    '</div>';
+  }).join('');
+
+  grid.innerHTML = html;
+
+  // Re-apply reveal observer to new elements
+  document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+  // Re-apply language switching
+  setLang(lang);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadDynamicServices();
+});
+
 
 
