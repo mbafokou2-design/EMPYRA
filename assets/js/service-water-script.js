@@ -99,64 +99,16 @@ document.addEventListener('click', function(e) {
    Click the icon to toggle open/close.
    Escape key closes it too.
 ----------------------------------------------- */
-var searchBtn    = document.getElementById('search-btn');
 var searchPopup  = document.getElementById('search-popup');
-var searchInput  = document.getElementById('search-input');
-var searchSubmit = document.getElementById('search-submit');
-
-function openSearch() {
-  searchPopup.classList.add('active');
-  searchBtn.classList.add('active');
-  setTimeout(function() { searchInput.focus(); }, 80);
-}
 
 function closeSearch() {
   if (searchPopup) {
     searchPopup.classList.remove('active');
+    var searchBtn = document.getElementById('search-btn');
     if (searchBtn) searchBtn.classList.remove('active');
   }
 }
 
-function handleSearch() {
-  var query = searchInput.value.trim();
-  if (!query) return;
-  var lang = localStorage.getItem('emi_lang') || 'en';
-  /*
-    ── CONNECT SEARCH BACKEND HERE ────────────────
-    Replace with your own search endpoint, e.g.:
-    window.location.href = 'search.html?q=' + encodeURIComponent(query) + '&lang=' + lang;
-    ────────────────────────────────────────────────
-  */
-  window.open('https://www.google.com/search?q=site:emi.stevodigital.com+' + encodeURIComponent(query), '_blank');
-  closeSearch();
-}
-
-if (searchBtn) {
-  searchBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    if (searchPopup.classList.contains('active')) { closeSearch(); }
-    else { openSearch(); }
-  });
-}
-
-if (searchPopup) {
-  searchPopup.addEventListener('click', function(e) { e.stopPropagation(); });
-}
-
-if (searchSubmit) {
-  searchSubmit.addEventListener('click', handleSearch);
-}
-
-if (searchInput) {
-  searchInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') handleSearch();
-    if (e.key === 'Escape') closeSearch();
-  });
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeSearch();
-});
 
 // Suggestion tags
 document.querySelectorAll('.search-suggestion-tag').forEach(function(tag) {

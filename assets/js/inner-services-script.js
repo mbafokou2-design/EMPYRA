@@ -69,30 +69,15 @@ document.addEventListener('click', function(e) {
 });
 
 /* --- SEARCH POPUP --- */
-var searchBtn    = document.getElementById('search-btn');
 var searchPopup  = document.getElementById('search-popup');
-var searchInput  = document.getElementById('search-input');
-var searchSubmit = document.getElementById('search-submit');
 
-function openSearch() { searchPopup.classList.add('active'); searchBtn.classList.add('active'); setTimeout(function() { searchInput.focus(); }, 80); }
-function closeSearch() { if (searchPopup) { searchPopup.classList.remove('active'); if(searchBtn) searchBtn.classList.remove('active'); } }
-function handleSearch() {
-  var q = searchInput.value.trim(); if (!q) return;
-  window.open('https://www.google.com/search?q=site:emi.stevodigital.com+' + encodeURIComponent(q), '_blank');
-  closeSearch();
+function closeSearch() {
+  if (searchPopup) {
+    searchPopup.classList.remove('active');
+    var searchBtn = document.getElementById('search-btn');
+    if (searchBtn) searchBtn.classList.remove('active');
+  }
 }
-searchBtn.addEventListener('click', function(e) { e.stopPropagation(); searchPopup.classList.contains('active') ? closeSearch() : openSearch(); });
-searchPopup.addEventListener('click', function(e) { e.stopPropagation(); });
-searchSubmit.addEventListener('click', handleSearch);
-searchInput.addEventListener('keydown', function(e) { if (e.key==='Enter') handleSearch(); if (e.key==='Escape') closeSearch(); });
-document.querySelectorAll('.search-suggestion-tag').forEach(function(tag) {
-  tag.addEventListener('click', function(e) {
-    e.stopPropagation();
-    var lang = localStorage.getItem('emi_lang') || 'en';
-    searchInput.value = tag.getAttribute('data-' + lang) || tag.textContent;
-    searchInput.focus();
-  });
-});
 
 /* --- SCROLL REVEAL --- */
 var revealObs = new IntersectionObserver(function(entries) {

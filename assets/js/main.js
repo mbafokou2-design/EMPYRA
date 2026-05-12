@@ -33,51 +33,124 @@ dots.forEach(dot => {
 
 startAuto();
 
+// Load dynamic slides from services
+if (typeof loadSlides === 'function') {
+  loadSlides();
+}
+
 /* -----------------------------------------------
    INTELLIGENCE MINIÈRE SLIDER
 ----------------------------------------------- */
-const intelTrack   = document.getElementById('intel-track');
-const intelDots    = document.querySelectorAll('.intel-dot');
-let intelCurrent   = 0;
-let intelAuto;
+(function() {
+  const intelTrack = document.getElementById('intel-track');
+  const prevBtn = document.getElementById('intel-prev');
+  const nextBtn = document.getElementById('intel-next');
+  const dotsContainer = document.getElementById('intel-dots');
+  if (!intelTrack || !prevBtn || !nextBtn || !dotsContainer) return;
 
-function goIntel(index) {
-  intelCurrent = (index + 3) % 3;
-  intelTrack.style.transform = `translateX(-${intelCurrent * 100}%)`;
-  intelDots.forEach((d, i) => d.classList.toggle('active', i === intelCurrent));
-}
+  let current = 0;
+  let slides = Array.from(intelTrack.querySelectorAll('.intel-slide'));
 
-function startIntelAuto() {
-  intelAuto = setInterval(() => goIntel(intelCurrent + 1), 6000);
-}
-function resetIntelAuto() { clearInterval(intelAuto); startIntelAuto(); }
+  function getTotalSlides() {
+    return slides.length;
+  }
 
-document.getElementById('intel-next').addEventListener('click', () => { goIntel(intelCurrent + 1); resetIntelAuto(); });
-document.getElementById('intel-prev').addEventListener('click', () => { goIntel(intelCurrent - 1); resetIntelAuto(); });
-intelDots.forEach(dot => {
-  dot.addEventListener('click', () => { goIntel(+dot.dataset.intel); resetIntelAuto(); });
-});
-startIntelAuto();
+  function rebuildDots() {
+    const total = getTotalSlides();
+    dotsContainer.innerHTML = '';
+
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'intel-dot' + (i === current ? ' active' : '');
+      dot.dataset.intel = i;
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', function() {
+        goToSlide(i);
+      });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateDots() {
+    const pageButtons = dotsContainer.querySelectorAll('.intel-dot');
+    pageButtons.forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function goToSlide(index) {
+    const total = getTotalSlides();
+    if (total === 0) {
+      intelTrack.style.transform = 'translateX(0px)';
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      return;
+    }
+
+    current = Math.max(0, Math.min(index, total - 1));
+    intelTrack.style.transform = `translateX(-${current * 100}%)`;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current >= total - 1;
+    updateDots();
+  }
+
+  function reinitIntelSlider() {
+    slides = Array.from(intelTrack.querySelectorAll('.intel-slide'));
+    current = 0;
+    rebuildDots();
+    goToSlide(0);
+  }
+
+  prevBtn.addEventListener('click', function() { goToSlide(current - 1); });
+  nextBtn.addEventListener('click', function() { goToSlide(current + 1); });
+
+  window.reinitIntelSlider = reinitIntelSlider;
+
+  // Auto slide
+  let intelAuto;
+  function startIntelAuto() {
+    intelAuto = setInterval(() => {
+      const total = getTotalSlides();
+      if (total > 1) goToSlide(current + 1);
+    }, 6000);
+  }
+  function resetIntelAuto() { clearInterval(intelAuto); startIntelAuto(); }
+
+  // Start auto after dynamic load
+  setTimeout(function() {
+    if (slides.length > 0) startIntelAuto();
+  }, 1000);
+
+  // Re-init on resize
+  window.addEventListener('resize', function() {
+    slides = Array.from(intelTrack.querySelectorAll('.intel-slide'));
+    current = 0;
+    rebuildDots();
+    goToSlide(0);
+  });
+})();
 
 /* -----------------------------------------------
    BLOG HORIZONTAL CARD SLIDER
 ----------------------------------------------- */
 (function() {
-  const track    = document.getElementById('blog-track');
-  const dots     = document.querySelectorAll('.blog-dot');
-  const prevBtn  = document.getElementById('blog-prev');
-  const nextBtn  = document.getElementById('blog-next');
-  const cards    = track.querySelectorAll('.blog-card');
-  let current    = 0;
+  const track = document.getElementById('blog-track');
+  const prevBtn = document.getElementById('blog-prev');
+  const nextBtn = document.getElementById('blog-next');
+  const dotsContainer = document.getElementById('blog-dots');
+  if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+  let current = 0;
+  let cards = Array.from(track.querySelectorAll('.blog-card'));
 
   function getVisible() {
-    if (window.innerWidth <= 768)  return 1;
+    if (window.innerWidth <= 768) return 1;
     if (window.innerWidth <= 1024) return 2;
     return 3;
   }
 
   function totalPages() {
-    return Math.ceil(cards.length / getVisible());
+    return Math.max(0, Math.ceil(cards.length / getVisible()));
   }
 
   function getCardWidth() {
@@ -87,19 +160,41 @@ startIntelAuto();
     return (trackW - gap * (visible - 1)) / visible;
   }
 
-  function updateDots() {
+  function rebuildDots() {
     const pages = totalPages();
-    dots.forEach((d, i) => {
+    dotsContainer.innerHTML = '';
+
+    for (let i = 0; i < pages; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'blog-dot' + (i === current ? ' active' : '');
+      dot.dataset.blog = i;
+      dot.setAttribute('aria-label', 'Page ' + (i + 1));
+      dot.addEventListener('click', function() {
+        slideTo(i);
+      });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateDots() {
+    const pageButtons = dotsContainer.querySelectorAll('.blog-dot');
+    pageButtons.forEach((d, i) => {
       d.classList.toggle('active', i === current);
-      d.style.display = i < pages ? 'block' : 'none';
     });
   }
 
   function slideTo(index) {
     const pages = totalPages();
+    if (pages === 0) {
+      track.style.transform = 'translateX(0px)';
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      return;
+    }
+
     current = Math.max(0, Math.min(index, pages - 1));
     const cardW = getCardWidth();
-    const gap   = 28;
+    const gap = 28;
     const offset = current * getVisible() * (cardW + gap);
     track.style.transform = `translateX(-${offset}px)`;
     prevBtn.disabled = current === 0;
@@ -107,14 +202,26 @@ startIntelAuto();
     updateDots();
   }
 
-  prevBtn.addEventListener('click', () => slideTo(current - 1));
-  nextBtn.addEventListener('click', () => slideTo(current + 1));
-  dots.forEach(dot => dot.addEventListener('click', () => slideTo(+dot.dataset.blog)));
+  function reinitBlogSlider() {
+    cards = Array.from(track.querySelectorAll('.blog-card'));
+    current = 0;
+    rebuildDots();
+    slideTo(0);
+  }
 
-  // Re-init on resize
-  window.addEventListener('resize', () => { current = 0; slideTo(0); });
+  prevBtn.addEventListener('click', function() { slideTo(current - 1); });
+  nextBtn.addEventListener('click', function() { slideTo(current + 1); });
 
-  slideTo(0);
+  window.reinitBlogSlider = reinitBlogSlider;
+
+  window.addEventListener('resize', function() {
+    cards = Array.from(track.querySelectorAll('.blog-card'));
+    current = 0;
+    rebuildDots();
+    slideTo(0);
+  });
+
+  reinitBlogSlider();
 })();
 
 /* -----------------------------------------------
@@ -255,7 +362,7 @@ if (langTrigger) {
 }
 
 /* -----------------------------------------------
-   CLOSE NAV / SEARCH on outside click
+   CLOSE NAV on outside click
 ----------------------------------------------- */
 document.addEventListener('click', function(e) {
   if (!navbar.contains(e.target)) {
@@ -263,84 +370,10 @@ document.addEventListener('click', function(e) {
     navMenu.classList.remove('open');
     navMenu.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('open'); });
     if (navLang) navLang.classList.remove('open');
-    closeSearch();
   }
 });
 
-/* -----------------------------------------------
-   SEARCH POPUP CARD
-   Small hover card — appears below search icon.
-   Click the icon to toggle open/close.
-   Escape key closes it too.
------------------------------------------------ */
-var searchBtn    = document.getElementById('search-btn');
-var searchPopup  = document.getElementById('search-popup');
-var searchInput  = document.getElementById('search-input');
-var searchSubmit = document.getElementById('search-submit');
-
-function openSearch() {
-  searchPopup.classList.add('active');
-  searchBtn.classList.add('active');
-  setTimeout(function() { searchInput.focus(); }, 80);
-}
-
-function closeSearch() {
-  if (searchPopup) {
-    searchPopup.classList.remove('active');
-    if (searchBtn) searchBtn.classList.remove('active');
-  }
-}
-
-function handleSearch() {
-  var query = searchInput.value.trim();
-  if (!query) return;
-  var lang = localStorage.getItem('emi_lang') || 'en';
-  /*
-    ── CONNECT SEARCH BACKEND HERE ────────────────
-    Replace with your own search endpoint, e.g.:
-    window.location.href = 'search.html?q=' + encodeURIComponent(query) + '&lang=' + lang;
-    ────────────────────────────────────────────────
-  */
-  window.open('https://www.google.com/search?q=site:emi.stevodigital.com+' + encodeURIComponent(query), '_blank');
-  closeSearch();
-}
-
-if (searchBtn) {
-  searchBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    if (searchPopup.classList.contains('active')) { closeSearch(); }
-    else { openSearch(); }
-  });
-}
-
-if (searchPopup) {
-  searchPopup.addEventListener('click', function(e) { e.stopPropagation(); });
-}
-
-if (searchSubmit) {
-  searchSubmit.addEventListener('click', handleSearch);
-}
-
-if (searchInput) {
-  searchInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') handleSearch();
-    if (e.key === 'Escape') closeSearch();
-  });
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeSearch();
-});
-
-// Suggestion tags
-document.querySelectorAll('.search-suggestion-tag').forEach(function(tag) {
-  tag.addEventListener('click', function(e) {
-    e.stopPropagation();
-    var lang = localStorage.getItem('emi_lang') || 'en';
-    searchInput.value = tag.getAttribute('data-' + lang) || tag.textContent;
-    searchInput.focus();
-  });
-});
+/* Search popup is now handled by assets/js/search.js */
 
 // =================================end of index.html
 
@@ -403,11 +436,16 @@ function updateHero(data) {
   if (breadcrumb) breadcrumb.innerHTML = data.breadcrumb;
 }
 document.addEventListener("DOMContentLoaded", () => {
-  initRouter();
+  if (typeof initRouter === "function") {
+    initRouter();
+  } else if (window.EMIRouter && typeof window.EMIRouter.refresh === "function") {
+    window.EMIRouter.refresh();
+  }
 
   // load from URL if exists
   const params = new URLSearchParams(window.location.search);
   const route = params.get("service");
+  const servicesData = typeof SERVICES_DATA !== "undefined" ? SERVICES_DATA : {};
 
   if (route && servicesData[route]) {
     const lang = localStorage.getItem("lang") || "en";

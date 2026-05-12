@@ -52,15 +52,15 @@ function apiFetch(url) {
 
 function buildServiceCard(service, lang) {
   var title = lang === 'fr' ? service.title_fr : service.title_en;
-  var desc = lang === 'fr' ? service.desc_fr : service.desc_en;
-  var icon = service.icon || 'ph-hard-hat';
-  var href = 'services/service-detail.html?slug=' + encodeURIComponent(service.slug || '');
+  var desc  = lang === 'fr' ? service.desc_fr  : service.desc_en;
+  var icon  = service.icon || 'ph-hard-hat';
+  var href  = 'services/service-detail.html?slug=' + encodeURIComponent(service.slug || '');
 
   return '<div class="service-card">' +
     '<div class="service-card-icon"><i class="ph ' + escHtml(icon) + '"></i></div>' +
     '<h3>' + escHtml(title) + '</h3>' +
     '<p>' + escHtml(desc) + '</p>' +
-    '<a href="' + href + '" class="service-card-link" data-en="Learn More →" data-fr="En savoir plus →">' +
+    '<a href="' + href + '" class="service-card-link">' +
       (lang === 'fr' ? 'En savoir plus' : 'Learn More') + ' <i class="fa fa-arrow-right"></i>' +
     '</a>' +
   '</div>';
@@ -77,7 +77,7 @@ function renderServicesGrid(services) {
 
   if (published.length === 0) {
     grid.innerHTML = '<div class="services-empty">' +
-      '<p data-en="No services available right now." data-fr="Aucun service disponible pour le moment.">No services available right now.</p>' +
+      '<p>No services available right now.</p>' +
     '</div>';
     return;
   }
@@ -88,8 +88,8 @@ function renderServicesGrid(services) {
 
   if (window.revealObs) {
     Array.prototype.forEach.call(grid.querySelectorAll('.service-card'), function(card, index) {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(30px)';
+      card.style.opacity    = '0';
+      card.style.transform  = 'translateY(30px)';
       card.style.transition = 'opacity 0.5s ' + (index * 0.06) + 's, transform 0.5s ' + (index * 0.06) + 's';
       window.revealObs.observe(card);
     });
@@ -112,7 +112,15 @@ function renderNavServices(services) {
     groups[category].push(service);
   });
 
-  var html = Object.keys(groups).map(function(category) {
+  var categoryKeys = Object.keys(groups);
+
+  if (categoryKeys.length === 0) {
+    menu.innerHTML = '<div class="dropdown-loading" style="padding:20px;color:var(--gray);font-size:0.85rem;">' +
+      'No services available.</div>';
+    return;
+  }
+
+  var html = categoryKeys.map(function(category) {
     var cfg = SERVICE_CATEGORY_CONFIG[category] || {
       label_en: category,
       label_fr: category,
@@ -122,10 +130,19 @@ function renderNavServices(services) {
 
     var servicesHtml = groups[category].map(function(service) {
       var title = lang === 'fr' ? service.title_fr : service.title_en;
-      var href = 'services/service-detail.html?slug=' + encodeURIComponent(service.slug || '');
+      var href  = 'services/service-detail.html?slug=' + encodeURIComponent(service.slug || '');
+
+      // ✅ Use the service's own icon; fall back to the category icon, then a generic one
+      var iconClass = service.icon || cfg.icon || 'ph-hard-hat';
+
+      // Detect whether it's a Phosphor icon (ph-) or FontAwesome (fa-)
+      var iconHtml = iconClass.startsWith('fa')
+        ? '<i class="fa ' + escHtml(iconClass) + '"></i>'
+        : '<i class="ph '  + escHtml(iconClass) + '"></i>';
+
       return '<li>' +
-        '<a href="' + href + '">' +
-          '<i class="ph ph-chevron-right"></i>' +
+        '<a href="' + escHtml(href) + '">' +
+          iconHtml +
           '<span>' + escHtml(title) + '</span>' +
         '</a>' +
       '</li>';
@@ -137,8 +154,7 @@ function renderNavServices(services) {
     '</div>';
   }).join('');
 
-  menu.innerHTML = html || '<div class="dropdown-loading" style="padding:20px;color:var(--gray);font-size:0.85rem;">' +
-    '<i class="fa fa-spinner fa-spin"></i> Loading services…</div>';
+  menu.innerHTML = html;
 }
 
 function loadHomepageServices() {
@@ -152,7 +168,7 @@ function loadHomepageServices() {
       var grid = document.getElementById('services-grid');
       if (grid) {
         grid.innerHTML = '<div class="services-empty">' +
-          '<p data-en="Unable to load services." data-fr="Impossible de charger les services.">Unable to load services.</p>' +
+          '<p>Unable to load services.</p>' +
         '</div>';
       }
     });

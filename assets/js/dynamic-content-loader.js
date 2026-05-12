@@ -261,7 +261,84 @@ function renderActualites(containerId, items) {
   // Re-apply language switching
   if (typeof setLang === 'function') setLang(lang);
 }
+function loadBlogAndActualites(containerId) {
+  showLoadingSkeleton(containerId, 4);
 
+  Promise.allSettled([
+    fetch(API_BASE + '/blog'),
+    fetch(API_BASE + '/actualite')
+  ]).then(function(results) {
+    var blogItems = [];
+    var actualiteItems = [];
+    var fetchTasks = [];
+
+    if (results[0].status === 'fulfilled') {
+      var blogRes = results[0].value;
+      if (blogRes.ok) {
+        fetchTasks.push(blogRes.json().then(function(posts) {
+          blogItems = Array.isArray(posts) ? posts.filter(function(p) {
+            return p.status === 'published';
+          }) : [];
+        }).catch(function() {
+          blogItems = [];
+        }));
+      }
+    }
+
+    if (results[1].status === 'fulfilled') {
+      var actualiteRes = results[1].value;
+      if (actualiteRes.ok) {
+        fetchTasks.push(actualiteRes.json().then(function(items) {
+          actualiteItems = Array.isArray(items) ? items.filter(function(i) {
+            return i.status === 'published';
+          }) : [];
+        }).catch(function() {
+          actualiteItems = [];
+        }));
+      }
+    }
+
+    Promise.all(fetchTasks).then(function() {
+      var combined = blogItems.concat(actualiteItems);
+      if (combined.length === 0) {
+        var container = document.getElementById(containerId);
+        if (container) {
+          container.innerHTML = '<div class="content-empty">' +
+            '<p data-en="No updates available." data-fr="Aucune mise à jour disponible.">No updates available.</p>' +
+          '</div>';
+        }
+        return;
+      }
+
+      combined.sort(function(a, b) {
+        var dateA = new Date(a.createdAt || a.created_at || a.date || 0);
+        var dateB = new Date(b.createdAt || b.created_at || b.date || 0);
+        return dateB - dateA;
+      });
+
+      renderBlogPosts(containerId, combined);
+      if (typeof window.reinitBlogSlider === 'function') {
+        window.reinitBlogSlider();
+      }
+    }).catch(function(err) {
+      console.error('Combined blog/news processing error:', err);
+      var container = document.getElementById(containerId);
+      if (container) {
+        container.innerHTML = '<div class="content-empty">' +
+          '<p data-en="Unable to load updates." data-fr="Impossible de charger les mises à jour.">Unable to load updates.</p>' +
+        '</div>';
+      }
+    });
+  }).catch(function(err) {
+    console.error('Combined blog/news load error:', err);
+    var container = document.getElementById(containerId);
+    if (container) {
+      container.innerHTML = '<div class="content-empty">' +
+        '<p data-en="Unable to load updates." data-fr="Impossible de charger les mises à jour.">Unable to load updates.</p>' +
+      '</div>';
+    }
+  });
+}
 /* =============================================
    INTELLIGENCE LOADER (Slider format)
 ============================================= */

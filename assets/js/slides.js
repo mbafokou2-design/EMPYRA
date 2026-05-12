@@ -1,6 +1,6 @@
 /* =============================================
    slides.js
-   Dynamically loads additional hero slides from the dashboard API.
+   Dynamically loads hero slides from services API.
 ============================================= */
 
 var API_BASE = 'http://localhost:5000/api';
@@ -14,26 +14,38 @@ function apiFetch(url) {
 
 async function loadSlides() {
   try {
-    const slidesData = await apiFetch(API_BASE + '/slides');
+    const servicesData = await apiFetch(API_BASE + '/services');
     const sliderTrack = document.getElementById('slider-track');
     const sliderDots = document.querySelector('.slider-dots');
 
-    let slideIndex = 3; // starting from 3 since 0,1,2 are static
+    // Don't clear existing slides - keep the first 3 static slides
+    // Just append dynamic slides after them
 
-    slidesData.forEach(function(slideData) {
+    // Filter published services and limit to first few for slides
+    const publishedServices = servicesData.filter(function(service) {
+      return service.status === 'published';
+    }).slice(0, 6); // Limit to 6 services for slides
+
+    let slideIndex = 3; // starting from 3 since 0,1,2 are static slides
+
+    publishedServices.forEach(function(service) {
       // create slide HTML
       const slideDiv = document.createElement('div');
       slideDiv.className = 'slide slide-' + (slideIndex + 1);
+      const title = (localStorage.getItem('emi_lang') === 'fr' ? service.title_fr : service.title_en) || service.title;
+      const description = (localStorage.getItem('emi_lang') === 'fr' ? service.description_fr : service.description_en) || service.description;
+      const image = service.image_url || 'https://via.placeholder.com/1920x1080?text=Service';
+
       slideDiv.innerHTML = `
         <div class="slide-img-placeholder"></div>
-        <img class="slide-img" src="${escHtml(slideData.image)}" alt="${escHtml(slideData.title)}">
+        <img class="slide-img" src="${escHtml(image)}" alt="${escHtml(title)}">
         <div class="container">
           <div class="slide-content">
             <div class="slide-eyebrow" data-en="Our Services" data-fr="Nos Services">Our Services</div>
-            <h1 data-en="${escHtml(slideData.title)}" data-fr="${escHtml(slideData.title_fr || slideData.title)}">${escHtml(slideData.title)}</h1>
-            <p data-en="${escHtml(slideData.description)}" data-fr="${escHtml(slideData.description_fr || slideData.description)}">${escHtml(slideData.description)}</p>
+            <h1 data-en="${escHtml(service.title_en || service.title)}" data-fr="${escHtml(service.title_fr || service.title)}">${escHtml(title)}</h1>
+            <p data-en="${escHtml(service.description_en || service.description)}" data-fr="${escHtml(service.description_fr || service.description)}">${escHtml(description)}</p>
             <div class="slide-btns">
-              <a href="${escHtml(slideData.link)}" class="btn btn-outline">
+              <a href="./services/service-detail.html?slug=${escHtml(service.slug || service.id)}" class="btn btn-outline">
                 <i class="fa fa-arrow-right"></i>
                 <span data-en="Discover the Service" data-fr="Découvrir le Service">Discover the Service</span>
               </a>
@@ -67,7 +79,7 @@ async function loadSlides() {
     startAuto();
 
   } catch (error) {
-    console.error('Error loading slides:', error);
+    console.error('Error loading services for slides:', error);
   }
 }
 
@@ -81,4 +93,4 @@ function escHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
-loadSlides();
+// loadSlides() will be called from main.js
