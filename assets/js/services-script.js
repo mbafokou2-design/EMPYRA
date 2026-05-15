@@ -98,7 +98,7 @@ btt.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: '
 
 /* --- LOAD DYNAMIC SERVICES FROM DASHBOARD --- */
 function loadDynamicServices() {
-  var API_BASE = 'http://localhost:5000/api';
+  var API_BASE = 'https://empyrabackend-production.up.railway.app/api';
   fetch(API_BASE + '/services')
     .then(function(response) {
       if (!response.ok) throw new Error('Failed to fetch services');

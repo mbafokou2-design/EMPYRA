@@ -85,10 +85,9 @@ function renderServicesGrid(services) {
   if (!grid) return;
 
   var lang = getLang();
-  var published = Array.isArray(services)
-    ? services.filter(function(s) { return s.status === 'published'; })
+var published = Array.isArray(services)
+    ? services.filter(function(s) { return s.status === 'published'; }).slice(0, 9)
     : [];
-
   if (published.length === 0) {
     grid.innerHTML = '<div class="services-empty">' +
       '<p>No services available right now.</p>' +

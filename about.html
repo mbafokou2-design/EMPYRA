@@ -13,7 +13,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
     <link rel="stylesheet" href="./assets/style/service-water.css" />
     <link rel="stylesheet" href="./assets/style/style.css" />
     <link rel="stylesheet" href="./assets/style/content.css" />
@@ -100,20 +100,21 @@
                         </ul>
                     </li>
 
-          <li class="nav-item">
-            <a href="services.html" class="nav-link">
-              <span data-en="Services" data-fr="Services">Services</span>
-              <i class="fa fa-chevron-down"></i>
-            </a>
+                    <li class="nav-item">
+                        <a href="services.html" class="nav-link">
+                            <span data-en="Services" data-fr="Services">Services</span>
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
 
-            <ul class="dropdown mega" id="nav-services-dropdown">
-              <!-- //loading animation while fetching services -->
-              <div class="dropdown-loading">
-                <i class="fa fa-spinner fa-spin"></i>
-                <span data-en="Loading services..." data-fr="Chargement des services...">Loading services...</span>
-              </div>
-            </ul>
-          </li>
+                        <ul class="dropdown mega" id="nav-services-dropdown">
+                            <!-- //loading animation while fetching services -->
+                            <div class="dropdown-loading">
+                                <i class="fa fa-spinner fa-spin"></i>
+                                <span data-en="Loading services..." data-fr="Chargement des services...">Loading
+                                    services...</span>
+                            </div>
+                        </ul>
+                    </li>
 
 
                     <li class="nav-item"><a href="intelligence.html" class="nav-link" data-en="Mining Intelligence"
@@ -511,14 +512,101 @@
 
     <button id="back-to-top" aria-label="Back to top"><i class="fa fa-chevron-up"></i></button>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-  </script>
-  <script src="./assets/js/slides.js"></script>
-  <script src="./assets/js/dynamic-content-loader.js"></script>
-  <script src="./assets/js/main.js"></script>
-  <script src="./assets/js/search.js"></script>
-  <script src="./assets/js/service-index.js"></script>
-  <script src="./assets/js/service-links.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+    </script>
+<script>
+    function setLang(lang) {
+  localStorage.setItem('emi_lang', lang);
+
+  var label = document.getElementById('lang-label');
+  if (label) label.textContent = lang.toUpperCase();
+
+  var optEn = document.getElementById('opt-en');
+  var optFr = document.getElementById('opt-fr');
+  if (optEn) optEn.classList.toggle('active', lang === 'en');
+  if (optFr) optFr.classList.toggle('active', lang === 'fr');
+
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    var text = el.getAttribute('data-' + lang);
+    if (text !== null) {
+      if (text.indexOf('<') !== -1) el.innerHTML = text;
+      else el.textContent = text;
+    }
+  });
+
+  document.querySelectorAll('[data-placeholder-en]').forEach(function(el) {
+    var ph = el.getAttribute('data-placeholder-' + lang);
+    if (ph) el.placeholder = ph;
+  });
+
+  document.documentElement.lang = lang;
+}
+
+(function() {
+  var saved = localStorage.getItem('emi_lang') || 'en';
+  setLang(saved);
+})();
+    /* -----------------------------------------------
+   NAVBAR — sticky scroll
+----------------------------------------------- */
+var navbar = document.getElementById('navbar');
+window.addEventListener('scroll', function() {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* -----------------------------------------------
+   HAMBURGER
+----------------------------------------------- */
+var hamburger = document.getElementById('hamburger');
+var navMenu   = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('open');
+  navMenu.classList.toggle('open');
+});
+
+navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+      var parent = link.parentElement;
+      if (parent.querySelector('.dropdown')) {
+        e.preventDefault();
+        parent.classList.toggle('open');
+      }
+    }
+  });
+});
+
+/* -----------------------------------------------
+   LANGUAGE DROPDOWN — mobile tap toggle
+----------------------------------------------- */
+var navLang     = document.getElementById('nav-lang');
+var langTrigger = document.getElementById('lang-trigger');
+if (langTrigger) {
+  langTrigger.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+      e.stopPropagation();
+      navLang.classList.toggle('open');
+    }
+  });
+}
+
+/* -----------------------------------------------
+   CLOSE NAV on outside click
+----------------------------------------------- */
+document.addEventListener('click', function(e) {
+  if (!navbar.contains(e.target)) {
+    hamburger.classList.remove('open');
+    navMenu.classList.remove('open');
+    navMenu.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('open'); });
+    if (navLang) navLang.classList.remove('open');
+  }
+});
+
+</script>
+<script src="./assets/js/search.js"></script>
+<script src="./assets/js/service-index.js"></script>
+<script src="./assets/js/service-links.js"></script>
 </body>
 
 </html>

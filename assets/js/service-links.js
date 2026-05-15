@@ -84,7 +84,7 @@ function rewriteLegacyServiceLinks() {
   /* Attempt a fallback using the API if any legacy anchors remain. */
   if (typeof fetch !== 'function') return;
 
-  fetch('http://localhost:5000/api/services')
+  fetch('https://empyrabackend-production.up.railway.app/services')
     .then(function(res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
