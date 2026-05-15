@@ -4,7 +4,7 @@
    the service dropdown menu from the dashboard API.
 ============================================= */
 
-var API_BASE = 'http://localhost:5000/api';
+var API_BASE = 'https://empyrabackend-production.up.railway.app/api';
 
 /* ─── ROOT_URL: always points to the project root ───────────────────
    Walks up the pathname and stops just before /services/
