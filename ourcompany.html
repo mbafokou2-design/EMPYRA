@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog – EMPYRA MINING INNOVATIONS</title>
+  <title id="page-title">Service – EMPYRA MINING INNOVATIONS</title>
   <link rel="icon" type="image/png" href="./Logo Files/fav.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,16 +13,16 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
-  <link rel="stylesheet" href="./assets/style/services.css" />
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+  <link rel="stylesheet" href="./assets/style/service-water.css" />
   <link rel="stylesheet" href="./assets/style/style.css" />
-
+  <link rel="stylesheet" href="./assets/style/content.css" />
 </head>
 
 <body>
 
   <!-- =============================================
-     NAVBAR
+     NAVBAR — identical to all other pages
 ============================================= -->
   <nav id="navbar">
     <div class="container">
@@ -43,7 +43,7 @@
           <li class="nav-item"><a href="index.html" class="nav-link" data-en="Home" data-fr="Accueil">Home</a></li>
 
           <li class="nav-item">
-            <a href="ourcompany.html" class="nav-link">
+            <a href="ourcompany.html" class="nav-link active-page">
               <span data-en="Our Company" data-fr="Notre Entreprise">Our Company</span>
               <i class="fas fa-chevron-down"></i>
             </a>
@@ -117,7 +117,7 @@
 
           <li class="nav-item"><a href="intelligence.html" class="nav-link" data-en="Mining Intelligence"
               data-fr="Intelligence Minière">Mining Intelligence</a></li>
-          <li class="nav-item"><a href="blog.html" class="nav-link active-page" data-en="News & Blog"
+          <li class="nav-item"><a href="blog.html" class="nav-link" data-en="News & Blog"
               data-fr="Actualités & Blog">News & Blog</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link" data-en="Contact" data-fr="Contact">Contact</a>
           </li>
@@ -172,74 +172,67 @@
   </nav>
 
   <!-- =============================================
-     PAGE HERO
+     PAGE HERO — populated by JS
 ============================================= -->
   <section id="page-hero">
     <div class="hero-ring"></div>
     <div class="hero-watermark"><i class="fa fa-hard-hat"></i></div>
     <div class="container page-hero-inner">
-      <h1 data-en="Our <em>News</em> & <em>Blog</em>" data-fr="Nos <em>Actualités</em> & <em>Blog</em>">Our
-        <em>News</em> & <em>Blog</em></h1>
+      <h1 data-en="Our <em>Company</em>" data-fr="Notre <em>Entreprise</em>">
+        Our <em>Company</em>
+      </h1>
       <nav class="breadcrumb">
-        <a href="index.html" data-en="Home" data-fr="Accueil">Home</a>
+        <a href="./index.html" data-en="Home" data-fr="Accueil">Home</a>
         <i class="fa fa-chevron-right"></i>
-        <span data-en="News & Blog" data-fr="Actualités & Blog">News & Blog</span>
+        <a href="./ourcompany.html" data-en="Our Company" data-fr="Notre Entreprise">Our Company</a>
       </nav>
     </div>
   </section>
 
-  <section id="blog">
+  <!-- =============================================
+     SERVICE MAIN — populated by JS
+============================================= -->
+  <section id="service-main">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag" data-en="Latest Updates" data-fr="Dernières Mises à Jour">Latest Updates</div>
-        <h2 class="section-title" data-en="News &amp; <span>Blog</span>" data-fr="Actualités &amp; <span>Blog</span>">
-          News &amp; <span>Blog</span></h2>
-        <div class="section-divider"></div>
-      </div>
+      <div class="service-layout">
 
-      <div class="blog-slider-wrap">
-        <div class="blog-slider-track" id="blog-track">
-          <!-- Loaded dynamically -->
+        <!-- ── MAIN CONTENT COLUMN ── -->
+        <div class="service-content">
+
+          <div class="service-image-slot" style="height: 100%;">
+            <div class="img-placeholder" style="height: 50%;">
+              <img src="./assets/images/Image6.jpg" alt=""
+                style="width: 50%; height: 50%; object-fit: cover; display: block;" />
+            </div>
+          </div>
+
+          <h2 class="service-content-title" data-en="Our Company" data-fr="Notre Entreprise">
+            Our Company
+          </h2>
+
+          <div class="content-divider"></div>
+
+          <!-- body text -->
+          <div class="service-body">
+            <p data-en="We transform mining challenges into sustainable opportunities. Through advanced operational intelligence and rigorous risk assessment, we secure your projects from exploration to rehabilitation. Our expertise covers water management, regulatory compliance, and on-site training. Make risk management a driver of responsible growth."
+              data-fr="Nous transformons les défis miniers en opportunités durables. Grâce à une intelligence opérationnelle pointue et une évaluation rigoureuse des risques, nous sécurisons vos projets de l'exploration à la réhabilitation. Notre expertise couvre la gestion des eaux, la conformité réglementaire et la formation in situ. Faites de la maîtrise des risques un levier de croissance responsable.">
+
+              We transform mining challenges into sustainable opportunities. Through advanced operational intelligence
+              and rigorous risk assessment, we secure your projects from exploration to rehabilitation. Our expertise
+              covers water management, regulatory compliance, and on-site training. Make risk management a driver of
+              responsible growth.
+
+            </p>
+          </div>
         </div>
-      </div>
-
-      <!-- Blog slider nav -->
-      <div class="blog-slider-nav">
-        <button class="blog-arrow" id="blog-prev" aria-label="Previous"><i class="fa fa-chevron-left"></i></button>
-        <button class="blog-dot active" data-blog="0"></button>
-        <button class="blog-dot" data-blog="1"></button>
-        <button class="blog-dot" data-blog="2"></button>
-        <button class="blog-arrow" id="blog-next" aria-label="Next"><i class="fa fa-chevron-right"></i></button>
-      </div>
-
-      <div style="text-align:center; margin-top: 32px;">
-        <a href="blog.html" class="btn btn-primary"><i class="fa fa-newspaper"></i> <span data-en="View All News"
-            data-fr="Voir Toutes les Actualités">View All News</span></a>
       </div>
     </div>
   </section>
 
   <!-- =============================================
-     CTA BANNER
+     404 STATE — hidden by default
 ============================================= -->
-  <section id="cta">
-    <div class="container">
-      <div class="cta-inner">
-        <div class="section-tag" data-en="Work With Us" data-fr="Travaillez Avec Nous">Work With Us</div>
-        <h2 class="section-title light" data-en="Ready to Start Your <span>Mining Project?</span>"
-          data-fr="Prêt à Démarrer Votre <span>Projet Minier?</span>">Ready to Start Your <span>Mining Project?</span>
-        </h2>
-        <p data-en="Our team of experts is available to discuss your needs and offer tailored solutions aligned with international standards."
-          data-fr="Notre équipe d'experts est disponible pour discuter de vos besoins et proposer des solutions adaptées.">
-          Our team of experts is available to discuss your needs and offer tailored solutions aligned with international
-          standards.</p>
-        <div class="cta-btns">
-          <a href="contact.html" class="btn btn-primary"><i class="fa fa-envelope"></i><span data-en="Contact Us"
-              data-fr="Contactez-nous">Contact Us</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- =============================================
      FOOTER
@@ -365,88 +358,13 @@
     </div>
   </footer>
 
-
   <button id="back-to-top" aria-label="Back to top"><i class="fa fa-chevron-up"></i></button>
+
   <script src="./assets/js/services-script.js"></script>
-  <script src="./assets/js/dynamic-content-loader.js"></script>
-  <script src="./assets/js/search.js"></script>
-  <script>
-    // Load blog and news dynamically
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof loadBlogAndActualites === 'function') {
-        loadBlogAndActualites('blog-track');
-      } else {
-        loadBlogPosts('blog-track');
-      }
-    });
-
-    // Slider functionality
-    function initBlogSlider() {
-      const track = document.getElementById('blog-track');
-      const dots = document.querySelectorAll('.blog-dot');
-      const prevBtn = document.getElementById('blog-prev');
-      const nextBtn = document.getElementById('blog-next');
-      const cards = track.querySelectorAll('.blog-card');
-      let current = 0;
-
-      function getVisible() {
-        if (window.innerWidth <= 768) return 1;
-        if (window.innerWidth <= 1024) return 2;
-        return 3;
-      }
-
-      function totalPages() {
-        return Math.ceil(cards.length / getVisible());
-      }
-
-      function getCardWidth() {
-        const gap = 28;
-        const visible = getVisible();
-        const trackW = track ? track.parentElement.offsetWidth : 0;
-        return trackW ? (trackW - gap * (visible - 1)) / visible : 0;
-      }
-
-      function updateDots() {
-        const pages = totalPages();
-        dots.forEach((d, i) => {
-          d.classList.toggle('active', i === current);
-          d.style.display = i < pages ? 'block' : 'none';
-        });
-      }
-
-      function slideTo(index) {
-        const pages = totalPages();
-        current = Math.max(0, Math.min(index, pages - 1));
-        const cardW = getCardWidth();
-        const gap = 28;
-        const offset = current * getVisible() * (cardW + gap);
-        track.style.transform = `translateX(-${offset}px)`;
-        prevBtn.disabled = current === 0;
-        nextBtn.disabled = current >= pages - 1;
-        updateDots();
-      }
-
-      prevBtn.addEventListener('click', () => slideTo(current - 1));
-      nextBtn.addEventListener('click', () => slideTo(current + 1));
-      dots.forEach(dot => dot.addEventListener('click', () => slideTo(+dot.dataset.blog)));
-
-      // Re-init on resize
-      window.addEventListener('resize', () => { current = 0; slideTo(0); });
-
-      slideTo(0);
-    }
-
-    // Monkey patch renderBlogPosts to reinitialize slider after loading
-    var originalRenderBlogPosts = renderBlogPosts;
-    renderBlogPosts = function(containerId, posts) {
-      originalRenderBlogPosts(containerId, posts);
-      setTimeout(function() {
-        initBlogSlider();
-      }, 100);
-    };
-  </script>
   <script src="./assets/js/service-index.js"></script>
   <script src="./assets/js/service-links.js"></script>
+  <script src="./assets/js/search.js"></script>
+
 </body>
 
 </html>

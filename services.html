@@ -13,6 +13,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
   <link rel="stylesheet" href="./assets/style/services.css" />
   <link rel="stylesheet" href="./assets/style/style.css" />
 </head>
@@ -41,7 +42,7 @@
           <li class="nav-item"><a href="index.html" class="nav-link" data-en="Home" data-fr="Accueil">Home</a></li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="ourcompany.html" class="nav-link">
               <span data-en="Our Company" data-fr="Notre Entreprise">Our Company</span>
               <i class="fas fa-chevron-down"></i>
             </a>
@@ -98,209 +99,17 @@
           </li>
 
           <li class="nav-item">
-            <a href="services.html" class="nav-link active-page">
+            <a href="services.html" class="nav-link">
               <span data-en="Services" data-fr="Services">Services</span>
               <i class="fa fa-chevron-down"></i>
             </a>
 
             <ul class="dropdown mega" id="nav-services-dropdown">
-
-              <!-- Environnement & Gestion Durable -->
-              <div class="dropdown-group">
-                <div class="dropdown-group-title" data-en="Environment & Sustainable Management"
-                  data-fr="Environnement & Gestion Durable">
-                  Environment & Sustainable Management
-                </div>
-
-                <li>
-                  <a href="services/service-environmental-geochemistry.html">
-                    <i class="fa fa-flask"></i>
-                    <span data-en="Environmental Geochemistry & DMA" data-fr="Géochimie environnementale et DMA">
-                      Environmental Geochemistry & DMA
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-social-environmental.html">
-                    <i class="fa fa-leaf"></i>
-                    <span data-en="Environmental & Social Management" data-fr="Gestion environnementale et sociale">
-                      Environmental & Social Management
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-water.html">
-                    <i class="fa fa-water"></i>
-                    <span data-en="Mine Water Management" data-fr="Gestion des eaux de mine">
-                      Mine Water Management
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-institutional-support.html">
-                    <i class="fa fa-university"></i>
-                    <span data-en="Institutional Support & Advocacy" data-fr="Appui institutionnel et plaidoyer">
-                      Institutional Support & Advocacy
-                    </span>
-                  </a>
-                </li>
+              <!-- //loading animation while fetching services -->
+              <div class="dropdown-loading">
+                <i class="fa fa-spinner fa-spin"></i>
+                <span data-en="Loading services..." data-fr="Chargement des services...">Loading services...</span>
               </div>
-
-              <!-- Évaluation des Ressources & Exploration -->
-              <div class="dropdown-group">
-                <div class="dropdown-group-title" data-en="Resource Assessment & Exploration"
-                  data-fr="Évaluation des Ressources & Exploration">
-                  Resource Assessment & Exploration
-                </div>
-
-                <li>
-                  <a href="services/service-modeling.html">
-                    <i class="fa fa-cubes"></i>
-                    <span data-en="Mineral Resource Modeling & Estimation"
-                      data-fr="Modélisation et estimation des ressources minérales">
-                      Mineral Resource Modeling & Estimation
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-research-development.html">
-                    <i class="fa fa-microscope"></i>
-                    <span data-en="Research & Development" data-fr="Recherche et développement">
-                      Research & Development
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-feasibility.html">
-                    <i class="fa fa-chart-bar"></i>
-                    <span data-en="Feasibility Studies" data-fr="Études de faisabilité">
-                      Feasibility Studies
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-exploration.html">
-                    <i class="fa fa-compass"></i>
-                    <span data-en="Exploration Services" data-fr="Services d’exploration">
-                      Exploration Services
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-traning.html">
-                    <i class="fa fa-graduation-cap"></i>
-                    <span data-en="Training" data-fr="Formations">
-                      Training
-                    </span>
-                  </a>
-                </li>
-              </div>
-
-              <!-- Audits, Expertise & Gestion des Risques -->
-              <div class="dropdown-group">
-                <div class="dropdown-group-title" data-en="Audits, Expertise & Risk Management"
-                  data-fr="Audits, Expertise & Gestion des Risques">
-                  Audits, Expertise & Risk Management
-                </div>
-
-                <li>
-                  <a href="services/service-audit.html">
-                    <i class="fa fa-search"></i>
-                    <span data-en="Independent Expertise & Audits" data-fr="Expertise indépendante & audits">
-                      Independent Expertise & Audits
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-risk.html">
-                    <i class="fa fa-exclamation-triangle"></i>
-                    <span data-en="Risk Management" data-fr="Gestion des risques">
-                      Risk Management
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-contaminated-sites.html">
-                    <i class="fa fa-industry"></i>
-                    <span data-en="Contaminated Site Assessment" data-fr="Évaluation des sites contaminés">
-                      Contaminated Site Assessment
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-traceability.html">
-                    <i class="fa fa-qrcode"></i>
-                    <span data-en="Mineral Resource Traceability" data-fr="Traçabilité des ressources minières">
-                      Mineral Resource Traceability
-                    </span>
-                  </a>
-                </li>
-              </div>
-
-              <!-- Ingénierie & Exploitation Minière -->
-              <div class="dropdown-group">
-                <div class="dropdown-group-title" data-en="Engineering & Mining Operations"
-                  data-fr="Ingénierie & Exploitation Minière">
-                  Engineering & Mining Operations
-                </div>
-
-                <li>
-                  <a href="services/service-operations.html">
-                    <i class="fa fa-cogs"></i>
-                    <span data-en="Mining Operations Assistance" data-fr="Assistance à l’exploitation minière">
-                      Mining Operations Assistance
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-openpit.html">
-                    <i class="fa fa-mountain"></i>
-                    <span data-en="Open Pit Mines" data-fr="Mines à ciel ouvert">
-                      Open Pit Mines
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-underground.html">
-                    <i class="fa fa-hard-hat"></i>
-                    <span data-en="Underground Mines" data-fr="Mines souterraines">
-                      Underground Mines
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/services-rock.html">
-                    <i class="fa fa-recycle"></i>
-                    <span data-en="Tailings & Waste Rock Engineering"
-                      data-fr="Ingénierie des parcs à résidus et des haldes à stériles">
-                      Tailings & Waste Rock Engineering
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="services/service-closure.html">
-                    <i class="fa fa-times-circle"></i>
-                    <span data-en="Mine Closure & Rehabilitation" data-fr="Fermeture et restauration des sites miniers">
-                      Mine Closure & Rehabilitation
-                    </span>
-                  </a>
-                </li>
-              </div>
-
             </ul>
           </li>
 

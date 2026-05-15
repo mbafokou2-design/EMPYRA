@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EMPYRA MINING INNOVATIONS – EMI</title>
+  <title>Senior Management – EMPYRA MINING INNOVATIONS</title>
   <link rel="icon" type="image/png" href="../Logo Files/fav.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,8 +13,630 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../assets/style/service-water.css" />
   <link rel="stylesheet" href="../assets/style/style.css" />
+  <link rel="stylesheet" href="../assets/style/service-water.css">
+
+  <style>
+    /* ══════════════════════════════════════════
+       SENIOR MANAGEMENT PAGE STYLES
+    ══════════════════════════════════════════ */
+
+    /* ── Section tag (reused from governance) ── */
+    .gov-section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #f5c518;
+      background: rgba(245, 197, 24, 0.08);
+      border: 1px solid rgba(245, 197, 24, 0.25);
+      padding: 6px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* ══ CEO STATEMENT SECTION ══ */
+    #ceo-statement {
+      background: #0a1628;
+      padding: 90px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #ceo-statement::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 500px;
+      height: 500px;
+      border: 1px solid rgba(245, 197, 24, 0.06);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    #ceo-statement::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 320px;
+      height: 320px;
+      border: 1px solid rgba(245, 197, 24, 0.05);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Gold diagonal accent bar */
+    .ceo-accent-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #f5c518 0%, #ffd84d 50%, transparent 100%);
+    }
+
+    .ceo-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Left: photo + identity */
+    .ceo-identity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .ceo-photo-frame {
+      width: 220px;
+      height: 260px;
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    /* Decorative corner brackets */
+    .ceo-photo-frame::before,
+    .ceo-photo-frame::after {
+      content: '';
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-color: #f5c518;
+      border-style: solid;
+    }
+
+    .ceo-photo-frame::before {
+      top: -6px;
+      left: -6px;
+      border-width: 2px 0 0 2px;
+    }
+
+    .ceo-photo-frame::after {
+      bottom: -6px;
+      right: -6px;
+      border-width: 0 2px 2px 0;
+    }
+
+    .ceo-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #112244 0%, #1a3a6b 60%, #0a1628 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(245, 197, 24, 0.2);
+      gap: 12px;
+    }
+
+    .ceo-photo-placeholder i {
+      font-size: 3.2rem;
+      color: rgba(245, 197, 24, 0.35);
+    }
+
+    .ceo-photo-placeholder span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245, 197, 24, 0.4);
+    }
+
+    .ceo-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .ceo-title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(245, 197, 24, 0.12);
+      border: 1px solid rgba(245, 197, 24, 0.3);
+      padding: 5px 16px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .ceo-title-badge i {
+      color: #f5c518;
+      font-size: 0.72rem;
+    }
+
+    .ceo-title-badge span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #f5c518;
+    }
+
+    .ceo-divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, #f5c518, transparent);
+      margin: 0 auto 20px;
+    }
+
+    .ceo-org-tag {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Right: statement text */
+    .ceo-statement-content {
+      padding-top: 6px;
+    }
+
+    .ceo-statement-content .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #f5c518;
+      background: rgba(245, 197, 24, 0.08);
+      border: 1px solid rgba(245, 197, 24, 0.25);
+      padding: 6px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .ceo-statement-content h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+
+    .ceo-statement-content h2 em {
+      font-style: normal;
+      color: #f5c518;
+    }
+
+    .ceo-title-rule {
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, #f5c518, #ffd84d);
+      border-radius: 2px;
+      margin-bottom: 30px;
+    }
+
+    .ceo-quote-opener {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.08rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.85;
+      border-left: 3px solid #f5c518;
+      padding-left: 22px;
+      margin-bottom: 26px;
+      font-style: italic;
+    }
+
+    .ceo-statement-body p {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.96rem;
+      color: rgba(255, 255, 255, 0.62);
+      line-height: 1.88;
+      margin-bottom: 18px;
+    }
+
+    /* Highlight keywords */
+    .ceo-statement-body strong {
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 700;
+    }
+
+    /* Key initiatives pills */
+    .ceo-initiatives {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .ceo-initiative-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+    }
+
+    .ceo-initiative-pill i {
+      color: #f5c518;
+      font-size: 0.75rem;
+    }
+
+    .ceo-initiative-pill span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ══ LEADERSHIP GRID SECTION ══ */
+    #leadership-grid {
+      background: #f4f6fa;
+      padding: 86px 0 90px;
+    }
+
+    .leadership-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .leadership-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: #0a1628;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+
+    .leadership-header h2 em {
+      font-style: normal;
+      color: #f5c518;
+    }
+
+    .leadership-center-rule {
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, #f5c518, #ffd84d);
+      border-radius: 2px;
+      margin: 12px auto 16px;
+    }
+
+    .leadership-header p {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: #8a9bb5;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Cards grid */
+    .directors-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    /* Single director card */
+    .director-card {
+      background: #fff;
+      border: 1px solid #e8edf5;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .director-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 48px rgba(10, 22, 40, 0.13);
+    }
+
+    /* Gold top accent */
+    .director-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f5c518, #ffd84d);
+    }
+
+    /* Photo area */
+    .director-photo {
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(160deg, #0d1f3c 0%, #1a3a6b 55%, #0a1628 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      gap: 10px;
+    }
+
+    /* Subtle pattern overlay */
+    .director-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 18px,
+          rgba(245, 197, 24, 0.025) 18px,
+          rgba(245, 197, 24, 0.025) 19px);
+    }
+
+    .director-photo i {
+      font-size: 3.6rem;
+      color: rgba(245, 197, 24, 0.28);
+      position: relative;
+      z-index: 1;
+    }
+
+    .director-photo .photo-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245, 197, 24, 0.35);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    /* Role badge overlaid on photo */
+    .director-role-badge {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(245, 197, 24, 0.95);
+      padding: 4px 14px;
+      border-radius: 2px;
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    .director-role-badge span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0a1628;
+    }
+
+    /* Card body */
+    .director-info {
+      padding: 26px 24px 28px;
+    }
+
+    .director-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: #0a1628;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .director-full-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      color: #8a9bb5;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .director-divider {
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, #f5c518, transparent);
+      margin-bottom: 16px;
+    }
+
+    .director-bio {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      color: #5a6a7c;
+      line-height: 1.75;
+    }
+
+    /* Expertise tags */
+    .director-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .director-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a3a6b;
+      background: rgba(26, 58, 107, 0.07);
+      border: 1px solid rgba(26, 58, 107, 0.12);
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+
+    /* ══ JOIN SECTION ══ */
+    #team-join {
+      background: #fff;
+      padding: 72px 0;
+      border-top: 1px solid #e8edf5;
+    }
+
+    .team-join-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .team-join-left h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+      font-weight: 800;
+      color: #0a1628;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+
+    .team-join-left h2 em {
+      font-style: normal;
+      color: #f5c518;
+    }
+
+    .team-join-left p {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.93rem;
+      color: #5a6a7c;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .team-join-cta {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0a1628;
+      color: #f5c518;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .team-join-cta:hover {
+      background: #1a3a6b;
+      transform: translateY(-2px);
+    }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 1100px) {
+      .directors-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ceo-inner {
+        grid-template-columns: 280px 1fr;
+        gap: 44px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .ceo-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .ceo-identity {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+        gap: 28px;
+      }
+
+      .ceo-photo-frame {
+        flex-shrink: 0;
+        width: 150px;
+        height: 178px;
+        margin-bottom: 0;
+      }
+
+      .ceo-divider {
+        margin: 0 0 16px;
+      }
+
+      .team-join-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .directors-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ceo-identity {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .ceo-divider {
+        margin: 0 auto 16px;
+      }
+
+      #ceo-statement {
+        padding: 60px 0 56px;
+      }
+
+      #leadership-grid {
+        padding: 56px 0 60px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -37,64 +659,22 @@
         </button>
 
         <ul class="nav-menu" id="nav-menu">
-
-          <li class="nav-item"><a href="../index.html" class="nav-link" data-en="Home"
-              data-fr="Accueil">Home</a></li>
+          <li class="nav-item"><a href="../index.html" class="nav-link" data-en="Home" data-fr="Accueil">Home</a></li>
 
           <li class="nav-item">
             <a href="#" class="nav-link active-page">
               <span data-en="Our Company" data-fr="Notre Entreprise">Our Company</span>
               <i class="fas fa-chevron-down"></i>
             </a>
-
             <ul class="dropdown">
-
-              <li>
-                <a href="team.html">
-                  <i class="fa fa-users"></i>
-                  <span data-en="Senior Management" data-fr="Direction Générale">
-                    Senior Management
-                  </span>
-                </a>
-              </li>
-
-              <!-- <li>
-      <a href="partners.html">
-        <i class="fa fa-handshake"></i>
-        <span data-en="Our Partners"
-              data-fr="Nos Partenaires">
-          Our Partners
-        </span>
-      </a>
-    </li> -->
-
-              <li>
-                <a href="governance.html">
-                  <i class="fa fa-shield-alt"></i>
-                  <span data-en="Governance" data-fr="Gouvernance">
-                    Governance
-                  </span>
-                </a>
-              </li>
-
-              <li>
-                <a href="impact.html">
-                  <i class="fa fa-globe"></i>
-                  <span data-en="Our Community Impact" data-fr="Notre Impact Communautaire">
-                    Our Community Impact
-                  </span>
-                </a>
-              </li>
-
-              <li>
-                <a href="downloads.html">
-                  <i class="fa fa-download"></i>
-                  <span data-en="Downloads" data-fr="Téléchargements">
-                    Downloads
-                  </span>
-                </a>
-              </li>
-
+              <li><a href="team.html"><i class="fa fa-users"></i><span data-en="Senior Management"
+                    data-fr="Direction Générale">Senior Management</span></a></li>
+              <li><a href="governance.html"><i class="fa fa-shield-alt"></i><span data-en="Governance"
+                    data-fr="Gouvernance">Governance</span></a></li>
+              <li><a href="impact.html"><i class="fa fa-globe"></i><span data-en="Our Community Impact"
+                    data-fr="Notre Impact Communautaire">Our Community Impact</span></a></li>
+              <li><a href="downloads.html"><i class="fa fa-download"></i><span data-en="Downloads"
+                    data-fr="Téléchargements">Downloads</span></a></li>
             </ul>
           </li>
 
@@ -103,217 +683,84 @@
               <span data-en="Services" data-fr="Services">Services</span>
               <i class="fa fa-chevron-down"></i>
             </a>
-
             <ul class="dropdown mega">
-
-              <!-- Environnement & Gestion Durable -->
               <div class="dropdown-group">
                 <div class="dropdown-group-title" data-en="Environment & Sustainable Management"
-                  data-fr="Environnement & Gestion Durable">
-                  Environment & Sustainable Management
-                </div>
-
-                <li>
-                  <a href="../services/service-environmental-geochemistry.html">
-                    <i class="fa fa-flask"></i>
-                    <span data-en="Environmental Geochemistry & DMA" data-fr="Géochimie environnementale et DMA">
-                      Environmental Geochemistry & DMA
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-social-environmental.html">
-                    <i class="fa fa-leaf"></i>
-                    <span data-en="Environmental & Social Management" data-fr="Gestion environnementale et sociale">
-                      Environmental & Social Management
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-water.html">
-                    <i class="fa fa-water"></i>
-                    <span data-en="Mine Water Management" data-fr="Gestion des eaux de mine">
-                      Mine Water Management
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-institutional-support.html">
-                    <i class="fa fa-university"></i>
-                    <span data-en="Institutional Support & Advocacy" data-fr="Appui institutionnel et plaidoyer">
-                      Institutional Support & Advocacy
-                    </span>
-                  </a>
-                </li>
+                  data-fr="Environnement & Gestion Durable">Environment & Sustainable Management</div>
+                <li><a href="../services/service-environmental-geochemistry.html"><i class="fa fa-flask"></i><span
+                      data-en="Environmental Geochemistry & DMA"
+                      data-fr="Géochimie environnementale et DMA">Environmental Geochemistry & DMA</span></a></li>
+                <li><a href="../services/service-social-environmental.html"><i class="fa fa-leaf"></i><span
+                      data-en="Environmental & Social Management"
+                      data-fr="Gestion environnementale et sociale">Environmental & Social Management</span></a></li>
+                <li><a href="../services/service-water.html"><i class="fa fa-water"></i><span
+                      data-en="Mine Water Management" data-fr="Gestion des eaux de mine">Mine Water
+                      Management</span></a></li>
+                <li><a href="../services/service-institutional-support.html"><i class="fa fa-university"></i><span
+                      data-en="Institutional Support & Advocacy"
+                      data-fr="Appui institutionnel et plaidoyer">Institutional Support & Advocacy</span></a></li>
               </div>
-
-              <!-- Évaluation des Ressources & Exploration -->
               <div class="dropdown-group">
                 <div class="dropdown-group-title" data-en="Resource Assessment & Exploration"
-                  data-fr="Évaluation des Ressources & Exploration">
-                  Resource Assessment & Exploration
-                </div>
-
-                <li>
-                  <a href="../services/service-modeling.html">
-                    <i class="fa fa-cubes"></i>
-                    <span data-en="Mineral Resource Modeling & Estimation"
-                      data-fr="Modélisation et estimation des ressources minérales">
-                      Mineral Resource Modeling & Estimation
-                    </span>
-                  </a>
+                  data-fr="Évaluation des Ressources & Exploration">Resource Assessment & Exploration</div>
+                <li><a href="../services/service-modeling.html"><i class="fa fa-cubes"></i><span
+                      data-en="Mineral Resource Modeling & Estimation"
+                      data-fr="Modélisation et estimation des ressources minérales">Mineral Resource Modeling &
+                      Estimation</span></a></li>
+                <li><a href="../services/service-research-development.html"><i class="fa fa-microscope"></i><span
+                      data-en="Research & Development" data-fr="Recherche et développement">Research &
+                      Development</span></a></li>
+                <li><a href="../services/service-feasibility.html"><i class="fa fa-chart-bar"></i><span
+                      data-en="Feasibility Studies" data-fr="Études de faisabilité">Feasibility Studies</span></a></li>
+                <li><a href="../services/service-exploration.html"><i class="fa fa-compass"></i><span
+                      data-en="Exploration Services" data-fr="Services d'exploration">Exploration Services</span></a>
                 </li>
-
-                <li>
-                  <a href="../services/service-research-development.html">
-                    <i class="fa fa-microscope"></i>
-                    <span data-en="Research & Development" data-fr="Recherche et développement">
-                      Research & Development
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-feasibility.html">
-                    <i class="fa fa-chart-bar"></i>
-                    <span data-en="Feasibility Studies" data-fr="Études de faisabilité">
-                      Feasibility Studies
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-exploration.html">
-                    <i class="fa fa-compass"></i>
-                    <span data-en="Exploration Services" data-fr="Services d’exploration">
-                      Exploration Services
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-traning.html">
-                    <i class="fa fa-graduation-cap"></i>
-                    <span data-en="Training" data-fr="Formations">
-                      Training
-                    </span>
-                  </a>
-                </li>
+                <li><a href="../services/service-traning.html"><i class="fa fa-graduation-cap"></i><span
+                      data-en="Training" data-fr="Formations">Training</span></a></li>
               </div>
-
-              <!-- Audits, Expertise & Gestion des Risques -->
               <div class="dropdown-group">
                 <div class="dropdown-group-title" data-en="Audits, Expertise & Risk Management"
-                  data-fr="Audits, Expertise & Gestion des Risques">
-                  Audits, Expertise & Risk Management
-                </div>
-
-                <li>
-                  <a href="../services/service-audit.html">
-                    <i class="fa fa-search"></i>
-                    <span data-en="Independent Expertise & Audits" data-fr="Expertise indépendante & audits">
-                      Independent Expertise & Audits
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-risk.html">
-                    <i class="fa fa-exclamation-triangle"></i>
-                    <span data-en="Risk Management" data-fr="Gestion des risques">
-                      Risk Management
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-contaminated-sites.html">
-                    <i class="fa fa-industry"></i>
-                    <span data-en="Contaminated Site Assessment" data-fr="Évaluation des sites contaminés">
-                      Contaminated Site Assessment
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-traceability.html">
-                    <i class="fa fa-qrcode"></i>
-                    <span data-en="Mineral Resource Traceability" data-fr="Traçabilité des ressources minières">
-                      Mineral Resource Traceability
-                    </span>
-                  </a>
-                </li>
+                  data-fr="Audits, Expertise & Gestion des Risques">Audits, Expertise & Risk Management</div>
+                <li><a href="../services/service-audit.html"><i class="fa fa-search"></i><span
+                      data-en="Independent Expertise & Audits" data-fr="Expertise indépendante & audits">Independent
+                      Expertise & Audits</span></a></li>
+                <li><a href="../services/service-risk.html"><i class="fa fa-exclamation-triangle"></i><span
+                      data-en="Risk Management" data-fr="Gestion des risques">Risk Management</span></a></li>
+                <li><a href="../services/service-contaminated-sites.html"><i class="fa fa-industry"></i><span
+                      data-en="Contaminated Site Assessment" data-fr="Évaluation des sites contaminés">Contaminated Site
+                      Assessment</span></a></li>
+                <li><a href="../services/service-traceability.html"><i class="fa fa-qrcode"></i><span
+                      data-en="Mineral Resource Traceability" data-fr="Traçabilité des ressources minières">Mineral
+                      Resource Traceability</span></a></li>
               </div>
-
-              <!-- Ingénierie & Exploitation Minière -->
               <div class="dropdown-group">
                 <div class="dropdown-group-title" data-en="Engineering & Mining Operations"
-                  data-fr="Ingénierie & Exploitation Minière">
-                  Engineering & Mining Operations
-                </div>
-
-                <li>
-                  <a href="../services/service-operations.html">
-                    <i class="fa fa-cogs"></i>
-                    <span data-en="Mining Operations Assistance" data-fr="Assistance à l’exploitation minière">
-                      Mining Operations Assistance
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-openpit.html">
-                    <i class="fa fa-mountain"></i>
-                    <span data-en="Open Pit Mines" data-fr="Mines à ciel ouvert">
-                      Open Pit Mines
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-underground.html">
-                    <i class="fa fa-hard-hat"></i>
-                    <span data-en="Underground Mines" data-fr="Mines souterraines">
-                      Underground Mines
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/services-rock.html">
-                    <i class="fa fa-recycle"></i>
-                    <span data-en="Tailings & Waste Rock Engineering"
-                      data-fr="Ingénierie des parcs à résidus et des haldes à stériles">
-                      Tailings & Waste Rock Engineering
-                    </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="../services/service-closure.html">
-                    <i class="fa fa-times-circle"></i>
-                    <span data-en="Mine Closure & Rehabilitation" data-fr="Fermeture et restauration des sites miniers">
-                      Mine Closure & Rehabilitation
-                    </span>
-                  </a>
-                </li>
+                  data-fr="Ingénierie & Exploitation Minière">Engineering & Mining Operations</div>
+                <li><a href="../services/service-operations.html"><i class="fa fa-cogs"></i><span
+                      data-en="Mining Operations Assistance" data-fr="Assistance à l'exploitation minière">Mining
+                      Operations Assistance</span></a></li>
+                <li><a href="../services/service-openpit.html"><i class="fa fa-mountain"></i><span
+                      data-en="Open Pit Mines" data-fr="Mines à ciel ouvert">Open Pit Mines</span></a></li>
+                <li><a href="../services/service-underground.html"><i class="fa fa-hard-hat"></i><span
+                      data-en="Underground Mines" data-fr="Mines souterraines">Underground Mines</span></a></li>
+                <li><a href="../services/services-rock.html"><i class="fa fa-recycle"></i><span
+                      data-en="Tailings & Waste Rock Engineering"
+                      data-fr="Ingénierie des parcs à résidus et des haldes à stériles">Tailings & Waste Rock
+                      Engineering</span></a></li>
+                <li><a href="../services/service-closure.html"><i class="fa fa-times-circle"></i><span
+                      data-en="Mine Closure & Rehabilitation" data-fr="Fermeture et restauration des sites miniers">Mine
+                      Closure & Rehabilitation</span></a></li>
               </div>
-
             </ul>
           </li>
-
 
           <li class="nav-item"><a href="../intelligence.html" class="nav-link" data-en="Mining Intelligence"
               data-fr="Intelligence Minière">Mining Intelligence</a></li>
           <li class="nav-item"><a href="../blog.html" class="nav-link" data-en="News & Blog"
               data-fr="Actualités & Blog">News & Blog</a></li>
-          <li class="nav-item"><a href="../contact.html" class="nav-link" data-en="Contact" data-fr="Contact">Contact</a>
-          </li>
+          <li class="nav-item"><a href="../contact.html" class="nav-link" data-en="Contact"
+              data-fr="Contact">Contact</a></li>
 
-          <!-- LANGUAGE SWITCHER -->
           <li class="nav-item nav-lang" id="nav-lang">
             <button class="lang-trigger" id="lang-trigger" aria-label="Change language">
               <i class="fa fa-globe globe"></i>
@@ -327,14 +774,10 @@
                 Français</button>
             </div>
           </li>
-
         </ul>
 
-        <!-- SEARCH ICON + POPUP -->
         <div class="nav-right">
-          <button class="nav-search-btn" id="search-btn" aria-label="Search">
-            <i class="fa fa-search"></i>
-          </button>
+          <button class="nav-search-btn" id="search-btn" aria-label="Search"><i class="fa fa-search"></i></button>
           <div class="search-popup" id="search-popup">
             <div class="search-popup-inner">
               <span class="search-popup-label" data-en="Search the site" data-fr="Rechercher">Search the site</span>
@@ -342,9 +785,8 @@
                 <input type="text" class="search-input" id="search-input"
                   data-placeholder-en="Services, news, projects…" data-placeholder-fr="Services, actualités, projets…"
                   placeholder="Services, news, projects…" autocomplete="off" />
-                <button class="search-submit-btn" id="search-submit" aria-label="Go">
-                  <i class="fa fa-arrow-right"></i>
-                </button>
+                <button class="search-submit-btn" id="search-submit" aria-label="Go"><i
+                    class="fa fa-arrow-right"></i></button>
               </div>
               <div class="search-suggestions">
                 <button class="search-suggestion-tag" data-en="Exploration" data-fr="Exploration">Exploration</button>
@@ -356,37 +798,235 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </nav>
-
 
   <!-- =============================================
      PAGE HERO
 ============================================= -->
   <section id="page-hero">
     <div class="hero-ring"></div>
-    <div class="hero-watermark"><i class="fa fa-mountain"></i></div>
+    <div class="hero-watermark"><i class="fa fa-users"></i></div>
     <div class="container page-hero-inner">
-      <h1 data-en="The General <em>Management</em>" data-fr="La Direction-<em>Generale</em>">La Direction
-        <em>Generale</em></h1>
+      <h1 data-en="Senior <em>Management</em>" data-fr="Direction <em>Générale</em>">Senior <em>Management</em></h1>
       <nav class="breadcrumb">
-        <a href="index.html" data-en="Home" data-fr="Accueil">Home</a>
+        <a href="../index.html" data-en="Home" data-fr="Accueil">Home</a>
         <i class="fa fa-chevron-right"></i>
-        <span data-en="General Management" data-fr="Direction Générale">General Management</span>
+        <span data-en="Senior Management" data-fr="Direction Générale">Senior Management</span>
       </nav>
     </div>
   </section>
 
+  <!-- =============================================
+     CEO STATEMENT
+============================================= -->
+  <section id="ceo-statement">
+    <div class="ceo-accent-bar"></div>
+    <div class="container">
+      <div class="ceo-inner">
 
+        <!-- Left: photo + identity -->
+        <div class="ceo-identity">
+          <div class="ceo-photo-frame">
+            <div class="ceo-photo-placeholder">
+              <img src="../assets/images/IMG-20260512-WA0015.jpg" alt="">
+            </div>
+          </div>
+          <div>
+            <p class="ceo-name">Roland MBOUSSI</p>
+            <div class="ceo-title-badge">
+              <i class="fa fa-star"></i>
+              <span data-en="Chief Executive Officer" data-fr="Directeur Général">Chief Executive Officer</span>
+            </div>
+            <div class="ceo-divider"></div>
+            <p class="ceo-org-tag">EMPYRA GROUP</p>
+          </div>
+        </div>
+
+        <!-- Right: statement -->
+        <div class="ceo-statement-content">
+          <div class="section-eyebrow">
+            <i class="fa fa-comment-alt"></i>
+            <span data-en="CEO Statement" data-fr="Message du PDG">CEO Statement</span>
+          </div>
+          <h2 data-en="A <em>Catalyst Model</em> for Africa's Mining Future"
+            data-fr="Un Modèle <em>Catalyseur</em> pour l'Avenir Minier de l'Afrique">
+            A <em>Catalyst Model</em> for Africa's Mining Future
+          </h2>
+          <div class="ceo-title-rule"></div>
+
+          <p class="ceo-quote-opener"
+            data-en="At the heart of EMPYRA Mining Innovations' mission in Cameroon and across Africa is a radical shift from the traditional &ldquo;Extractive-only&rdquo; mindset to a &ldquo;Catalyst Model&rdquo; that embeds Environment, Sustainability, Traceability and shared infrastructure into the very DNA of our Operational Strategy."
+            data-fr="Au cœur de la mission d'EMPYRA Mining Innovations au Cameroun et à travers l'Afrique se trouve un changement radical par rapport à la mentalité traditionnelle &ldquo;Extractive-only&rdquo;, vers un &ldquo;Modèle Catalyseur&rdquo; qui intègre l'Environnement, la Durabilité, la Traçabilité et une infrastructure partagée dans l'ADN même de notre Stratégie Opérationnelle.">
+            At the heart of EMPYRA Mining Innovations' mission in Cameroon and across Africa is a radical shift from the
+            traditional &ldquo;Extractive-only&rdquo; mindset to a &ldquo;Catalyst Model&rdquo; that embeds Environment,
+            Sustainability, Traceability and shared infrastructure into the very DNA of our Operational Strategy.
+          </p>
+
+          <div class="ceo-statement-body">
+            <p data-en="By moving beyond the perimeter fence, we are designing <strong>Smart Mines</strong> &amp; <strong>Mining Intelligence</strong> that function as regional economic hubs, utilising Generative AI to map low-impact extraction zones and repurposing mining infrastructure to power local agriculture and manufacturing long after the minerals are gone."
+              data-fr="En allant au-delà du périmètre minier traditionnel, nous concevons des <strong>Mines Intelligentes</strong> et une <strong>Intelligence Minière</strong> qui fonctionnent comme des pôles économiques régionaux, en utilisant l'IA générative pour cartographier les zones d'extraction à faible impact et en réaffectant l'infrastructure minière pour soutenir l'agriculture locale et la fabrication bien après l'épuisement des minerais.">
+              By moving beyond the perimeter fence, we are designing <strong>Smart Mines</strong> &amp; <strong>Mining
+                Intelligence</strong> that function as regional economic hubs, utilising Generative AI to map low-impact
+              extraction zones and repurposing mining infrastructure to power local agriculture and manufacturing long
+              after the minerals are gone.
+            </p>
+            <p data-en="Our innovative approach focuses on &lsquo;designing out waste&rsquo; through the <strong>Green Mining Intelligence Initiative</strong>, where we transform tailings into low-carbon building materials and implement closed-loop water recycling to preserve Cameroon&rsquo;s and the Congo Basin&rsquo;s vital ecosystems."
+              data-fr="Notre approche innovante se concentre sur l'&lsquo;élimination des déchets dès la conception&rsquo; à travers l'<strong>Initiative d'Intelligence Minière Verte</strong>, où nous transformons les résidus en matériaux de construction à faible empreinte carbone et mettons en œuvre le recyclage en circuit fermé de l'eau pour préserver les écosystèmes vitaux du Cameroun et du Bassin du Congo.">
+              Our innovative approach focuses on &lsquo;designing out waste&rsquo; through the <strong>Green Mining
+                Intelligence Initiative</strong>, where we transform tailings into low-carbon building materials and
+              implement closed-loop water recycling to preserve Cameroon&rsquo;s and the Congo Basin&rsquo;s vital
+              ecosystems.
+            </p>
+            <p data-en="Ultimately, we are building a transparent, data-driven framework that integrates local content, youth skill-building, and Sustainable Mining to ensure that Cameroon&rsquo;s and Africa&rsquo;s mineral wealth serves as a permanent engine for inclusive, green industrialisation."
+              data-fr="En définitive, nous construisons un cadre transparent et axé sur les données qui intègre le contenu local, le développement des compétences des jeunes et l'Exploitation Minière Durable, afin que la richesse minérale du Cameroun et de l'Afrique devienne un moteur permanent d'une industrialisation inclusive et verte.">
+              Ultimately, we are building a transparent, data-driven framework that integrates local content, youth
+              skill-building, and Sustainable Mining to ensure that Cameroon&rsquo;s and Africa&rsquo;s mineral wealth
+              serves as a permanent engine for inclusive, green industrialisation.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- =============================================
-     CONTACT MAIN
+     LEADERSHIP GRID — 4 Directors
 ============================================= -->
-  <section id="contact-main">
+  <section id="leadership-grid">
+    <div class="container">
 
+      <div class="leadership-header">
+        <div class="gov-section-tag" style="margin-bottom:14px;">
+          <i class="fa fa-id-badge"></i>
+          <span data-en="Executive Committee" data-fr="Comité Exécutif">Executive Committee</span>
+        </div>
+        <h2 data-en="Our <em>Leadership</em> Team" data-fr="Notre Équipe de <em>Direction</em>">
+          Our <em>Leadership</em> Team
+        </h2>
+        <div class="leadership-center-rule"></div>
+        <p data-en="Four pillars of expertise driving innovation, performance and sustainability across every dimension of EMI's operations."
+          data-fr="Quatre piliers d'expertise qui portent l'innovation, la performance et la durabilité à travers chaque dimension des opérations d'EMI.">
+          Four pillars of expertise driving innovation, performance and sustainability across every dimension of EMI's
+          operations.
+        </p>
+      </div>
+
+      <div class="directors-grid">
+
+        <!-- ── CEO ── -->
+        <div class="director-card">
+          <div class="director-photo">
+            <img src="../assets/images/IMG-20260512-WA0015.jpg" alt="">
+            <div class="director-role-badge">
+              <span data-en="CEO" data-fr="PDG">CEO</span>
+            </div>
+          </div>
+          <div class="director-info">
+            <p class="director-name">Roland MBOUSSI</p>
+            <p class="director-full-title" data-en="Chief Executive Officer" data-fr="Directeur Général">Chief Executive
+              Officer</p>
+            <div class="director-divider"></div>
+            <p class="director-bio"
+              data-en="Visionary leader driving EMI's Catalyst Model strategy — transforming Cameroon's mining sector into a sustainable regional economic engine through Smart Mines and Green Mining Intelligence."
+              data-fr="Leader visionnaire portant la stratégie du Modèle Catalyseur d'EMI — transformant le secteur minier camerounais en un moteur économique régional durable grâce aux Mines Intelligentes et à l'Intelligence Minière Verte.">
+              Visionary leader driving EMI's Catalyst Model strategy — transforming Cameroon's mining sector into a
+              sustainable regional economic engine through Smart Mines and Green Mining Intelligence.
+            </p>
+            <div class="director-tags">
+              <span class="director-tag" data-en="Strategy" data-fr="Stratégie">Strategy</span>
+              <span class="director-tag" data-en="Innovation" data-fr="Innovation">Innovation</span>
+              <span class="director-tag" data-en="Sustainability" data-fr="Durabilité">Sustainability</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── COO ── -->
+        <div class="director-card">
+          <div class="director-photo">
+            <img src="../assets/images/IMG-20260512-WA0016.jpg" alt="">
+            <div class="director-role-badge">
+              <span data-en="COO" data-fr="DOO">COO</span>
+            </div>
+          </div>
+          <div class="director-info">
+            <p class="director-name" data-en="[Name]" data-fr="[Nom]">[Name]</p>
+            <p class="director-full-title" data-en="Chief Operating Officer" data-fr="Directeur des Opérations">Chief
+              Operating Officer</p>
+            <div class="director-divider"></div>
+            <p class="director-bio"
+              data-en="Oversees EMI's end-to-end operational excellence — from field exploration to mine closure — ensuring every project meets the highest technical and environmental standards."
+              data-fr="Supervise l'excellence opérationnelle d'EMI de bout en bout — de l'exploration de terrain à la fermeture de mine — en s'assurant que chaque projet répond aux plus hautes normes techniques et environnementales.">
+              Oversees EMI's end-to-end operational excellence — from field exploration to mine closure — ensuring every
+              project meets the highest technical and environmental standards.
+            </p>
+            <div class="director-tags">
+              <span class="director-tag" data-en="Operations" data-fr="Opérations">Operations</span>
+              <span class="director-tag" data-en="HSE" data-fr="HSE">HSE</span>
+              <span class="director-tag" data-en="Field Management" data-fr="Gestion Terrain">Field Management</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CFO ── -->
+        <div class="director-card">
+          <div class="director-photo">
+<img src="../assets/images/IMG-20260512-WA0017.jpg" alt="">
+            <div class="director-role-badge">
+              <span data-en="CFO" data-fr="DAF">CFO</span>
+            </div>
+          </div>
+          <div class="director-info">
+            <p class="director-name" data-en="[Name]" data-fr="[Nom]">[Name]</p>
+            <p class="director-full-title" data-en="Chief Financial Officer"
+              data-fr="Directeur Administratif & Financier">Chief Financial Officer</p>
+            <div class="director-divider"></div>
+            <p class="director-bio"
+              data-en="Stewards EMI's financial health and investor relations, building transparent reporting frameworks that attract international financiers and uphold the Group's governance commitments."
+              data-fr="Garant de la santé financière d'EMI et des relations investisseurs, il construit des cadres de reporting transparents qui attirent les financeurs internationaux et respectent les engagements de gouvernance du Groupe.">
+              Stewards EMI's financial health and investor relations, building transparent reporting frameworks that
+              attract international financiers and uphold the Group's governance commitments.
+            </p>
+            <div class="director-tags">
+              <span class="director-tag" data-en="Finance" data-fr="Finance">Finance</span>
+              <span class="director-tag" data-en="Compliance" data-fr="Conformité">Compliance</span>
+              <span class="director-tag" data-en="Investor Relations" data-fr="Relations Investisseurs">Investor
+                Relations</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CTO ── -->
+        <div class="director-card">
+          <div class="director-photo">
+<img src="../assets/images/IMG-20260512-WA0018.jpg" alt="">
+            <div class="director-role-badge">
+              <span data-en="CTO" data-fr="DT">CTO</span>
+            </div>
+          </div>
+          <div class="director-info">
+            <p class="director-name" data-en="[Name]" data-fr="[Nom]">[Name]</p>
+            <p class="director-full-title" data-en="Chief Technical Officer" data-fr="Directeur Technique">Chief
+              Technical Officer</p>
+            <div class="director-divider"></div>
+            <p class="director-bio"
+              data-en="Leads EMI's technical innovation agenda — deploying AI-driven resource modelling, digital traceability systems, and the Green Mining Intelligence Initiative across all active projects."
+              data-fr="Pilote l'agenda d'innovation technique d'EMI — en déployant la modélisation des ressources par IA, les systèmes de traçabilité numérique et l'Initiative d'Intelligence Minière Verte sur l'ensemble des projets actifs.">
+              Leads EMI's technical innovation agenda — deploying AI-driven resource modelling, digital traceability
+              systems, and the Green Mining Intelligence Initiative across all active projects.
+            </p>
+            <div class="director-tags">
+              <span class="director-tag" data-en="Geoscience" data-fr="Géosciences">Geoscience</span>
+              <span class="director-tag" data-en="AI & Data" data-fr="IA & Données">AI & Data</span>
+              <span class="director-tag" data-en="R&D" data-fr="R&D">R&D</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
 
@@ -404,9 +1044,10 @@
               <img src="../Logo Files/logo.png" alt="EMI" class="footer-logo-img">
             </div>
           </a>
-          <p data-en="Experts in mining intelligence and sustainable mining operations"
-            data-fr="Experts en intélligence minière et exploitation minière durable">
-            A Cameroonian company leveraging innovation and mining intelligence to build sustainable practices.</p>
+          <p data-en="A Cameroonian company leveraging innovation and mining intelligence to build sustainable practices."
+            data-fr="Une entreprise camerounaise qui exploite l'innovation et l'intelligence minière pour construire des pratiques durables.">
+            A Cameroonian company leveraging innovation and mining intelligence to build sustainable practices.
+          </p>
           <div class="footer-socials">
             <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
@@ -432,38 +1073,23 @@
         </div>
 
         <div class="footer-col">
-          <h4 data-fr="Nos Catégories de Services" data-en="Our Service Categories">Nos Catégories de Services</h4>
+          <h4 data-en="Our Service Categories" data-fr="Nos Catégories de Services">Our Service Categories</h4>
           <ul class="footer-links">
-            <li>
-              <a href="../services.html"><i class="fa fa-chevron-right"></i>
-                <span data-fr="Environnement & Gestion Durable" data-en="Environment & Sustainable Management">
-                  Environnement & Gestion Durable
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href="../services.html"><i class="fa fa-chevron-right"></i>
-                <span data-fr="Évaluation des Ressources & Exploration" data-en="Resource Assessment & Exploration">
-                  Évaluation des Ressources & Exploration
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href="../services.html"><i class="fa fa-chevron-right"></i>
-                <span data-fr="Audits, Expertise & Gestion des Risques" data-en="Audits, Expertise & Risk Management">
-                  Audits, Expertise & Gestion des Risques
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href="../services.html"><i class="fa fa-chevron-right"></i>
-                <span data-fr="Ingénierie & Exploitation Minière" data-en="Engineering & Mining Operations">
-                  Ingénierie & Exploitation Minière
-                </span>
-              </a>
-            </li>
+            <li><a href="../services.html"><i class="fa fa-chevron-right"></i><span
+                  data-en="Environment & Sustainable Management" data-fr="Environnement & Gestion Durable">Environment &
+                  Sustainable Management</span></a></li>
+            <li><a href="../services.html"><i class="fa fa-chevron-right"></i><span
+                  data-en="Resource Assessment & Exploration" data-fr="Évaluation des Ressources & Exploration">Resource
+                  Assessment & Exploration</span></a></li>
+            <li><a href="../services.html"><i class="fa fa-chevron-right"></i><span
+                  data-en="Audits, Expertise & Risk Management"
+                  data-fr="Audits, Expertise & Gestion des Risques">Audits, Expertise & Risk Management</span></a></li>
+            <li><a href="../services.html"><i class="fa fa-chevron-right"></i><span
+                  data-en="Engineering & Mining Operations" data-fr="Ingénierie & Exploitation Minière">Engineering &
+                  Mining Operations</span></a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4 data-en="Contact" data-fr="Contact">Contact</h4>
           <ul class="footer-contact">
@@ -471,12 +1097,14 @@
               <i class="fa fa-map-marker-alt"></i>
               <div class="footer-location-wrap">
                 <span class="location-text" data-en="Rue 1.959, Quartier Bastos, Yaoundé, Cameroon"
-                  data-fr="Rue 1.959, Quartier Bastos, Yaoundé, Cameroun">Rue 1.959, Quartier Bastos, Yaoundé,
-                  Cameroon</span>
+                  data-fr="Rue 1.959, Quartier Bastos, Yaoundé, Cameroun">
+                  Rue 1.959, Quartier Bastos, Yaoundé, Cameroon
+                </span>
                 <div class="location-card">
                   <a href="https://www.google.com/maps/search/Bastos+Yaounde+Cameroon" target="_blank" rel="noopener"
                     style="display:block;">
-                    <div class="location-card-map-fallback"><img
+                    <div class="location-card-map-fallback">
+                      <img
                         src="https://www.mining.com/wp-content/uploads/2018/04/fate-centerra-mine-not-sealed-kyrgyz-owned-company-yet-see-takeover-bid.jpg"
                         alt="">
                     </div>
@@ -495,7 +1123,7 @@
                 </div>
               </div>
             </li>
-            <li><i class="fa fa-phone"></i><span>+237 222 217 225 </span></li>
+            <li><i class="fa fa-phone"></i><span>+237 222 217 225</span></li>
             <li><i class="fa fa-envelope"></i><a href="mailto:info@empyragroup.com"
                 style="color:rgba(255,255,255,0.55);">info@empyragroup.com</a></li>
           </ul>
@@ -504,18 +1132,64 @@
       </div>
       <div class="footer-bottom">
         <span data-en="© 2025 Empyra Mining Innovations. All rights reserved."
-          data-fr="© 2025 Empyra Mining Innovations. Tous droits réservés.">© 2025 Empyra Mining Innovations. All rights
-          reserved.</span>
-        <span><a href="#" data-en="Privacy Policy" data-fr="Politique de Confidentialité">Privacy Policy</a>
-          · <a href="#" data-en="Terms of Use" data-fr="Conditions d'Utilisation">Terms of Use</a></span>
+          data-fr="© 2025 Empyra Mining Innovations. Tous droits réservés.">
+          © 2025 Empyra Mining Innovations. All rights reserved.
+        </span>
+        <span>
+          <a href="#" data-en="Privacy Policy" data-fr="Politique de Confidentialité">Privacy Policy</a>
+          · <a href="#" data-en="Terms of Use" data-fr="Conditions d'Utilisation">Terms of Use</a>
+        </span>
       </div>
     </div>
   </footer>
 
   <button id="back-to-top" aria-label="Back to top"><i class="fa fa-chevron-up"></i></button>
 
-  <script src="../assets/js/service-water-script.js"></script>
   <script src="../assets/js/search.js"></script>
+  <script>
+    /* ─── Language switcher ─── */
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-en][data-fr]').forEach(el => {
+        const val = el.getAttribute('data-' + lang);
+        if (val !== null) el.innerHTML = val;
+      });
+      document.querySelectorAll('[data-placeholder-en][data-placeholder-fr]').forEach(el => {
+        el.placeholder = el.getAttribute('data-placeholder-' + lang);
+      });
+      document.getElementById('opt-en').classList.toggle('active', lang === 'en');
+      document.getElementById('opt-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('lang-label').textContent = lang.toUpperCase();
+      localStorage.setItem('emi_lang', lang);
+    }
+
+    (function () { setLang(localStorage.getItem('emi_lang') || 'en'); })();
+
+    document.getElementById('lang-trigger').addEventListener('click', function (e) {
+      e.stopPropagation();
+      document.getElementById('lang-dropdown').classList.toggle('open');
+    });
+    document.addEventListener('click', function () {
+      document.getElementById('lang-dropdown').classList.remove('open');
+    });
+
+    /* ─── Hamburger ─── */
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+        hamburger.classList.toggle('active');
+      });
+    }
+
+    /* ─── Back to top ─── */
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (btt) btt.classList.toggle('visible', window.scrollY > 400);
+    });
+    if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
 </body>
 
 </html>

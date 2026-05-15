@@ -401,7 +401,7 @@ function renderIntelligenceSlides(trackId, items) {
             '<a href="#" class="btn btn-primary"><i class="fa ' + icon + '"></i> <span data-en="Learn More" data-fr="En Savoir Plus">Learn More</span></a>' +
           '</div>' +
           '<div class="intel-visual" style="background-image:url(\'' + image + '\');background-size:cover;background-position:center;background-repeat:no-repeat;">' +
-            '<i class="intel-visual-icon fa ' + icon + '"></i>' +
+            '<i class="intel-visual-icon ' + (icon.startsWith('ph') ? 'ph ' : 'fa ') + icon + '"></i>' +
             '<div class="intel-visual-overlay"></div>' +
             '<div class="intel-visual-badge">' + escHtml(item.category || 'Intelligence') + '</div>' +
           '</div>' +

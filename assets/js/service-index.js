@@ -6,6 +6,20 @@
 
 var API_BASE = 'http://localhost:5000/api';
 
+/* ─── ROOT_URL: always points to the project root ───────────────────
+   Walks up the pathname and stops just before /services/
+   Works for file://, localhost, and deployed domains.
+──────────────────────────────────────────────────────────────────── */
+var ROOT_URL = (function () {
+  var parts = window.location.pathname.split('/');
+  var root  = [];
+  for (var i = 0; i < parts.length; i++) {
+    if (parts[i].toLowerCase() === 'services') break;
+    root.push(parts[i]);
+  }
+  return window.location.protocol + '//' + window.location.host + root.join('/') + '/';
+})();
+
 var SERVICE_CATEGORY_CONFIG = {
   environment: {
     label_en: 'Environment & Sustainable Management',
@@ -54,7 +68,7 @@ function buildServiceCard(service, lang) {
   var title = lang === 'fr' ? service.title_fr : service.title_en;
   var desc  = lang === 'fr' ? service.desc_fr  : service.desc_en;
   var icon  = service.icon || 'ph-hard-hat';
-  var href  = 'services/service-detail.html?slug=' + encodeURIComponent(service.slug || '');
+  var href  = ROOT_URL + 'services/service-detail.html?slug=' + encodeURIComponent(service.slug || '');
 
   return '<div class="service-card">' +
     '<div class="service-card-icon"><i class="ph ' + escHtml(icon) + '"></i></div>' +
@@ -130,15 +144,15 @@ function renderNavServices(services) {
 
     var servicesHtml = groups[category].map(function(service) {
       var title = lang === 'fr' ? service.title_fr : service.title_en;
-      var href  = 'services/service-detail.html?slug=' + encodeURIComponent(service.slug || '');
+      var href  = ROOT_URL + 'services/service-detail.html?slug=' + encodeURIComponent(service.slug || '');
 
-      // ✅ Use the service's own icon; fall back to the category icon, then a generic one
+      /* ✅ Use the service's own icon; fall back to category icon, then generic */
       var iconClass = service.icon || cfg.icon || 'ph-hard-hat';
 
-      // Detect whether it's a Phosphor icon (ph-) or FontAwesome (fa-)
+      /* Detect whether it's a Phosphor icon (ph-) or FontAwesome (fa-) */
       var iconHtml = iconClass.startsWith('fa')
         ? '<i class="fa ' + escHtml(iconClass) + '"></i>'
-        : '<i class="ph '  + escHtml(iconClass) + '"></i>';
+        : '<i class="ph ' + escHtml(iconClass) + '"></i>';
 
       return '<li>' +
         '<a href="' + escHtml(href) + '">' +

@@ -1,5 +1,4 @@
-
-   /* =============================================
+/* =============================================
    service-links.js
    Converts legacy service page URLs into the new slug-based
    dynamic service detail route on pages that still contain old
@@ -27,14 +26,31 @@ var SERVICE_SLUG_MAP = {
   'service-closure.html': 'mine-closure-rehabilitation'
 };
 
-function isServiceFolderPage() {
-  var path = window.location.pathname;
-  return path.indexOf('/services/') === 0 && !path.endsWith('/services.html');
-}
+/* ─── ROOT_URL: always points to the project root ───────────────────
+   Walks up the pathname and stops just before /services/
+   Works for file://, localhost, and deployed domains.
+
+   Example (local):
+     file:///C:/Users/STEVODIGITAL/EMPYRA/services/service-detail.html
+     → ROOT_URL = "file:///C:/Users/STEVODIGITAL/EMPYRA/"
+
+   Example (deployed):
+     https://emi.stevodigital.com/services/service-detail.html
+     → ROOT_URL = "https://emi.stevodigital.com/"
+──────────────────────────────────────────────────────────────────── */
+var ROOT_URL = (function () {
+  var loc   = window.location;
+  var parts = loc.pathname.split('/');
+  var root  = [];
+  for (var i = 0; i < parts.length; i++) {
+    if (parts[i].toLowerCase() === 'services') break;
+    root.push(parts[i]);
+  }
+  return loc.protocol + '//' + loc.host + root.join('/') + '/';
+})();
 
 function buildServiceDetailUrl(slug) {
-  var target = isServiceFolderPage() ? 'service-detail.html' : 'services/service-detail.html';
-  return target + '?slug=' + encodeURIComponent(slug);
+  return ROOT_URL + 'services/service-detail.html?slug=' + encodeURIComponent(slug);
 }
 
 function normalizeServiceHref(href) {

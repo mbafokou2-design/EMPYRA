@@ -106,6 +106,20 @@
      transition: var(--transition);
    }
 
+   .intel-item-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(245, 197, 24, 0.12);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--yellow);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
    .btn-primary {
      background: var(--yellow);
      color: var(--blue-dark);
