@@ -11,7 +11,7 @@
      GET /api/services/category/:cat    → sidebar siblings
 ============================================= */
 
-var API_BASE = 'http://localhost:5000/api';
+var API_BASE = 'https://empyrabackend-production.up.railway.app/api';
 
 /* Category config — labels + icons */
 var CATEGORY_CONFIG = {
