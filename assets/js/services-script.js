@@ -2,6 +2,24 @@
    EMI — services-script.js
 ============================================= */
 
+/* --- ROOT URL --- */
+var ROOT_URL = (function () {
+  var loc  = window.location;
+  var path = loc.pathname;
+
+  // If inside /services/, everything before it is the root
+  if (path.indexOf('/services/') !== -1) {
+    var root = path.split('/services/')[0];
+    // file:// has no host, so just use protocol + path
+    if (loc.protocol === 'file:') return loc.protocol + '//' + root + '/';
+    return loc.protocol + '//' + loc.host + root + '/';
+  }
+
+  // At root level — strip the filename (e.g. index.html, services.html)
+  var dir = path.replace(/\/[^\/]*$/, '/');
+  if (loc.protocol === 'file:') return loc.protocol + '//' + dir;
+  return loc.protocol + '//' + loc.host + dir;
+})();
 /* --- LANGUAGE SWITCHER --- */
 function setLang(lang) {
   localStorage.setItem('emi_lang', lang);
@@ -109,7 +127,6 @@ function loadDynamicServices() {
     })
     .catch(function(error) {
       console.error('Error loading dynamic services:', error);
-      // Fallback to static content if API fails
     });
 }
 
@@ -159,7 +176,7 @@ function renderCategoriesGrid(services) {
 
     var servicesHtml = groups[category].map(function(service) {
       var title = lang === 'fr' ? service.title_fr : service.title_en;
-      var href = './services/service-detail.html?slug=' + encodeURIComponent(service.slug || service.id);
+      var href = ROOT_URL + 'services/service-detail.html?slug=' + encodeURIComponent(service.slug || service.id);
       return '<li>' +
         '<a href="' + href + '" class="category-link">' +
           '<span class="category-link-left">' +
@@ -184,16 +201,10 @@ function renderCategoriesGrid(services) {
 
   grid.innerHTML = html;
 
-  // Re-apply reveal observer to new elements
   document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
-
-  // Re-apply language switching
   setLang(lang);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   loadDynamicServices();
 });
-
-
-

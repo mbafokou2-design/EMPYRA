@@ -13,6 +13,23 @@
 
 var API_BASE = 'https://empyrabackend-production.up.railway.app/api';
 
+var ROOT_URL = (function () {
+  var loc  = window.location;
+  var path = loc.pathname;
+
+  // If inside /services/, everything before it is the root
+  if (path.indexOf('/services/') !== -1) {
+    var root = path.split('/services/')[0];
+    // file:// has no host, so just use protocol + path
+    if (loc.protocol === 'file:') return loc.protocol + '//' + root + '/';
+    return loc.protocol + '//' + loc.host + root + '/';
+  }
+
+  // At root level — strip the filename (e.g. index.html, services.html)
+  var dir = path.replace(/\/[^\/]*$/, '/');
+  if (loc.protocol === 'file:') return loc.protocol + '//' + dir;
+  return loc.protocol + '//' + loc.host + dir;
+})();
 /* Category config — labels + icons */
 var CATEGORY_CONFIG = {
   environment: {
@@ -220,7 +237,7 @@ function renderSidebar(currentService, siblings) {
   list.innerHTML = siblings.map(function(s) {
     var isActive  = String(s._id || s.id) === String(currentService._id || currentService.id);
     var sTitle    = lang === 'fr' ? s.title_fr : s.title_en;
-    var href      = 'service-detail.html?slug=' + encodeURIComponent(s.slug);
+    var href = ROOT_URL + 'services/service-detail.html?slug=' + encodeURIComponent(s.slug);
 
     return '<li' + (isActive ? ' class="active"' : '') + '>' +
       '<a href="' + href + '">' +

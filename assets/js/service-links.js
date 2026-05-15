@@ -39,16 +39,22 @@ var SERVICE_SLUG_MAP = {
      → ROOT_URL = "https://emi.stevodigital.com/"
 ──────────────────────────────────────────────────────────────────── */
 var ROOT_URL = (function () {
-  var loc   = window.location;
-  var parts = loc.pathname.split('/');
-  var root  = [];
-  for (var i = 0; i < parts.length; i++) {
-    if (parts[i].toLowerCase() === 'services') break;
-    root.push(parts[i]);
-  }
-  return loc.protocol + '//' + loc.host + root.join('/') + '/';
-})();
+  var loc  = window.location;
+  var path = loc.pathname;
 
+  // If inside /services/, everything before it is the root
+  if (path.indexOf('/services/') !== -1) {
+    var root = path.split('/services/')[0];
+    // file:// has no host, so just use protocol + path
+    if (loc.protocol === 'file:') return loc.protocol + '//' + root + '/';
+    return loc.protocol + '//' + loc.host + root + '/';
+  }
+
+  // At root level — strip the filename (e.g. index.html, services.html)
+  var dir = path.replace(/\/[^\/]*$/, '/');
+  if (loc.protocol === 'file:') return loc.protocol + '//' + dir;
+  return loc.protocol + '//' + loc.host + dir;
+})();
 function buildServiceDetailUrl(slug) {
   return ROOT_URL + 'services/service-detail.html?slug=' + encodeURIComponent(slug);
 }
