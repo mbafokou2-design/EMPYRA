@@ -3,7 +3,7 @@
    Dynamically loads hero slides from services API.
 ============================================= */
 
-var API_BASE = 'http://localhost:5000/api';
+var API_BASE = 'https://empyrabackend-production.up.railway.app//api';
 
 function apiFetch(url) {
   return fetch(url).then(function(res) {
