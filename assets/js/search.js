@@ -3,7 +3,7 @@
    Reusable search functionality for services
 ============================================= */
 
-var API_BASE = 'http://localhost:5000/api';
+var API_BASE = 'https://empyrabackend-production.up.railway.app/api';
 
 // Search services from API
 async function searchServices(query) {
