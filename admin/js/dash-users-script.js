@@ -74,7 +74,7 @@ if (logoutBtn) {
 /* =============================================
    ✅ API CONFIG — connected to your Express server
 ============================================= */
-var API_BASE = 'http://localhost:5000/api';
+var API_BASE = 'https://empyrabackend-production.up.railway.app/api';
 
 function getHeaders() {
   return {
